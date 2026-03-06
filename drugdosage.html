@@ -1,0 +1,1884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#0b1120">
+<title>PediRx — Pediatric Drug Reference</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@300;400;500;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0b1120;
+  --surface: #111827;
+  --surface2: #1a2335;
+  --surface3: #1f2d44;
+  --border: #243048;
+  --accent: #38bdf8;
+  --accent2: #22d3ee;
+  --accent3: #34d399;
+  --warn: #fb923c;
+  --danger: #f87171;
+  --purple: #a78bfa;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --text3: #64748b;
+  --pill-bg: #1e3a4c;
+  --bottom-nav-h: 64px;
+  --header-h: 110px;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
+
+/* ===== HEADER ===== */
+.header{
+  background:linear-gradient(135deg,#0f1f38 0%,#0b1120 60%,#0a1a2e 100%);
+  border-bottom:1px solid var(--border);
+  position:sticky;top:0;z-index:100;
+  padding:12px 16px;
+  padding-top: max(12px, env(safe-area-inset-top));
+}
+.header-top{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+.logo{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.logo-icon{width:38px;height:38px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.logo-text{font-family:'Playfair Display',serif;font-size:20px;color:var(--text);letter-spacing:-0.3px;line-height:1.1;}
+.logo-sub{font-size:9px;color:var(--text3);letter-spacing:1.5px;text-transform:uppercase;font-family:'DM Mono',monospace;}
+.weight-pill{display:flex;align-items:center;gap:6px;background:var(--surface2);border:1.5px solid var(--border);border-radius:10px;padding:7px 12px;margin-left:auto;flex-shrink:0;}
+.weight-pill label{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;white-space:nowrap;}
+.weight-pill input{background:transparent;border:none;color:var(--accent);font-family:'DM Mono',monospace;font-size:16px;font-weight:500;width:50px;outline:none;}
+.weight-pill span{font-size:11px;color:var(--text3);}
+.search-wrap{position:relative;}
+.search-wrap input{
+  width:100%;background:var(--surface2);border:1.5px solid var(--border);
+  border-radius:10px;padding:10px 14px 10px 42px;
+  color:var(--text);font-family:'Sora',sans-serif;font-size:14px;outline:none;
+  transition:border 0.2s;
+  -webkit-appearance:none;
+}
+.search-wrap input:focus{border-color:var(--accent);}
+.search-wrap input::placeholder{color:var(--text3);}
+.search-icon{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:15px;}
+
+/* ===== DESKTOP TABS (hidden on mobile) ===== */
+.tabs-desktop{
+  display:flex;border-bottom:1px solid var(--border);
+  background:var(--surface);padding:0 24px;overflow-x:auto;
+}
+.tab{
+  padding:13px 20px;font-size:13px;font-weight:500;color:var(--text3);cursor:pointer;
+  border-bottom:2.5px solid transparent;transition:all 0.2s;white-space:nowrap;
+  display:flex;align-items:center;gap:6px;min-height:46px;
+}
+.tab:hover{color:var(--text);}
+.tab.active{color:var(--accent);border-bottom-color:var(--accent);}
+.tab-count{background:var(--surface3);color:var(--text3);font-size:10px;padding:2px 7px;border-radius:10px;font-family:'DM Mono',monospace;}
+.tab.active .tab-count{background:var(--pill-bg);color:var(--accent);}
+
+/* ===== BOTTOM NAV (mobile only) ===== */
+.bottom-nav{
+  display:none;
+  position:fixed;bottom:0;left:0;right:0;
+  background:var(--surface);
+  border-top:1px solid var(--border);
+  z-index:200;
+  padding-bottom:var(--safe-bottom);
+}
+.bottom-nav-inner{display:flex;height:var(--bottom-nav-h);}
+.bnav-btn{
+  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:4px;border:none;background:none;cursor:pointer;color:var(--text3);
+  font-family:'Sora',sans-serif;font-size:10px;font-weight:500;
+  transition:color 0.15s;min-height:var(--bottom-nav-h);
+  -webkit-tap-highlight-color:transparent;
+}
+.bnav-btn .bnav-icon{font-size:20px;line-height:1;}
+.bnav-btn.active{color:var(--accent);}
+.bnav-btn.active .bnav-icon{filter:drop-shadow(0 0 6px rgba(56,189,248,0.5));}
+
+/* ===== DRAWER SIDEBAR (mobile filter) ===== */
+.drawer-overlay{
+  display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);
+  z-index:300;backdrop-filter:blur(3px);
+}
+.drawer-overlay.open{display:block;}
+.drawer{
+  position:fixed;top:0;left:-280px;bottom:0;width:280px;
+  background:var(--surface);border-right:1px solid var(--border);
+  z-index:400;overflow-y:auto;transition:left 0.3s ease;
+  padding-top: max(0px, env(safe-area-inset-top));
+  padding-bottom: max(0px, calc(var(--bottom-nav-h) + var(--safe-bottom)));
+}
+.drawer.open{left:0;}
+.drawer-header{
+  padding:16px 18px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.drawer-title{font-size:13px;font-weight:600;color:var(--text);letter-spacing:0.5px;}
+.drawer-close{
+  background:none;border:none;color:var(--text3);font-size:20px;
+  cursor:pointer;padding:4px;width:32px;height:32px;
+  display:flex;align-items:center;justify-content:center;border-radius:6px;
+}
+.drawer-close:hover{background:var(--surface2);color:var(--text);}
+
+/* ===== DESKTOP SIDEBAR ===== */
+.sidebar-desktop{
+  width:240px;flex-shrink:0;border-right:1px solid var(--border);
+  padding:16px 0;overflow-y:auto;
+}
+.sidebar-title{font-size:9px;font-weight:600;color:var(--text3);letter-spacing:2px;text-transform:uppercase;padding:8px 18px 5px;}
+.cat-btn{
+  display:flex;align-items:center;justify-content:space-between;
+  width:100%;padding:10px 18px;background:none;border:none;
+  color:var(--text2);font-family:'Sora',sans-serif;font-size:13px;
+  cursor:pointer;transition:all 0.15s;text-align:left;min-height:44px;
+}
+.cat-btn:hover{color:var(--text);background:var(--surface2);}
+.cat-btn.active{color:var(--accent);background:var(--pill-bg);font-weight:500;}
+.cat-count{font-size:10px;font-family:'DM Mono',monospace;background:var(--surface3);padding:2px 7px;border-radius:10px;flex-shrink:0;}
+.cat-btn.active .cat-count{background:#1e3a4c;color:var(--accent);}
+
+/* ===== MAIN LAYOUT ===== */
+.main{display:flex;min-height:calc(100vh - var(--header-h));}
+.panel{display:none;}
+.panel.active{display:flex;flex:1;}
+.panel-full{display:none;}
+.panel-full.active{display:block;}
+.content{flex:1;padding:20px 20px;overflow-y:auto;}
+.section-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px;gap:12px;flex-wrap:wrap;}
+.section-title{font-size:17px;font-weight:600;color:var(--text);}
+.section-sub{font-size:11px;color:var(--text3);margin-top:3px;}
+.results-info{font-size:11px;color:var(--text3);font-family:'DM Mono',monospace;white-space:nowrap;flex-shrink:0;margin-top:4px;}
+
+/* ===== FILTER BAR (mobile category filter) ===== */
+.filter-bar-mobile{
+  display:none;padding:0 16px 12px;
+  border-bottom:1px solid var(--border);
+  background:var(--surface);
+  gap:8px;align-items:center;
+}
+.filter-bar-mobile .filter-btn-mob{
+  display:flex;align-items:center;gap:6px;
+  background:var(--surface2);border:1.5px solid var(--border);
+  border-radius:8px;padding:8px 14px;color:var(--text2);
+  font-family:'Sora',sans-serif;font-size:13px;font-weight:500;
+  cursor:pointer;min-height:40px;
+  white-space:nowrap;
+}
+.filter-bar-mobile .current-cat{
+  flex:1;font-size:12px;color:var(--accent);
+  font-family:'DM Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+
+/* ===== DRUG CARDS ===== */
+.drug-grid{display:flex;flex-direction:column;gap:10px;}
+.drug-card{background:var(--surface);border:1.5px solid var(--border);border-radius:12px;overflow:hidden;transition:border-color 0.2s;}
+.drug-card.expanded{border-color:var(--accent);}
+.drug-header{display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer;min-height:60px;}
+.drug-name{flex:1;min-width:0;}
+.drug-name h3{font-size:14px;font-weight:600;color:var(--text);line-height:1.2;}
+.drug-name .generic{font-size:10px;color:var(--text3);margin-top:2px;font-family:'DM Mono',monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.drug-tags{display:flex;gap:4px;flex-wrap:wrap;}
+.tag{font-size:9px;padding:2px 7px;border-radius:20px;font-weight:500;letter-spacing:0.3px;white-space:nowrap;}
+.tag-class{background:#1e2d45;color:var(--accent);}
+.tag-route{background:#1a3030;color:var(--accent3);}
+.chevron{color:var(--text3);transition:transform 0.25s;font-size:14px;flex-shrink:0;}
+.expanded .chevron{transform:rotate(180deg);}
+.drug-body{display:none;border-top:1px solid var(--border);}
+.expanded .drug-body{display:block;}
+.drug-body-inner{padding:14px 16px;}
+.dose-label{font-size:9px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px;display:flex;align-items:center;gap:5px;}
+.dose-label::before{content:'';display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--accent);}
+.dose-row{padding:9px 0;border-bottom:1px solid var(--border);}
+.dose-row:last-of-type{border-bottom:none;}
+.dose-indication{font-size:11px;color:var(--text2);margin-bottom:4px;line-height:1.4;}
+.dose-value{font-family:'DM Mono',monospace;font-size:11px;color:var(--accent);line-height:1.4;}
+.dose-calc{font-size:11px;color:var(--accent3);font-family:'DM Mono',monospace;margin-top:2px;}
+.note-box{background:#1a1f2e;border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:9px 12px;margin-top:12px;font-size:11px;color:var(--text2);line-height:1.6;}
+
+/* ===== SITUATION GRID ===== */
+.sit-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px;padding:20px;}
+.sit-card{background:var(--surface);border:1.5px solid var(--border);border-radius:12px;overflow:hidden;}
+.sit-card-header{padding:14px 16px;display:flex;align-items:center;gap:11px;cursor:pointer;min-height:60px;}
+.sit-icon{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;}
+.sit-title{font-size:14px;font-weight:600;color:var(--text);}
+.sit-sub{font-size:10px;color:var(--text3);margin-top:2px;}
+.sit-body{display:none;border-top:1px solid var(--border);padding:14px 16px;}
+.sit-card.open .sit-body{display:block;}
+.sit-drug-row{padding:10px 0;border-bottom:1px solid var(--border);}
+.sit-drug-row:last-child{border-bottom:none;padding-bottom:0;}
+.sit-drug-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:4px;}
+.sit-drug-name{font-size:13px;font-weight:600;color:var(--text);}
+.priority-badge{font-size:9px;padding:2px 7px;border-radius:10px;white-space:nowrap;font-weight:600;flex-shrink:0;}
+.p-first{background:#1a3030;color:var(--accent3);}
+.p-second{background:#2a2a1a;color:#fbbf24;}
+.p-alt{background:#2a1a2a;color:var(--purple);}
+.sit-drug-dose{font-size:11px;color:var(--text2);font-family:'DM Mono',monospace;line-height:1.5;}
+.sit-drug-note{font-size:10px;color:var(--text3);margin-top:3px;}
+
+/* ===== RENAL TABLE (desktop) ===== */
+.renal-table{width:100%;border-collapse:collapse;font-size:12px;}
+.renal-table th{background:var(--surface2);color:var(--text3);font-size:9px;text-transform:uppercase;letter-spacing:1.5px;padding:10px 14px;text-align:left;border-bottom:1.5px solid var(--border);font-weight:600;}
+.renal-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--text2);vertical-align:top;line-height:1.5;}
+.renal-table tr:hover td{background:var(--surface2);}
+.renal-table .drug-col{color:var(--text);font-weight:600;}
+.renal-val{font-family:'DM Mono',monospace;font-size:11px;color:var(--accent3);}
+.renal-avoid{font-family:'DM Mono',monospace;font-size:11px;color:var(--danger);}
+.renal-normal{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);}
+
+/* ===== RENAL CARDS (mobile) ===== */
+.renal-card{
+  background:var(--surface);border:1.5px solid var(--border);
+  border-radius:12px;padding:14px 16px;margin-bottom:10px;
+}
+.renal-card-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.renal-drug-name{font-size:14px;font-weight:600;color:var(--text);}
+.renal-class-tag{font-size:9px;padding:2px 8px;border-radius:20px;background:#1e2d45;color:var(--accent);font-weight:500;}
+.renal-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.renal-cell{background:var(--surface2);border-radius:8px;padding:8px 10px;}
+.renal-cell-label{font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:4px;}
+.renal-cell-val{font-family:'DM Mono',monospace;font-size:11px;line-height:1.4;}
+.renal-cell-val.green{color:var(--accent3);}
+.renal-cell-val.red{color:var(--danger);}
+.renal-cell-val.normal{color:var(--text3);}
+.renal-cell-val.purple{color:var(--purple);}
+.renal-normal-dose{font-size:11px;color:var(--text2);font-family:'DM Mono',monospace;margin-bottom:10px;background:var(--surface2);padding:8px 10px;border-radius:8px;}
+.renal-note-text{font-size:10px;color:var(--text3);margin-top:8px;padding-top:8px;border-top:1px solid var(--border);line-height:1.5;}
+
+/* ===== GFR HEADER ===== */
+.gfr-header{display:flex;gap:8px;flex-wrap:wrap;padding:16px 20px 8px;}
+.gfr-badge{padding:7px 12px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;transition:all 0.2s;border:1.5px solid transparent;min-height:36px;display:flex;align-items:center;}
+.gfr-badge.normal{background:#1a3030;color:var(--accent3);border-color:#1a3030;}
+.gfr-badge.mild{background:#2a2a1a;color:#fbbf24;border-color:#2a2a1a;}
+.gfr-badge.mod{background:#2a1a1a;color:var(--warn);border-color:#2a1a1a;}
+.gfr-badge.severe{background:#2a1a1a;color:var(--danger);border-color:#2a1a1a;}
+.gfr-badge.selected{border-color:currentColor;}
+.renal-search{padding:0 20px 12px;}
+.renal-search input{width:100%;background:var(--surface2);border:1.5px solid var(--border);border-radius:10px;padding:9px 14px 9px 38px;color:var(--text);font-family:'Sora',sans-serif;font-size:13px;outline:none;}
+.renal-search input:focus{border-color:var(--accent);}
+.renal-search-icon{position:absolute;left:33px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:14px;}
+.renal-search-wrap{position:relative;}
+
+/* ===== EMPTY STATE ===== */
+.empty{text-align:center;padding:50px 20px;color:var(--text3);}
+.empty-icon{font-size:42px;margin-bottom:12px;}
+.empty-text{font-size:14px;}
+
+/* ===== BADGE ===== */
+.hl-badge{background:linear-gradient(135deg,var(--accent),var(--purple));color:#fff;font-size:9px;font-weight:600;padding:3px 8px;border-radius:20px;letter-spacing:0.5px;white-space:nowrap;}
+
+/* ===== DIVIDER ===== */
+.divider{height:1px;background:var(--border);margin:6px 0;}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar{width:4px;height:4px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+
+/* ===== DESKTOP STYLES (≥768px) ===== */
+@media (min-width:768px){
+  :root{--header-h:118px;}
+  .header{padding:16px 24px;}
+  .header-top{margin-bottom:12px;}
+  .logo-text{font-size:22px;}
+  .tabs-desktop{display:flex;}
+  .bottom-nav{display:none !important;}
+  .sidebar-desktop{display:block;}
+  .filter-bar-mobile{display:none !important;}
+  .content{padding:22px 24px;}
+  .sit-grid{padding:22px 24px;}
+  .gfr-header{padding:20px 24px 10px;}
+  .renal-search{padding:0 24px 14px;}
+  .drug-header{padding:15px 20px;}
+  .drug-body-inner{padding:18px 20px;}
+  .dose-row{padding:8px 0;}
+  .dose-indication{font-size:12px;}
+  .dose-value{font-size:12px;}
+  .renal-card{display:none;} /* use table on desktop */
+  #renalTableWrap{display:block;}
+}
+
+/* ===== MOBILE STYLES (<768px) ===== */
+@media (max-width:767px){
+  :root{--header-h:100px;}
+  .header{padding:10px 14px;}
+  .header-top{margin-bottom:8px;}
+  .hl-badge{display:none;}
+  .tabs-desktop{display:none !important;}
+  .bottom-nav{display:block;}
+  .sidebar-desktop{display:none !important;}
+  .filter-bar-mobile{display:flex;}
+  .main{flex-direction:column;}
+  .panel.active{flex-direction:column;}
+  .content{padding:14px 14px calc(var(--bottom-nav-h) + var(--safe-bottom) + 14px);}
+  .panel-full.active{padding-bottom:calc(var(--bottom-nav-h) + var(--safe-bottom));}
+  .sit-grid{grid-template-columns:1fr;padding:14px;padding-bottom:calc(var(--bottom-nav-h) + var(--safe-bottom) + 14px);}
+  .gfr-header{padding:12px 14px 6px;gap:6px;}
+  .gfr-badge{padding:6px 10px;font-size:10px;}
+  .renal-search{padding:0 14px 10px;}
+  .section-title{font-size:15px;}
+  .renal-card{display:block;} /* cards on mobile */
+  #renalTableWrap{display:none;} /* hide table on mobile */
+  .panel-full{padding-bottom:0;}
+  .renal-panel-inner{padding:14px;padding-bottom:calc(var(--bottom-nav-h) + var(--safe-bottom) + 14px);}
+}
+
+/* Very small screens */
+@media (max-width:360px){
+  .drug-name h3{font-size:13px;}
+  .sit-title{font-size:13px;}
+  .gfr-badge{font-size:9px;padding:5px 8px;}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <div class="logo">
+      <div class="logo-icon">💊</div>
+      <div>
+        <div class="logo-text">PediRx</div>
+        <div class="logo-sub">Harriet Lane 22nd Ed.</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;margin-left:auto;">
+      <div class="weight-pill">
+        <label>WT</label>
+        <input type="number" id="weightInput" placeholder="—" min="0.5" max="100" step="0.1" inputmode="decimal">
+        <span>kg</span>
+      </div>
+      <div class="hl-badge">Harriet Lane</div>
+    </div>
+  </div>
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="searchInput" placeholder="Search drug, class, indication..." autocomplete="off" autocorrect="off" spellcheck="false">
+  </div>
+</div>
+
+<!-- DESKTOP TABS -->
+<div class="tabs-desktop">
+  <div class="tab active" onclick="showPanel('drugbank')">💊 Drug Bank <span class="tab-count" id="countDrug">250+</span></div>
+  <div class="tab" onclick="showPanel('situation')">🏥 Situation-Based Dosing <span class="tab-count">12</span></div>
+  <div class="tab" onclick="showPanel('renal')">🫘 Renal Adjustment <span class="tab-count">80+</span></div>
+</div>
+
+<!-- DRAWER OVERLAY -->
+<div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+
+<!-- MOBILE DRAWER (category filter) -->
+<div class="drawer" id="drawer">
+  <div class="drawer-header">
+    <div class="drawer-title">Filter by Drug Class</div>
+    <button class="drawer-close" onclick="closeDrawer()">✕</button>
+  </div>
+  <div id="drawerContent"></div>
+</div>
+
+<!-- DRUG BANK PANEL -->
+<div class="panel active" id="panel-drugbank">
+  <!-- Desktop Sidebar -->
+  <div class="sidebar-desktop" id="categorySidebar">
+    <div class="sidebar-title">Drug Class</div>
+    <button class="cat-btn active" onclick="filterCat(this,'all','sidebar')">All Drugs <span class="cat-count" id="allCount">0</span></button>
+    <div class="divider"></div>
+  </div>
+  <!-- Content -->
+  <div style="flex:1;display:flex;flex-direction:column;">
+    <!-- Mobile Filter Bar -->
+    <div class="filter-bar-mobile" id="filterBarMobile">
+      <button class="filter-btn-mob" onclick="openDrawer()">
+        <span>☰</span> Filter
+      </button>
+      <div class="current-cat" id="currentCatLabel">All Drugs</div>
+      <span id="resultsInfoMob" style="font-size:11px;color:var(--text3);font-family:'DM Mono',monospace;flex-shrink:0;"></span>
+    </div>
+    <div class="content">
+      <div class="section-header">
+        <div>
+          <div class="section-title">Pediatric Drug Reference</div>
+          <div class="section-sub">Doses based on Harriet Lane Handbook • Enter weight for calculated doses</div>
+        </div>
+        <div class="results-info" id="resultsInfo">Loading...</div>
+      </div>
+      <div class="drug-grid" id="drugGrid"></div>
+      <div class="empty" id="emptyState" style="display:none">
+        <div class="empty-icon">🔍</div>
+        <div class="empty-text">No drugs found matching your search</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SITUATION PANEL -->
+<div class="panel-full" id="panel-situation">
+  <div style="padding:16px 20px 0;">
+    <div class="section-title">Situation-Based Dosing</div>
+    <div class="section-sub" style="margin-top:3px;">Evidence-based drug selection for common pediatric scenarios</div>
+  </div>
+  <div class="sit-grid" id="sitGrid"></div>
+</div>
+
+<!-- RENAL PANEL -->
+<div class="panel-full" id="panel-renal">
+  <div class="gfr-header">
+    <div class="gfr-badge normal selected" onclick="filterGFR('all',this)">All GFR</div>
+    <div class="gfr-badge normal" onclick="filterGFR('>50',this)">GFR &gt;50</div>
+    <div class="gfr-badge mild" onclick="filterGFR('30-50',this)">30–50 Mild</div>
+    <div class="gfr-badge mod" onclick="filterGFR('10-29',this)">10–29 Mod</div>
+    <div class="gfr-badge severe" onclick="filterGFR('<10',this)">&lt;10 Severe</div>
+  </div>
+  <div class="renal-search">
+    <div class="renal-search-wrap">
+      <span class="renal-search-icon">🔍</span>
+      <input type="text" id="renalSearch" placeholder="Search drug or class..." autocomplete="off" autocorrect="off">
+    </div>
+  </div>
+  <!-- Mobile card view -->
+  <div class="renal-panel-inner" id="renalCardWrap"></div>
+  <!-- Desktop table view -->
+  <div id="renalTableWrap" style="overflow-x:auto;padding:0 24px 24px;">
+    <table class="renal-table" id="renalTable">
+      <thead>
+        <tr>
+          <th style="min-width:130px">Drug</th>
+          <th style="min-width:100px">Class</th>
+          <th style="min-width:150px">Normal Dose</th>
+          <th style="min-width:140px">GFR 30–50</th>
+          <th style="min-width:140px">GFR 10–29</th>
+          <th style="min-width:140px">GFR &lt;10</th>
+          <th style="min-width:140px">Dialysis</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody id="renalBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- BOTTOM NAV (mobile) -->
+<nav class="bottom-nav">
+  <div class="bottom-nav-inner">
+    <button class="bnav-btn active" id="bnav-drugbank" onclick="showPanel('drugbank')">
+      <span class="bnav-icon">💊</span>
+      Drug Bank
+    </button>
+    <button class="bnav-btn" id="bnav-situation" onclick="showPanel('situation')">
+      <span class="bnav-icon">🏥</span>
+      Situations
+    </button>
+    <button class="bnav-btn" id="bnav-renal" onclick="showPanel('renal')">
+      <span class="bnav-icon">🫘</span>
+      Renal
+    </button>
+  </div>
+</nav>
+
+
+<script>
+
+// ============================================================
+// DRUG DATABASE (Harriet Lane Handbook)
+// ============================================================
+const DRUGS = [
+  // ANTIBIOTICS - PENICILLINS
+  { name:"Amoxicillin", generic:"amoxicillin", class:"Penicillin", routes:["PO"], doses:[
+    {ind:"Mild-Moderate Infections",dose:"25–45 mg/kg/day ÷ q8–12h (max 3g/day)"},
+    {ind:"Otitis Media (standard)",dose:"80–90 mg/kg/day ÷ q12h (max 3g/day) × 10 days"},
+    {ind:"Otitis Media (severe)",dose:"90 mg/kg/day ÷ q12h × 10 days"},
+    {ind:"Strep Pharyngitis",dose:"50 mg/kg/day once daily × 10 days (max 1g/day)"},
+    {ind:"Pneumonia (CAP, mild)",dose:"90 mg/kg/day ÷ q12h × 5–7 days"},
+    {ind:"UTI Prophylaxis",dose:"10 mg/kg/day once daily (max 250mg)"},
+  ], notes:"Dose adjustment needed in renal impairment (GFR<30). Take with or without food." },
+
+  { name:"Amoxicillin-Clavulanate", generic:"co-amoxiclav", class:"Penicillin + BLI", routes:["PO"], doses:[
+    {ind:"Otitis Media/Sinusitis/LRTI",dose:"45 mg/kg/day (amoxicillin) ÷ q12h (max 3g/day)"},
+    {ind:"High-dose (resistant organisms)",dose:"90 mg/kg/day ÷ q12h; use 14:1 ratio formulation"},
+    {ind:"Bite wounds",dose:"25–45 mg/kg/day ÷ q8h (max 875mg/dose)"},
+  ], notes:"Use 14:1 ratio (Augmentin ES) for high-dose. Max clavulanate 10 mg/kg/day to limit diarrhea." },
+
+  { name:"Ampicillin", generic:"ampicillin", class:"Penicillin", routes:["PO","IV","IM"], doses:[
+    {ind:"Mild-Moderate (PO)",dose:"50–100 mg/kg/day ÷ q6h (max 3g/day)"},
+    {ind:"Serious infections (IV)",dose:"100–200 mg/kg/day ÷ q6h (max 8–12g/day)"},
+    {ind:"Meningitis (IV)",dose:"200–400 mg/kg/day ÷ q4–6h (max 12g/day)"},
+    {ind:"Neonatal sepsis (≤7 days)",dose:"50 mg/kg/dose q12h"},
+    {ind:"Neonatal meningitis (≤7 days)",dose:"100–150 mg/kg/dose q8h"},
+    {ind:"GBS Prophylaxis (maternal)",dose:"2g IV loading → 1g q4h until delivery"},
+  ], notes:"Monitor for rash (maculopapular 5–10%). CSF penetration excellent in meningeal inflammation." },
+
+  { name:"Nafcillin", generic:"nafcillin sodium", class:"Penicillin (anti-staph)", routes:["IV","IM"], doses:[
+    {ind:"Mild-Moderate MSSA",dose:"50–100 mg/kg/day ÷ q4–6h (max 6g/day)"},
+    {ind:"Severe MSSA (bacteremia/endocarditis)",dose:"150–200 mg/kg/day ÷ q4–6h (max 12g/day)"},
+    {ind:"Neonates ≤7 days",dose:"25 mg/kg/dose q12h"},
+    {ind:"Neonates 8–28 days",dose:"25–37.5 mg/kg/dose q8h"},
+  ], notes:"Drug of choice for MSSA. No renal adjustment needed. Hepatic excretion." },
+
+  { name:"Piperacillin-Tazobactam", generic:"pip-tazo / Tazocin", class:"Extended-spectrum Penicillin + BLI", routes:["IV"], doses:[
+    {ind:"Moderate infections",dose:"200–300 mg/kg/day (pip component) ÷ q6–8h (max 16g/day)"},
+    {ind:"Severe/Febrile neutropenia",dose:"300–400 mg/kg/day ÷ q4–6h (max 18–24g/day)"},
+    {ind:"Pseudomonal infections",dose:"400 mg/kg/day ÷ q6h (extended infusion 4h preferred)"},
+    {ind:"Neonates ≥34 weeks",dose:"75 mg/kg/dose q8h (pip:tazo 8:1)"},
+  ], notes:"Extended infusion (3–4h) improves PK/PD target attainment against Pseudomonas." },
+
+  // ANTIBIOTICS - CEPHALOSPORINS
+  { name:"Cefazolin", generic:"cefazolin sodium", class:"1st-gen Cephalosporin", routes:["IV","IM"], doses:[
+    {ind:"Mild-Moderate infections",dose:"25–50 mg/kg/day ÷ q8h (max 6g/day)"},
+    {ind:"Severe infections (MSSA)",dose:"50–100 mg/kg/day ÷ q6–8h (max 6g/day)"},
+    {ind:"Surgical Prophylaxis",dose:"30 mg/kg IV within 60 min pre-op (max 2g; repeat q4h if prolonged)"},
+    {ind:"Neonates (PMA <2 weeks)",dose:"25 mg/kg/dose q12h"},
+  ], notes:"MSSA drug of choice when IV needed. Good bone penetration." },
+
+  { name:"Cefdinir", generic:"cefdinir", class:"3rd-gen Cephalosporin (oral)", routes:["PO"], doses:[
+    {ind:"Otitis Media/Sinusitis",dose:"14 mg/kg/day ÷ q12–24h × 10 days (max 600mg/day)"},
+    {ind:"Community Pneumonia",dose:"14 mg/kg/day ÷ q12h × 10 days"},
+    {ind:"Skin/Soft tissue",dose:"14 mg/kg/day ÷ q12h × 10 days"},
+  ], notes:"Good oral bioavailability. Does not cover Pseudomonas. Red stools if taken with iron." },
+
+  { name:"Cefotaxime", generic:"cefotaxime sodium", class:"3rd-gen Cephalosporin", routes:["IV","IM"], doses:[
+    {ind:"Moderate infections",dose:"100–150 mg/kg/day ÷ q6–8h (max 12g/day)"},
+    {ind:"Meningitis",dose:"200–300 mg/kg/day ÷ q4–6h (max 12g/day)"},
+    {ind:"Neonates ≤7 days (≥2kg)",dose:"50 mg/kg/dose q12h"},
+    {ind:"Neonates 8–28 days",dose:"50 mg/kg/dose q8h"},
+    {ind:"Neonatal Meningitis",dose:"100 mg/kg/dose q12h (≤7d) or q8h (8–28d)"},
+  ], notes:"Excellent CSF penetration. Active vs. GNBs including Haemophilus. Does NOT cover Pseudomonas." },
+
+  { name:"Ceftriaxone", generic:"ceftriaxone sodium", class:"3rd-gen Cephalosporin", routes:["IV","IM"], doses:[
+    {ind:"Moderate infections",dose:"50–75 mg/kg/day ÷ q12–24h (max 4g/day)"},
+    {ind:"Meningitis",dose:"100 mg/kg/day ÷ q12–24h (max 4g/day) × 10–14 days"},
+    {ind:"Severe CAP",dose:"50–100 mg/kg/day ÷ q12–24h"},
+    {ind:"UTI (pyelonephritis)",dose:"50–75 mg/kg/day once daily"},
+    {ind:"Salmonellosis (severe)",dose:"50–100 mg/kg/day once daily"},
+    {ind:"Neisseria gonorrhoeae",dose:"25–50 mg/kg IM single dose (max 250mg)"},
+    {ind:"Lyme disease (neuro/cardiac)",dose:"75–100 mg/kg/day once daily (max 2g/day)"},
+    {ind:"Typhoid fever",dose:"75–80 mg/kg/day once daily (max 4g) × 5–14 days"},
+  ], notes:"AVOID in neonates (<4 weeks) — displaces bilirubin; avoid with calcium-containing solutions. Long half-life allows once-daily dosing." },
+
+  { name:"Cefuroxime", generic:"cefuroxime axetil / sodium", class:"2nd-gen Cephalosporin", routes:["PO","IV"], doses:[
+    {ind:"Otitis Media (PO)",dose:"30 mg/kg/day ÷ q12h (max 1g/day) × 10 days"},
+    {ind:"Mild-Moderate Infections (PO)",dose:"20–30 mg/kg/day ÷ q12h (max 500mg/dose)"},
+    {ind:"Moderate-Severe (IV)",dose:"75–150 mg/kg/day ÷ q8h (max 9g/day)"},
+    {ind:"Meningitis (IV)",dose:"200–240 mg/kg/day ÷ q6–8h (inferior to 3rd gen; avoid if available)"},
+  ], notes:"Oral form (axetil) should be taken with food for absorption. Covers beta-lactamase producing H. influenzae." },
+
+  { name:"Cefepime", generic:"cefepime HCl", class:"4th-gen Cephalosporin", routes:["IV","IM"], doses:[
+    {ind:"Moderate-Severe infections",dose:"100–150 mg/kg/day ÷ q8–12h (max 6g/day)"},
+    {ind:"Febrile Neutropenia",dose:"150 mg/kg/day ÷ q8h (max 6g/day)"},
+    {ind:"Meningitis",dose:"150 mg/kg/day ÷ q8h (max 6g/day)"},
+    {ind:"Pseudomonal infections",dose:"150 mg/kg/day ÷ q8h"},
+  ], notes:"Covers Pseudomonas aeruginosa. Neurotoxicity risk in renal failure — adjust dose." },
+
+  { name:"Ceftazidime", generic:"ceftazidime pentahydrate", class:"3rd-gen Cephalosporin (anti-pseudomonal)", routes:["IV","IM"], doses:[
+    {ind:"Moderate infections",dose:"90–150 mg/kg/day ÷ q8h (max 6g/day)"},
+    {ind:"Pseudomonal/CF exacerbations",dose:"150–200 mg/kg/day ÷ q8h (max 6–12g/day)"},
+    {ind:"Meningitis",dose:"150 mg/kg/day ÷ q8h (max 6g/day)"},
+    {ind:"Neonates ≤7 days",dose:"50 mg/kg/dose q12h"},
+  ], notes:"Drug of choice for Pseudomonas coverage among 3rd-gen. Poor gram-positive coverage." },
+
+  { name:"Cefixime", generic:"cefixime trihydrate", class:"3rd-gen Cephalosporin (oral)", routes:["PO"], doses:[
+    {ind:"Otitis Media/URTI",dose:"8 mg/kg/day ÷ q12–24h (max 400mg/day)"},
+    {ind:"UTI (uncomplicated)",dose:"8 mg/kg/day once daily × 3–7 days"},
+    {ind:"Typhoid/Salmonella",dose:"20 mg/kg/day ÷ q12h × 14 days (max 400mg/day)"},
+    {ind:"Gonorrhoea",dose:"400 mg single dose"},
+  ], notes:"Oral 3rd generation. Does not cover Staphylococci well. Suspension better absorbed than tablet." },
+
+  // ANTIBIOTICS - CARBAPENEMS
+  { name:"Meropenem", generic:"meropenem trihydrate", class:"Carbapenem", routes:["IV"], doses:[
+    {ind:"Moderate infections",dose:"60 mg/kg/day ÷ q8h (max 3g/day)"},
+    {ind:"Severe/MDR infections",dose:"120 mg/kg/day ÷ q8h (max 6g/day)"},
+    {ind:"Meningitis",dose:"120 mg/kg/day ÷ q8h (max 6g/day)"},
+    {ind:"Febrile Neutropenia",dose:"60 mg/kg/day ÷ q8h"},
+    {ind:"Neonates ≤7 days",dose:"20 mg/kg/dose q12h (40mg if Pseudomonas)"},
+    {ind:"Neonates 8–28 days",dose:"20–40 mg/kg/dose q8h"},
+    {ind:"Cystic Fibrosis exacerbation",dose:"120–150 mg/kg/day ÷ q8h (max 6g/day)"},
+  ], notes:"Broad-spectrum carbapenem. Active against ESBL/AmpC producers. Does NOT cover MRSA. Extended infusion (3h) improves PD." },
+
+  { name:"Imipenem-Cilastatin", generic:"imipenem/cilastatin", class:"Carbapenem", routes:["IV"], doses:[
+    {ind:"Moderate infections",dose:"60 mg/kg/day ÷ q6h (max 4g/day)"},
+    {ind:"Severe infections",dose:"100 mg/kg/day ÷ q6h (max 4g/day)"},
+    {ind:"Neonates ≤7 days",dose:"25 mg/kg/dose q12h"},
+    {ind:"Neonates 8–28 days",dose:"25 mg/kg/dose q8h"},
+  ], notes:"NOT for meningitis (seizure risk). Cilastatin prevents renal tubular metabolism. Active against Nocardia." },
+
+  { name:"Ertapenem", generic:"ertapenem sodium", class:"Carbapenem", routes:["IV","IM"], doses:[
+    {ind:"Moderate infections (>3 months)",dose:"15 mg/kg/dose q12h (max 1g/day)"},
+    {ind:"Adults/>12 years",dose:"1g IV once daily"},
+  ], notes:"Once-daily carbapenem. Does NOT cover Pseudomonas or Acinetobacter. Good for outpatient IV therapy." },
+
+  // ANTIBIOTICS - AMINOGLYCOSIDES
+  { name:"Gentamicin", generic:"gentamicin sulfate", class:"Aminoglycoside", routes:["IV","IM"], doses:[
+    {ind:"Neonates ≤29 weeks",dose:"3.5 mg/kg/dose q24h; adjust by levels"},
+    {ind:"Neonates 30–34 weeks",dose:"3 mg/kg/dose q24–36h"},
+    {ind:"Neonates ≥35 weeks",dose:"4 mg/kg/dose q24h"},
+    {ind:"Infants/Children (once daily)",dose:"7.5 mg/kg/day once daily (max 7.5mg/kg or 240mg)"},
+    {ind:"Infants/Children (trad. dosing)",dose:"2.5 mg/kg/dose q8h"},
+    {ind:"Synergy (endocarditis)",dose:"1 mg/kg/dose q8h"},
+    {ind:"Cystic Fibrosis",dose:"10–12 mg/kg/day once daily"},
+  ], notes:"Monitor peak (5–10 mg/L traditional; >20 for once-daily) and trough (<2; <1 for once-daily). Nephrotoxic & ototoxic. Renal adjustment mandatory." },
+
+  { name:"Tobramycin", generic:"tobramycin sulfate", class:"Aminoglycoside", routes:["IV","IM","Inhaled"], doses:[
+    {ind:"Systemic (once daily)",dose:"7.5–10 mg/kg/day once daily"},
+    {ind:"CF (systemic)",dose:"10–12 mg/kg/day once daily"},
+    {ind:"CF (inhaled, TOBI)",dose:"300mg/4mL q12h (on-off cycles; ≥6 years)"},
+    {ind:"Inhaled powder (TOBI Podhaler)",dose:"112mg (4×28mg) q12h (≥6 years) in cycles"},
+    {ind:"Neonates ≥35 weeks",dose:"4 mg/kg/dose q24h"},
+  ], notes:"Preferred over gentamicin in CF. More active against Pseudomonas. Same monitoring as gentamicin." },
+
+  { name:"Amikacin", generic:"amikacin sulfate", class:"Aminoglycoside", routes:["IV","IM"], doses:[
+    {ind:"Neonates ≤28 days (once daily)",dose:"15–20 mg/kg/dose q24–48h"},
+    {ind:"Infants/Children (once daily)",dose:"15–22.5 mg/kg/day once daily (max 1.5g/day)"},
+    {ind:"Traditional dosing",dose:"5 mg/kg/dose q8h"},
+    {ind:"MDR-TB (adjunct)",dose:"15–20 mg/kg/day once daily (max 1g)"},
+  ], notes:"Reserve for gentamicin-resistant organisms. Broader aminoglycoside spectrum. Monitor levels: peak 20–35 mg/L, trough <5mg/L." },
+
+  // ANTIBIOTICS - MACROLIDES
+  { name:"Azithromycin", generic:"azithromycin dihydrate", class:"Macrolide", routes:["PO","IV"], doses:[
+    {ind:"Community Pneumonia (PO)",dose:"10 mg/kg on Day 1 (max 500mg), then 5mg/kg/day × 4 days (max 250mg)"},
+    {ind:"Pharyngitis/Skin (PO)",dose:"12 mg/kg/day × 5 days (max 500mg/day)"},
+    {ind:"Pertussis (PO)",dose:"10 mg/kg on Day 1 (max 500mg), then 5mg/kg/day × 4 days"},
+    {ind:"CAP (IV)",dose:"10 mg/kg/day (max 500mg) once daily"},
+    {ind:"Chlamydial infection",dose:"1g single dose (adolescents)"},
+    {ind:"NTM Prophylaxis (HIV)",dose:"20 mg/kg once weekly (max 1.2g)"},
+    {ind:"Pyloric stenosis prokinetic",dose:"3 mg/kg/dose q8h"},
+  ], notes:"Long tissue half-life (68h). QT prolongation risk — avoid with other QT-prolonging drugs. Infantile hypertrophic pyloric stenosis risk in neonates <6 weeks." },
+
+  { name:"Clarithromycin", generic:"clarithromycin", class:"Macrolide", routes:["PO"], doses:[
+    {ind:"Mild-Moderate infections",dose:"15 mg/kg/day ÷ q12h × 7–14 days (max 1g/day)"},
+    {ind:"H. pylori eradication",dose:"15 mg/kg/day ÷ q12h (max 1g/day) × 14 days (+ amoxicillin + PPI)"},
+    {ind:"MAC infection (HIV)",dose:"7.5–15 mg/kg/day ÷ q12h (max 1g/day)"},
+    {ind:"Pertussis",dose:"15 mg/kg/day ÷ q12h × 7 days"},
+  ], notes:"Better gastric tolerance than erythromycin. Significant CYP3A4 inhibitor — many drug interactions." },
+
+  { name:"Erythromycin", generic:"erythromycin", class:"Macrolide", routes:["PO","IV"], doses:[
+    {ind:"General infections (PO)",dose:"30–50 mg/kg/day ÷ q6h (max 4g/day)"},
+    {ind:"Pertussis (PO)",dose:"40–50 mg/kg/day ÷ q6h × 14 days (max 2g/day)"},
+    {ind:"Ophthalmia neonatorum",dose:"0.5% ophthalmic ointment — 1cm ribbon to each eye × 1"},
+    {ind:"Prokinetic",dose:"3–10 mg/kg/dose PO/IV q6–8h"},
+    {ind:"Neonatal Chlamydia/Pertussis",dose:"12.5 mg/kg/dose q6h PO × 14 days"},
+  ], notes:"AVOID in neonates <1 month for systemic use (pyloric stenosis risk). Many drug interactions. GI side effects common." },
+
+  // ANTIBIOTICS - GLYCOPEPTIDES
+  { name:"Vancomycin", generic:"vancomycin HCl", class:"Glycopeptide", routes:["IV","PO (C. diff only)"], doses:[
+    {ind:"Neonates ≤7 days (<29 weeks)",dose:"15 mg/kg/dose q24h"},
+    {ind:"Neonates ≤7 days (29–35 weeks)",dose:"15 mg/kg/dose q18h"},
+    {ind:"Neonates ≤7 days (>35 weeks)",dose:"15 mg/kg/dose q12h"},
+    {ind:"Neonates 8–28 days",dose:"15 mg/kg/dose q8–12h (by weight/PMA)"},
+    {ind:"Infants & Children",dose:"60–70 mg/kg/day ÷ q6–8h (max 3–4g/day); up to 80mg/kg/day if meningitis"},
+    {ind:"MRSA Pneumonia/Bacteremia",dose:"60–70 mg/kg/day ÷ q6–8h"},
+    {ind:"MRSA Meningitis/CNS",dose:"60–80 mg/kg/day ÷ q6h"},
+    {ind:"C. difficile (PO)",dose:"40 mg/kg/day ÷ q6h (max 500mg/day) × 10–14 days"},
+    {ind:"Endocarditis",dose:"60 mg/kg/day ÷ q6h (AUC target 400–600)"},
+  ], notes:"Target AUC/MIC 400–600 mg·h/L (AUC-guided) or trough 15–20 mg/L (traditional). Infuse over ≥60min to prevent Red Man Syndrome. Nephrotoxic — especially with aminoglycosides." },
+
+  { name:"Teicoplanin", generic:"teicoplanin", class:"Glycopeptide", routes:["IV","IM"], doses:[
+    {ind:"Moderate infections (loading)",dose:"10 mg/kg/dose q12h × 3 doses, then 10mg/kg/day"},
+    {ind:"Severe infections (loading)",dose:"10 mg/kg/dose q12h × 3 doses, then 10–12mg/kg/day"},
+    {ind:"Endocarditis (loading)",dose:"10 mg/kg/dose q12h × 5 doses, then 10mg/kg/day"},
+    {ind:"Neonates",dose:"16mg/kg loading (single), then 8mg/kg/day"},
+  ], notes:"Once daily after loading. Monitor trough >10 (general) or >15 (serious) mg/L." },
+
+  // ANTIBIOTICS - FLUOROQUINOLONES
+  { name:"Ciprofloxacin", generic:"ciprofloxacin HCl", class:"Fluoroquinolone", routes:["PO","IV"], doses:[
+    {ind:"UTI (uncomplicated, PO)",dose:"20–30 mg/kg/day ÷ q12h (max 1.5g/day)"},
+    {ind:"Severe/Systemic (IV)",dose:"30 mg/kg/day ÷ q8–12h (max 1.2g/day)"},
+    {ind:"Pseudomonal (CF)",dose:"20–30 mg/kg/day ÷ q12h PO or 30 mg/kg/day IV"},
+    {ind:"Typhoid fever",dose:"20–30 mg/kg/day ÷ q12h × 7–10 days"},
+    {ind:"Anthrax post-exposure",dose:"30 mg/kg/day ÷ q12h × 60 days (max 500mg/dose)"},
+    {ind:"Neonates (special cases only)",dose:"20–30 mg/kg/day ÷ q12h"},
+  ], notes:"Use restricted in children due to cartilage concerns — but benefit outweighs risk in Pseudomonas, MDR UTI, anthrax, typhoid. Avoid with dairy/antacids (chelation)." },
+
+  { name:"Levofloxacin", generic:"levofloxacin", class:"Fluoroquinolone", routes:["PO","IV"], doses:[
+    {ind:"CAP / Atypical (6m–5 years)",dose:"16–20 mg/kg/day ÷ q12h (max 250mg/dose)"},
+    {ind:"CAP / Atypical (≥5 years)",dose:"10–16 mg/kg/day once daily (max 500mg/day)"},
+    {ind:"UTI (>6 months)",dose:"10–20 mg/kg/day ÷ q12–24h"},
+    {ind:"MDR-TB (adjunct)",dose:"15–20 mg/kg/day once daily (max 1g)"},
+  ], notes:"Better gram-positive coverage than ciprofloxacin. Once daily dosing in older children. QT prolongation risk." },
+
+  // ANTIBIOTICS - OTHER
+  { name:"Metronidazole", generic:"metronidazole", class:"Nitroimidazole", routes:["PO","IV","PR"], doses:[
+    {ind:"Anaerobic infections",dose:"30 mg/kg/day ÷ q6–8h (max 4g/day)"},
+    {ind:"Intra-abdominal (IV)",dose:"30 mg/kg/day ÷ q6h"},
+    {ind:"C. difficile (PO)",dose:"30 mg/kg/day ÷ q6h × 10 days (max 2g/day) — 2nd line"},
+    {ind:"Giardiasis",dose:"15 mg/kg/day ÷ q8h × 5 days (max 750mg/day)"},
+    {ind:"Amoebiasis (intestinal)",dose:"35–50 mg/kg/day ÷ q8h × 7–10 days"},
+    {ind:"H. pylori eradication",dose:"20 mg/kg/day ÷ q12h × 14 days"},
+    {ind:"Neonatal (≤7 days)",dose:"15 mg/kg loading, then 7.5mg/kg/dose q12h"},
+    {ind:"Bacterial Vaginosis (adolescent)",dose:"500mg PO q12h × 7 days"},
+  ], notes:"Disulfiram-like reaction with alcohol. Avoid in 1st trimester. Metallic taste common. IV and PO bioequivalent." },
+
+  { name:"Clindamycin", generic:"clindamycin phosphate/HCl", class:"Lincosamide", routes:["PO","IV","Topical"], doses:[
+    {ind:"Mild-Moderate (PO)",dose:"8–20 mg/kg/day ÷ q6–8h (max 1.8g/day)"},
+    {ind:"Severe (IV)",dose:"25–40 mg/kg/day ÷ q6–8h (max 4.8g/day)"},
+    {ind:"MRSA Skin/Soft tissue",dose:"30–40 mg/kg/day ÷ q6–8h"},
+    {ind:"Neonates ≤7 days",dose:"5 mg/kg/dose q8h"},
+    {ind:"Neonates 8–28 days",dose:"5 mg/kg/dose q6h"},
+    {ind:"Toxoplasmosis (with pyrimethamine)",dose:"20–30 mg/kg/day ÷ q6h"},
+    {ind:"PCP Pneumonia (2nd line)",dose:"30 mg/kg/day ÷ q6h"},
+    {ind:"Malaria (falciparum)",dose:"20–40 mg/kg/day ÷ q8h × 7 days"},
+  ], notes:"Good anaerobe coverage. Risk of C. difficile colitis. Check D-zone test for inducible MLSB resistance in MRSA strains." },
+
+  { name:"Linezolid", generic:"linezolid", class:"Oxazolidinone", routes:["PO","IV"], doses:[
+    {ind:"Children <12 years",dose:"10 mg/kg/dose q8h (max 600mg/dose)"},
+    {ind:"Adolescents ≥12 years",dose:"600 mg q12h"},
+    {ind:"Neonates (term & preterm)",dose:"10 mg/kg/dose q8h"},
+    {ind:"MRSA pneumonia",dose:"10 mg/kg/dose q8h (children <12)"},
+    {ind:"MDR-TB (adjunct)",dose:"10–15 mg/kg/day (children)"},
+  ], notes:"100% oral bioavailability = same dose IV or PO. Myelosuppression with >2 weeks use — monitor CBC weekly. Serotonin syndrome risk with SSRIs. MAO inhibitor properties." },
+
+  { name:"Trimethoprim-Sulfamethoxazole", generic:"TMP-SMX / Co-trimoxazole", class:"Sulfonamide combination", routes:["PO","IV"], doses:[
+    {ind:"UTI / Prophylaxis (PO)",dose:"8–10 mg/kg/day TMP ÷ q12h (max 320mg TMP/day)"},
+    {ind:"UTI Prophylaxis (once daily)",dose:"2 mg/kg TMP/day once daily"},
+    {ind:"PCP Treatment (IV/PO)",dose:"15–20 mg/kg/day TMP ÷ q6–8h × 21 days"},
+    {ind:"PCP Prophylaxis",dose:"5 mg/kg TMP 3×/week or daily"},
+    {ind:"MRSA Skin (PO)",dose:"8–12 mg/kg/day TMP ÷ q12h × 7–10 days"},
+    {ind:"Nocardia",dose:"10–15 mg/kg/day TMP ÷ q6h"},
+    {ind:"Isospora/Cyclospora",dose:"5 mg/kg TMP ÷ q12h × 7 days"},
+  ], notes:"AVOID in neonates <4 weeks (bilirubin displacement). AVOID in renal failure, severe hepatic disease. G6PD hemolysis risk. Stevens-Johnson risk. Dose based on TMP component." },
+
+  { name:"Doxycycline", generic:"doxycycline hyclate/monohydrate", class:"Tetracycline", routes:["PO","IV"], doses:[
+    {ind:"General infections (≥8 years)",dose:"2–4 mg/kg/day ÷ q12h (max 200mg/day)"},
+    {ind:"Atypical pneumonia",dose:"4 mg/kg/day ÷ q12h (max 200mg) × 7–14 days"},
+    {ind:"RMSF (Rocky Mountain Spotted Fever)",dose:"4.4 mg/kg/day ÷ q12h × 5–7 days (max 100mg/dose); USE IN ALL AGES"},
+    {ind:"Ehrlichiosis/Anaplasmosis",dose:"4.4 mg/kg/day ÷ q12h × 10–14 days"},
+    {ind:"Lyme disease (>8 years)",dose:"4.4 mg/kg/day ÷ q12h × 14–21 days (max 100mg/dose)"},
+    {ind:"Malaria prophylaxis (≥8 years)",dose:"2.2 mg/kg once daily (max 100mg)"},
+    {ind:"Chlamydia (adolescents)",dose:"100mg q12h × 7 days"},
+  ], notes:"RMSF is life-threatening — use doxycycline in ALL ages including <8 years (benefit > tooth staining risk). Avoid with antacids/dairy. Photosensitivity." },
+
+  { name:"Rifampin", generic:"rifampicin", class:"Rifamycin", routes:["PO","IV"], doses:[
+    {ind:"TB (RHEZ regimen)",dose:"10–20 mg/kg/day once daily (max 600mg)"},
+    {ind:"N. meningitidis prophylaxis",dose:"10 mg/kg/dose q12h × 2 days (max 600mg/dose); <1m: 5mg/kg"},
+    {ind:"H. influenzae prophylaxis",dose:"20 mg/kg/day once daily × 4 days (max 600mg/day)"},
+    {ind:"Staphylococcal adjunct (prosthetic)",dose:"20 mg/kg/day ÷ q12h (max 600mg/day)"},
+    {ind:"Neonatal Staph (adjunct)",dose:"10–20 mg/kg/day ÷ q12–24h"},
+  ], notes:"Potent CYP inducer — numerous drug interactions. Orange discoloration of secretions/urine (warn family). Never use as sole agent due to rapid resistance development." },
+
+  // ANTIVIRALS
+  { name:"Acyclovir", generic:"acyclovir / aciclovir", class:"Antiviral (herpesvirus)", routes:["IV","PO","Topical"], doses:[
+    {ind:"Neonatal HSV (CNS/Disseminated)",dose:"20 mg/kg/dose q8h IV × 21 days"},
+    {ind:"Neonatal HSV (SEM disease)",dose:"20 mg/kg/dose q8h IV × 14 days"},
+    {ind:"HSV Encephalitis",dose:"10–15 mg/kg/dose q8h IV × 14–21 days (3–12m); 10mg/kg/dose >1yr"},
+    {ind:"Varicella (immunocompromised)",dose:"10–15 mg/kg/dose q8h IV × 7–10 days"},
+    {ind:"Varicella/Zoster (PO, healthy)",dose:"20 mg/kg/dose (max 800mg) q6h × 5 days"},
+    {ind:"VZV (immunocompromised, PO)",dose:"25 mg/kg/dose ÷ q8h × 7–10 days"},
+    {ind:"HSV Suppression (PO)",dose:"40–80 mg/kg/day ÷ q6–8h (max 1g/day)"},
+    {ind:"Neonatal HSV Suppression (PO after IV)",dose:"300 mg/m²/dose q8h × 6 months"},
+  ], notes:"Hydrate well during IV use to prevent crystalline nephropathy. Infuse over ≥1 hour. Dose reduction in renal impairment." },
+
+  { name:"Oseltamivir", generic:"oseltamivir phosphate", class:"Antiviral (Influenza)", routes:["PO"], doses:[
+    {ind:"Treatment (≥1 year, <15kg)",dose:"30mg q12h × 5 days"},
+    {ind:"Treatment (15–23kg)",dose:"45mg q12h × 5 days"},
+    {ind:"Treatment (23–40kg)",dose:"60mg q12h × 5 days"},
+    {ind:"Treatment (>40kg / adolescent)",dose:"75mg q12h × 5 days"},
+    {ind:"Treatment (<1 year, 0–8m)",dose:"3mg/kg/dose q12h × 5 days"},
+    {ind:"Treatment (<1 year, 9–11m)",dose:"3.5mg/kg/dose q12h × 5 days"},
+    {ind:"Prophylaxis (≥1 year, <15kg)",dose:"30mg once daily × 10 days post-exposure"},
+    {ind:"Prophylaxis (15–23kg)",dose:"45mg once daily × 10 days"},
+    {ind:"Prophylaxis (23–40kg)",dose:"60mg once daily × 10 days"},
+    {ind:"Prophylaxis (>40kg)",dose:"75mg once daily × 10 days"},
+  ], notes:"Start within 48h of symptoms for maximum benefit. Duration may be extended in immunocompromised (10 days). Renal dose adjustment for GFR <30." },
+
+  { name:"Ganciclovir / Valganciclovir", generic:"ganciclovir / valganciclovir HCl", class:"Antiviral (CMV)", routes:["IV (ganciclovir)","PO (valganciclovir)"], doses:[
+    {ind:"CMV Retinitis / Severe (IV induction)",dose:"5 mg/kg/dose q12h × 14–21 days"},
+    {ind:"CMV (IV maintenance)",dose:"5 mg/kg/day once daily"},
+    {ind:"CMV (PO valganciclovir induction, >4y)",dose:"900mg q12h × 21 days (adolescents/adults)"},
+    {ind:"CMV (PO valganciclovir maintenance)",dose:"900mg once daily"},
+    {ind:"Congenital CMV (neonates)",dose:"Valganciclovir 16 mg/kg/dose q12h × 6 months"},
+    {ind:"Congenital CMV (IV if unable to swallow)",dose:"Ganciclovir 6 mg/kg/dose q12h × 6 weeks"},
+    {ind:"CMV Prophylaxis (SOT)",dose:"Valganciclovir 900mg once daily (adults); body surface area based in children"},
+  ], notes:"Myelosuppression major toxicity — monitor CBC weekly. Renal dose adjustment required. Teratogenic/gonadotoxic — use contraception. Handle ganciclovir as cytotoxic." },
+
+  // ANTIFUNGALS
+  { name:"Fluconazole", generic:"fluconazole", class:"Triazole Antifungal", routes:["PO","IV"], doses:[
+    {ind:"Oropharyngeal Candidiasis",dose:"3–6 mg/kg loading, then 3mg/kg/day (max 200mg)"},
+    {ind:"Invasive Candidiasis",dose:"12 mg/kg loading, then 6–12mg/kg/day (max 800mg load → 400mg/day)"},
+    {ind:"Cryptococcal meningitis (induction)",dose:"12 mg/kg/day (max 800mg) — inferior to ampho B; use only if unavailable"},
+    {ind:"Cryptococcal (maintenance)",dose:"6 mg/kg/day (max 400mg) × 8 weeks"},
+    {ind:"Prophylaxis (premature neonates)",dose:"3–6 mg/kg twice weekly"},
+    {ind:"Neonatal candidiasis",dose:"12 mg/kg loading, then 6mg/kg/day"},
+    {ind:"Tinea capitis/corporis",dose:"6 mg/kg/week × 3–6 weeks"},
+  ], notes:"100% oral bioavailability. Multiple CYP2C9/2C19/3A4 interactions. Poor mold coverage. Not active vs. C. krusei or some C. glabrata." },
+
+  { name:"Amphotericin B (Deoxycholate)", generic:"amphotericin B", class:"Polyene Antifungal", routes:["IV"], doses:[
+    {ind:"Empiric/Treatment (standard)",dose:"0.5–1.5 mg/kg/day once daily"},
+    {ind:"Cryptococcal meningitis",dose:"1 mg/kg/day × 2 weeks (+ flucytosine)"},
+    {ind:"Aspergillosis",dose:"1–1.5 mg/kg/day"},
+    {ind:"Neonatal candidiasis",dose:"0.5–1 mg/kg/day"},
+  ], notes:"Significant infusion-related reactions (fever, rigors) — premedicate with acetaminophen/diphenhydramine. Nephrotoxic — monitor K+, Mg2+, creatinine. Use lipid formulations when possible." },
+
+  { name:"Liposomal Amphotericin B", generic:"AmBisome", class:"Polyene Antifungal (Lipid)", routes:["IV"], doses:[
+    {ind:"Empiric febrile neutropenia",dose:"3 mg/kg/day"},
+    {ind:"Proven invasive fungal infection",dose:"3–5 mg/kg/day"},
+    {ind:"CNS/Cryptococcal meningitis",dose:"6 mg/kg/day"},
+    {ind:"Leishmaniasis (immunocompetent)",dose:"3 mg/kg/day × 5 days + single dose day 14"},
+    {ind:"Neonatal candidiasis",dose:"3–5 mg/kg/day"},
+  ], notes:"Preferred over conventional ampho in nephrotoxicity risk, CNS infections, neonates. Less infusion-related reactions. Test dose not required." },
+
+  { name:"Caspofungin", generic:"caspofungin acetate", class:"Echinocandin", routes:["IV"], doses:[
+    {ind:"Infants/Children (>3 months)",dose:"70 mg/m² loading (max 70mg), then 50mg/m²/day (max 70mg/day)"},
+    {ind:"Neonates/Infants (<3 months)",dose:"25 mg/m²/dose once daily"},
+    {ind:"Invasive Candidiasis",dose:"Loading 70mg/m², then 50mg/m²/day"},
+    {ind:"Invasive Aspergillosis (salvage)",dose:"Loading 70mg/m², then 70mg/m²/day"},
+    {ind:"Empiric febrile neutropenia",dose:"Loading 70mg/m², then 50mg/m²/day"},
+  ], notes:"No renal adjustment needed. Hepatic adjustment for Child-Pugh B/C. Excellent Candida coverage; active against Aspergillus." },
+
+  { name:"Voriconazole", generic:"voriconazole", class:"Triazole Antifungal", routes:["PO","IV"], doses:[
+    {ind:"Children 2–12 years (loading IV)",dose:"9 mg/kg/dose q12h × 2 doses (max 350mg/dose)"},
+    {ind:"Children 2–12 years (maintenance IV)",dose:"8 mg/kg/dose q12h (max 350mg/dose)"},
+    {ind:"Children 2–12 years (PO maintenance)",dose:"9 mg/kg/dose q12h (max 350mg/dose)"},
+    {ind:"Adolescents ≥12 years (loading IV)",dose:"6 mg/kg/dose q12h × 2 doses"},
+    {ind:"Adolescents ≥12 years (maintenance IV)",dose:"4 mg/kg/dose q12h"},
+    {ind:"Adolescents ≥12 years (PO maintenance)",dose:"4 mg/kg/dose q12h (max 300mg/dose) if >40kg; 100mg q12h if <40kg"},
+  ], notes:"Drug of choice for invasive aspergillosis. Highly variable PK in children — therapeutic drug monitoring essential (target 1–5.5 mg/L). Visual disturbances common. Avoid IV in severe renal impairment (SBECD accumulation)." },
+
+  // CNS - ANTICONVULSANTS
+  { name:"Phenobarbital", generic:"phenobarbitone", class:"Barbiturate / Anticonvulsant", routes:["PO","IV","IM"], doses:[
+    {ind:"Neonatal Seizures (acute — loading)",dose:"20 mg/kg IV over 15–30 min; may repeat 5–10mg/kg q15–30min (max 40mg/kg)"},
+    {ind:"Neonatal Seizures (maintenance)",dose:"3–5 mg/kg/day once daily"},
+    {ind:"Infantile seizures (loading)",dose:"15–20 mg/kg IV over 30 min"},
+    {ind:"Epilepsy (maintenance)",dose:"3–8 mg/kg/day once daily or ÷ q12h"},
+    {ind:"Status Epilepticus (3rd-line)",dose:"15–20 mg/kg IV over 30 min (max 1g)"},
+    {ind:"Sedation / Neonatal abstinence",dose:"1–4 mg/kg/dose (titrate)"},
+  ], notes:"Therapeutic level: 15–40 mg/L. Induces CYP enzymes — many drug interactions. Respiratory depression risk with loading — have airway support ready." },
+
+  { name:"Phenytoin / Fosphenytoin", generic:"phenytoin sodium / fosphenytoin sodium", class:"Hydantoin / Anticonvulsant", routes:["IV","PO"], doses:[
+    {ind:"Status Epilepticus (loading)",dose:"20 mg/kg PE IV (fosphenytoin preferred; infuse at ≤150mg/min PE; max 1500mg PE)"},
+    {ind:"Status Epilepticus — Phenytoin",dose:"20 mg/kg IV at ≤1 mg/kg/min (max 50mg/min) — cardiac monitoring required"},
+    {ind:"Epilepsy (maintenance, neonates)",dose:"4–8 mg/kg/day ÷ q12h"},
+    {ind:"Epilepsy (maintenance, children)",dose:"4–8 mg/kg/day ÷ q8–12h (free level target 1–2 mg/L; total 10–20 mg/L)"},
+  ], notes:"Fosphenytoin (prodrug) given as PE units — IV or IM acceptable. Phenytoin: infuse SLOWLY (cardiac arrhythmia/hypotension risk). Non-linear PK — small dose change → large level change. Highly protein-bound (adjust for hypoalbuminemia)." },
+
+  { name:"Levetiracetam", generic:"levetiracetam", class:"Anticonvulsant (SV2A ligand)", routes:["PO","IV"], doses:[
+    {ind:"Focal Seizures (1–6 months)",dose:"7 mg/kg/dose q12h → titrate to 21mg/kg/dose q12h"},
+    {ind:"Focal Seizures (6m–4 years)",dose:"10 mg/kg/dose q12h → titrate to 25mg/kg/dose q12h"},
+    {ind:"Focal Seizures (≥4 years)",dose:"10 mg/kg/dose q12h → titrate to 30mg/kg/dose q12h (max 3g/day)"},
+    {ind:"Status Epilepticus (loading)",dose:"40–60 mg/kg IV over 15 min (max 4500mg)"},
+    {ind:"Neonatal Seizures",dose:"30–60 mg/kg loading, then 30–60mg/kg/day ÷ q12h"},
+    {ind:"JME / Myoclonic (adjunct)",dose:"Start 10 mg/kg/dose q12h → max 30mg/kg/dose q12h"},
+  ], notes:"100% oral bioavailability. Minimal drug interactions. Renal clearance — dose adjust for CrCl <50. Behavioral side effects in children (irritability, agitation) — 10%." },
+
+  { name:"Valproate / Valproic Acid", generic:"sodium valproate / valproic acid", class:"Anticonvulsant", routes:["PO","IV"], doses:[
+    {ind:"Epilepsy (all types)",dose:"10–15 mg/kg/day → titrate by 5–10mg/kg/week → max 60mg/kg/day (therapeutic 50–100 mg/L)"},
+    {ind:"Status Epilepticus (loading IV)",dose:"20–40 mg/kg IV over 5–10 min (max 3g)"},
+    {ind:"Absence seizures",dose:"15–45 mg/kg/day ÷ q8–12h"},
+    {ind:"Neonatal Seizures",dose:"NOT recommended (hepatotoxicity risk)"},
+    {ind:"Migraine Prophylaxis",dose:"15–45 mg/kg/day (adolescents)"},
+  ], notes:"CONTRAINDICATED in mitochondrial disease, urea cycle disorders, <2 years (hepatotoxicity), pregnancy (teratogen). Fatal hepatotoxicity risk: monitor LFTs. Hyperammonemia even with normal LFTs. Interacts with many AEDs." },
+
+  { name:"Diazepam", generic:"diazepam", class:"Benzodiazepine / Anticonvulsant", routes:["IV","PR","PO","IM (less preferred)"], doses:[
+    {ind:"Febrile Seizures / Acute (IV)",dose:"0.2–0.3 mg/kg/dose IV (max 10mg/dose); may repeat once after 5 min"},
+    {ind:"Status Epilepticus (IV)",dose:"0.2–0.5 mg/kg IV (max 10mg) q5 min PRN"},
+    {ind:"Febrile Seizures (rectal/PR)",dose:"0.5 mg/kg/dose PR (max 20mg); may use 0.2mg/kg if ≤5kg"},
+    {ind:"Sedation/Anxiety (PO)",dose:"0.04–0.3 mg/kg/dose q4–6h (max 0.6mg/kg in 8h)"},
+    {ind:"Muscle relaxant",dose:"0.04–0.2 mg/kg/dose q2–4h"},
+  ], notes:"Respiratory depression risk — have resuscitation equipment. Administer IV slowly (risk of apnea). Avoid IM (erratic absorption). Propylene glycol vehicle." },
+
+  { name:"Lorazepam", generic:"lorazepam", class:"Benzodiazepine / Anticonvulsant", routes:["IV","IM","PO"], doses:[
+    {ind:"Status Epilepticus (IV — 1st line)",dose:"0.05–0.1 mg/kg IV over 2–5 min (max 4mg/dose); may repeat × 1 after 5–10 min"},
+    {ind:"Status Epilepticus (IM)",dose:"0.1 mg/kg IM (max 4mg) — buccal midazolam preferred if no IV"},
+    {ind:"Anxiolysis / Sedation (IV)",dose:"0.02–0.09 mg/kg/dose (max 4mg/dose)"},
+    {ind:"Sedation (PO)",dose:"0.02–0.1 mg/kg/dose (max 4mg) q6–8h"},
+  ], notes:"First-line IV benzodiazepine for status epilepticus. Longer duration of action than diazepam (12–24h). Respiratory monitoring essential." },
+
+  { name:"Midazolam", generic:"midazolam HCl", class:"Benzodiazepine / Sedative", routes:["IV","IM","Buccal","Intranasal","PO"], doses:[
+    {ind:"Status Epilepticus (buccal — 1st line prehospital)",dose:"0.2–0.5 mg/kg buccal (max 10mg) — most evidence in community"},
+    {ind:"Status Epilepticus (intranasal)",dose:"0.2 mg/kg intranasal (max 10mg) using concentrated 5mg/mL"},
+    {ind:"Status Epilepticus (IV)",dose:"0.1–0.2 mg/kg IV bolus → infusion 0.05–2 mcg/kg/min"},
+    {ind:"Status Epilepticus (IM)",dose:"0.2 mg/kg IM (max 10mg)"},
+    {ind:"Procedural Sedation (IV)",dose:"0.05–0.1 mg/kg IV (max 5mg) titrated slowly"},
+    {ind:"Procedural Sedation (PO)",dose:"0.5–0.75 mg/kg (max 20mg)"},
+    {ind:"Procedural Sedation (intranasal)",dose:"0.2–0.3 mg/kg"},
+    {ind:"Refractory SE (infusion)",dose:"0.05–0.5 mg/kg/hour IV infusion"},
+  ], notes:"Buccal/intranasal routes now preferred for out-of-hospital SE. IV infusion in PICU for refractory SE. Flumazenil reversal available. Short half-life." },
+
+  // ANALGESICS / ANTIPYRETICS
+  { name:"Paracetamol (Acetaminophen)", generic:"acetaminophen / paracetamol", class:"Non-opioid Analgesic / Antipyretic", routes:["PO","IV","PR"], doses:[
+    {ind:"Fever/Pain (PO/PR, children)",dose:"10–15 mg/kg/dose q4–6h (max 75mg/kg/day; max 4g/day in >40kg)"},
+    {ind:"Fever/Pain (IV, >10kg)",dose:"15 mg/kg/dose q6h (max 1g/dose, max 4g/day)"},
+    {ind:"Fever/Pain (IV, 1–10kg)",dose:"10 mg/kg/dose q4–6h (max 75mg/kg/day)"},
+    {ind:"Neonates (loading, pain)",dose:"20 mg/kg/dose PO; 15 mg/kg/dose IV; then 10–15mg/kg/dose q6h"},
+    {ind:"Neonates (preterm, PR)",dose:"20 mg/kg/dose then 15mg/kg/dose q12h"},
+    {ind:"PDA closure adjunct (neonatal)",dose:"15mg/kg/dose IV q6h × 3 days"},
+  ], notes:"Maximum daily dose limits: <12y: 75mg/kg/day (max 4g); adults 4g/day. 10-fold OD risk in chronic use/malnutrition. N-acetylcysteine for overdose." },
+
+  { name:"Ibuprofen", generic:"ibuprofen", class:"NSAID", routes:["PO","IV"], doses:[
+    {ind:"Fever/Pain (PO)",dose:"5–10 mg/kg/dose q6–8h (max 40mg/kg/day; max 2.4g/day)"},
+    {ind:"Fever (high dose)",dose:"10 mg/kg/dose q6–8h (max 400mg/dose)"},
+    {ind:"JIA (PO)",dose:"30–50 mg/kg/day ÷ q6–8h (max 2.4g/day)"},
+    {ind:"PDA closure (IV ibuprofen)",dose:"10 mg/kg loading, then 5mg/kg at 24h and 48h"},
+    {ind:"Dysmenorrhea (adolescent)",dose:"400–600 mg q4–6h (max 2.4g/day)"},
+  ], notes:"Avoid in <6 months, GFR<30, asthma (aspirin-sensitive), active GI ulcer, dengue, dehydration. NSAIDs impair renal prostaglandin synthesis." },
+
+  { name:"Morphine", generic:"morphine sulfate", class:"Opioid Analgesic", routes:["IV","PO","SC","IM"], doses:[
+    {ind:"Acute Pain (IV)",dose:"0.05–0.1 mg/kg/dose q2–4h PRN (max 10mg/dose)"},
+    {ind:"Acute Pain (PO)",dose:"0.2–0.5 mg/kg/dose q4–6h (max 15–20mg/dose)"},
+    {ind:"Analgesia Infusion (PICU)",dose:"0.01–0.04 mg/kg/hour (titrate)"},
+    {ind:"Neonates (pain — acute)",dose:"0.05–0.1 mg/kg/dose IV slow (q4–6h)"},
+    {ind:"Neonates (infusion)",dose:"0.005–0.01 mg/kg/hour"},
+    {ind:"Pulmonary edema (acute)",dose:"0.05 mg/kg IV slow"},
+  ], notes:"Monitor for respiratory depression — have naloxone ready. Use lowest effective dose. Avoid sudden discontinuation after prolonged use. Renal accumulation of active metabolite M6G." },
+
+  { name:"Fentanyl", generic:"fentanyl citrate", class:"Opioid Analgesic", routes:["IV","Intranasal","Transdermal"], doses:[
+    {ind:"Procedural Analgesia (IV)",dose:"1–2 mcg/kg/dose IV over 1–2 min (max 50–100 mcg/dose)"},
+    {ind:"Intranasal (IN)",dose:"1.5–2 mcg/kg/dose (concentrated 100mcg/mL; max 2 doses)"},
+    {ind:"Infusion (PICU)",dose:"0.5–2 mcg/kg/hour (titrate)"},
+    {ind:"Neonates (procedural)",dose:"0.5–3 mcg/kg/dose IV over 5 min"},
+    {ind:"Neonates (infusion)",dose:"0.5–1 mcg/kg/hour"},
+    {ind:"Transdermal patch (chronic pain, >25kg)",dose:"12.5 mcg/h q72h; 25mcg/h q72h"},
+  ], notes:"Rapid onset IV (1–2 min), peak 3–5 min. Chest wall rigidity with rapid large doses — pretreat with muscle relaxant if rapid sequence. Shorter duration than morphine." },
+
+  { name:"Naloxone", generic:"naloxone HCl", class:"Opioid Antagonist", routes:["IV","IM","SC","IN"], doses:[
+    {ind:"Opioid Overdose (acute, <20kg)",dose:"0.01 mg/kg/dose IV/IM q2–3 min (max 2mg/dose)"},
+    {ind:"Opioid Overdose (>20kg / adolescent)",dose:"0.4–2 mg IV/IM q2–3 min (max 10mg cumulative)"},
+    {ind:"Opioid Overdose (IN)",dose:"4mg IN (commercial device); may repeat"},
+    {ind:"Neonatal opioid reversal",dose:"0.01 mg/kg IV/IM q2–3 min"},
+    {ind:"Pruritus reversal (low dose)",dose:"0.0005–0.001 mg/kg/dose IV"},
+  ], notes:"Duration shorter than most opioids — re-sedation possible; monitor ≥4h. May precipitate acute withdrawal in opioid-dependent patients. Repeat/infusion may be needed." },
+
+  // CARDIOVASCULAR
+  { name:"Digoxin", generic:"digoxin", class:"Cardiac Glycoside", routes:["PO","IV"], doses:[
+    {ind:"CHF / AF (PO, premature)",dose:"TDD 20 mcg/kg; give 50% then 25% q8–12h; maintenance 5 mcg/kg/day ÷ q12h"},
+    {ind:"CHF / AF (PO, term neonates)",dose:"TDD 30 mcg/kg; maintenance 8–10 mcg/kg/day ÷ q12h"},
+    {ind:"CHF / AF (PO, 1–24m)",dose:"TDD 40–50 mcg/kg; maintenance 10–12 mcg/kg/day ÷ q12h"},
+    {ind:"CHF / AF (PO, 2–5y)",dose:"TDD 30–40 mcg/kg; maintenance 7.5–10 mcg/kg/day ÷ q12h"},
+    {ind:"CHF / AF (PO, 5–10y)",dose:"TDD 20–35 mcg/kg; maintenance 5–10 mcg/kg/day ÷ q12h"},
+    {ind:"CHF (IV all ages)",dose:"75% of PO total digitalizing dose (TDD)"},
+  ], notes:"Therapeutic level: 0.5–2 ng/mL. Toxicity enhanced by hypokalemia, hypomagnesemia. Many drug interactions (amiodarone, verapamil, clarithromycin). Narrow therapeutic window." },
+
+  { name:"Furosemide", generic:"furosemide / frusemide", class:"Loop Diuretic", routes:["PO","IV","IM"], doses:[
+    {ind:"Acute (IV)",dose:"0.5–2 mg/kg/dose q4–12h (max 6mg/kg/day; max 200mg/dose)"},
+    {ind:"Acute (PO)",dose:"1–4 mg/kg/dose q6–12h (max 6mg/kg/day)"},
+    {ind:"Neonates (IV)",dose:"1 mg/kg/dose q12–24h (avoid in premature — ototoxic)"},
+    {ind:"Continuous infusion",dose:"0.05–0.4 mg/kg/hour"},
+    {ind:"Hypercalcemia",dose:"1–2 mg/kg/dose IV q6h (after adequate hydration)"},
+  ], notes:"Monitor electrolytes (K+, Na+, Ca2+). Ototoxic especially with aminoglycosides. Avoid in sulfa allergy (cross-reactivity rare but possible). Premature neonates: increased risk renal calcifications." },
+
+  { name:"Adenosine", generic:"adenosine", class:"Antiarrhythmic", routes:["IV (rapid)"], doses:[
+    {ind:"SVT (initial dose)",dose:"0.1 mg/kg rapid IV push → flush immediately (max first dose 6mg)"},
+    {ind:"SVT (if no response, repeat)",dose:"0.2 mg/kg (max 12mg); may repeat at 0.3 mg/kg (max 12mg)"},
+    {ind:"Adults / Large adolescents",dose:"6mg → 12mg → 12mg"},
+  ], notes:"Must be given as RAPID IV bolus followed immediately by NS flush. Central > peripheral for efficacy. Half-life <10 seconds. Side effects (flushing, chest pain) brief. Theophylline antagonizes; dipyridamole potentiates." },
+
+  { name:"Amiodarone", generic:"amiodarone HCl", class:"Antiarrhythmic (Class III)", routes:["IV","PO"], doses:[
+    {ind:"Pulseless VF/VT (PALS)",dose:"5 mg/kg IV/IO bolus; may repeat × 2 (max 15mg/kg or 300mg)"},
+    {ind:"Stable VT / AF (IV loading)",dose:"5 mg/kg IV over 30–60 min (max 300mg); then infusion"},
+    {ind:"IV Infusion (maintenance)",dose:"5–15 mcg/kg/min"},
+    {ind:"Oral (loading)",dose:"10–20 mg/kg/day ÷ q12h × 1–2 weeks → maintenance"},
+    {ind:"Oral (maintenance)",dose:"2.5–5 mg/kg/day once daily (max 200mg/day)"},
+  ], notes:"Multiple organ toxicity with chronic use (thyroid, lung, liver, cornea). Numerous drug interactions (warfarin, digoxin, statins). Very long half-life (40–55 days). QT prolongation. Requires iodine load warning." },
+
+  { name:"Atenolol", generic:"atenolol", class:"Beta-blocker (selective)", routes:["PO"], doses:[
+    {ind:"Hypertension",dose:"0.5–1 mg/kg/day once daily (max 2mg/kg/day; max 100mg/day)"},
+    {ind:"SVT Prophylaxis",dose:"0.5–1 mg/kg/day once daily"},
+    {ind:"Migraine Prophylaxis",dose:"1–2 mg/kg/day once daily"},
+  ], notes:"Renally cleared — dose adjust in renal impairment. Cardioselective beta-1 blocker. Avoid abrupt discontinuation. Avoid in asthma." },
+
+  { name:"Captopril", generic:"captopril", class:"ACE Inhibitor", routes:["PO"], doses:[
+    {ind:"Heart Failure (neonates)",dose:"0.05–0.1 mg/kg/dose q8–24h (titrate carefully)"},
+    {ind:"Heart Failure (infants/children)",dose:"0.1–0.5 mg/kg/dose q6–24h (max 6mg/kg/day)"},
+    {ind:"Hypertension (infants)",dose:"0.01–0.5 mg/kg/dose q8–24h"},
+    {ind:"Hypertension (children)",dose:"0.1–2 mg/kg/dose q8h (max 6mg/kg/day)"},
+  ], notes:"First dose hypotension risk — especially in heart failure or dehydration. Check K+ and creatinine regularly. CONTRAINDICATED in bilateral renal artery stenosis, pregnancy. Cough common side effect." },
+
+  { name:"Enalapril", generic:"enalapril maleate", class:"ACE Inhibitor", routes:["PO"], doses:[
+    {ind:"Hypertension (neonates)",dose:"0.04–0.1 mg/kg/day once daily (titrate)"},
+    {ind:"Hypertension (infants/children)",dose:"0.05–0.5 mg/kg/day ÷ q12–24h (max 0.6mg/kg/day or 40mg/day)"},
+    {ind:"Heart Failure (children)",dose:"0.1–0.5 mg/kg/day ÷ q12h"},
+  ], notes:"Prodrug (enalaprilat is active form). Less first-dose hypotension than captopril. Avoid in neonates if possible (oliguric renal failure risk)." },
+
+  // RESPIRATORY
+  { name:"Salbutamol (Albuterol)", generic:"salbutamol / albuterol", class:"Short-acting Beta-2 Agonist", routes:["Inhaled","IV","PO"], doses:[
+    {ind:"Acute Asthma (nebulization)",dose:"0.15 mg/kg/dose (min 2.5mg) q20 min × 3, then q1–4h PRN"},
+    {ind:"Acute Asthma (continuous nebu)",dose:"0.5 mg/kg/hour (max 20mg/hour)"},
+    {ind:"Acute Asthma (MDI + spacer)",dose:"2–8 puffs (100mcg/puff) q20 min × 3, then q1–4h"},
+    {ind:"Maintenance (MDI)",dose:"2 puffs q4–6h PRN"},
+    {ind:"Hyperkalemia (IV)",dose:"5 mcg/kg/dose IV over 5–10 min; or 250mcg/dose neonates"},
+    {ind:"Hyperkalemia (inhaled)",dose:"2.5–5 mg nebulized (onset 30 min, less reliable)"},
+    {ind:"Bronchiolitis (trial only)",dose:"0.15 mg/kg/dose nebulized (evaluate response; not routinely recommended)"},
+  ], notes:"Tachycardia, hypokalemia with high/frequent doses. IV route for life-threatening bronchospasm. Continuous nebu for severe acute asthma in PICU." },
+
+  { name:"Ipratropium", generic:"ipratropium bromide", class:"Short-acting Anticholinergic", routes:["Inhaled"], doses:[
+    {ind:"Acute Severe Asthma (nebu, <20kg)",dose:"0.25 mg/dose combined with salbutamol q20 min × 3"},
+    {ind:"Acute Severe Asthma (nebu, ≥20kg)",dose:"0.5 mg/dose combined with salbutamol q20 min × 3"},
+    {ind:"MDI (acute)",dose:"4–8 puffs (18mcg/puff) q20 min × 3 (combined with salbutamol)"},
+    {ind:"COPD/Chronic (not primary indication)","dose":"0.25–0.5 mg nebu q6–8h"},
+  ], notes:"Add ipratropium to salbutamol in FIRST 24 HOURS of severe exacerbation (prevents ICU admission). Do not use alone for bronchospasm. May cause paradoxical bronchospasm." },
+
+  { name:"Budesonide (Inhaled)", generic:"budesonide", class:"Inhaled Corticosteroid", routes:["Inhaled"], doses:[
+    {ind:"Mild persistent asthma (nebu)",dose:"0.25–0.5 mg/dose q12h (Pulmicort respules)"},
+    {ind:"Moderate-Severe (nebu)",dose:"0.5–1 mg/dose q12h"},
+    {ind:"Croup (nebu — racemic or L-epi adjunct)",dose:"2 mg (4mL of 0.5mg/mL) single dose; may repeat q12h"},
+    {ind:"MDI (HFA, >6 years)",dose:"180–360 mcg/day ÷ q12h (low dose); up to 720mcg/day (high dose)"},
+  ], notes:"Rinse mouth after use (oral candidiasis). Nebulized budesonide for croup shown equivalent to oral dexamethasone in mild-moderate cases." },
+
+  { name:"Montelukast", generic:"montelukast sodium", class:"Leukotriene Receptor Antagonist", routes:["PO"], doses:[
+    {ind:"Asthma (<2 years)",dose:"4 mg once daily (granules)"},
+    {ind:"Asthma (2–5 years)",dose:"4 mg once daily (chewable or granules)"},
+    {ind:"Asthma (6–14 years)",dose:"5 mg once daily (chewable)"},
+    {ind:"Asthma (≥15 years)",dose:"10 mg once daily"},
+    {ind:"Allergic Rhinitis (2–5y)",dose:"4 mg once daily"},
+    {ind:"EIB Prevention (≥6y)",dose:"5 mg (6–14y) or 10mg (≥15y) at least 2h before exercise"},
+  ], notes:"FDA warning: neuropsychiatric events (suicidal ideation, agitation, depression) — reassess benefit-risk. Take in evening. Not for acute bronchospasm." },
+
+  { name:"Theophylline", generic:"theophylline / aminophylline", class:"Methylxanthine / Bronchodilator", routes:["PO","IV"], doses:[
+    {ind:"Neonatal Apnea (loading IV — aminophylline)",dose:"5–6 mg/kg IV over 30 min; then 1.5–3 mg/kg/dose q8–12h"},
+    {ind:"Neonatal Apnea (caffeine preferred — see below)","dose":""},
+    {ind:"Asthma (acute, IV loading — aminophylline)",dose:"5 mg/kg IV over 30 min (max 500mg) if not already on theophylline"},
+    {ind:"Asthma (IV maintenance infusion)",dose:"0.5–0.9 mg/kg/hour (age-dependent; see tables)"},
+    {ind:"Asthma (PO maintenance)",dose:"Target serum level 5–15 mcg/mL; PO dose 12–14 mg/kg/day (theophylline)"},
+  ], notes:"Narrow therapeutic index — TDM mandatory. Multiple drug interactions. Toxicity: seizures, arrhythmias. Aminophylline = theophylline + 25% ethylenediamine; theophylline dose = 0.8 × aminophylline dose." },
+
+  { name:"Caffeine Citrate", generic:"caffeine citrate", class:"Methylxanthine / CNS Stimulant", routes:["PO","IV"], doses:[
+    {ind:"Neonatal Apnea of Prematurity (loading)",dose:"20 mg/kg IV/PO (caffeine citrate) over 30 min"},
+    {ind:"Neonatal Apnea (maintenance)",dose:"5–10 mg/kg/day once daily IV/PO"},
+    {ind:"Extubation facilitation (higher dose)",dose:"20–40 mg/kg loading, then 10–20mg/kg/day"},
+  ], notes:"First-line for apnea of prematurity (safer than theophylline). Therapeutic level: 8–20 mg/L. Continue until 34–37 weeks corrected. Monitor heart rate." },
+
+  // GI DRUGS
+  { name:"Ondansetron", generic:"ondansetron HCl", class:"5-HT3 Antagonist / Antiemetic", routes:["PO","IV","IM"], doses:[
+    {ind:"Chemotherapy-induced N&V (IV)",dose:"0.15 mg/kg/dose q4–8h (max 8mg/dose)"},
+    {ind:"Chemotherapy-induced N&V (PO)",dose:"0.1 mg/kg/dose (4–8mg) q8h"},
+    {ind:"Post-op N&V (single dose IV)",dose:"0.1 mg/kg IV (max 4mg)"},
+    {ind:"Gastroenteritis/Acute vomiting (PO)",dose:"0.15 mg/kg/dose PO once (max 4mg); 8mg if >25kg"},
+    {ind:"Weight-based ODT",dose:"8–15kg: 2mg; 15–30kg: 4mg; >30kg: 8mg"},
+  ], notes:"QT prolongation — avoid in congenital long QT syndrome. Do NOT use in children <6 months (not well studied). Constipation common. Not first-line for gastroenteritis in developing countries (ORS preferred)." },
+
+  { name:"Omeprazole", generic:"omeprazole", class:"Proton Pump Inhibitor", routes:["PO"], doses:[
+    {ind:"GERD (1–16 years, ≤10kg)",dose:"5 mg once daily (max 10mg)"},
+    {ind:"GERD (1–16 years, 10–20kg)",dose:"10 mg once daily"},
+    {ind:"GERD (1–16 years, >20kg)",dose:"20 mg once daily"},
+    {ind:"H. pylori eradication",dose:"1 mg/kg/day ÷ q12h (max 40mg/day) × 14 days (+ clarithromycin + amoxicillin)"},
+    {ind:"Stress ulcer prophylaxis (PICU)",dose:"0.5–1 mg/kg/dose once daily (max 40mg)"},
+  ], notes:"Take 30–60 min before meals. May impair absorption of ketoconazole, iron, B12, posaconazole. Hypomagnesemia with prolonged use." },
+
+  { name:"Ranitidine", generic:"ranitidine HCl", class:"H2-receptor Antagonist", routes:["PO","IV"], doses:[
+    {ind:"GERD (PO)",dose:"2–4 mg/kg/day ÷ q12h (max 300mg/day)"},
+    {ind:"IV dosing",dose:"1–2 mg/kg/dose q6–8h (max 50mg/dose)"},
+    {ind:"Neonates (PO)",dose:"2 mg/kg/dose q8–12h"},
+    {ind:"Neonates (IV)",dose:"0.5–1.5 mg/kg/dose q6–8h"},
+  ], notes:"Note: Ranitidine withdrawn in many countries (NDMA contamination). Consider replacing with famotidine or PPI." },
+
+  { name:"Metoclopramide", generic:"metoclopramide HCl", class:"Prokinetic / Antiemetic (D2 blocker)", routes:["PO","IV","IM"], doses:[
+    {ind:"Gastroesophageal Reflux",dose:"0.1–0.2 mg/kg/dose PO q6–8h (max 0.8mg/kg/day)"},
+    {ind:"Antiemetic (chemotherapy)",dose:"0.5–2 mg/kg/dose IV pre-chemo (max 10mg/dose); AVOID high doses in children"},
+    {ind:"Post-op N&V",dose:"0.1–0.2 mg/kg/dose IV (max 10mg)"},
+  ], notes:"Risk of extrapyramidal reactions (acute dystonia) in children — pretreat with diphenhydramine. FDA Black Box warning for tardive dyskinesia with long-term use. Avoid use >5 days." },
+
+  // ENDOCRINE / CORTICOSTEROIDS
+  { name:"Hydrocortisone", generic:"hydrocortisone sodium succinate", class:"Corticosteroid (physiologic)", routes:["IV","IM","PO"], doses:[
+    {ind:"Adrenal Crisis (acute)",dose:"50–100 mg/m²/dose IV bolus; then 100–150 mg/m²/day ÷ q6h"},
+    {ind:"Adrenal Insufficiency (maintenance)",dose:"8–12 mg/m²/day ÷ q8h (PO)"},
+    {ind:"CAH (maintenance)",dose:"10–20 mg/m²/day ÷ q8h"},
+    {ind:"Stress dosing (sick day)",dose:"3× usual maintenance dose PO; or 50mg/m²/dose IM if unable to take PO"},
+    {ind:"Anaphylaxis (adjunct)",dose:"10 mg/kg IV (max 250mg)"},
+    {ind:"Septic Shock (corticosteroid-naive refractory)",dose:"50 mg/m²/dose IV q6h"},
+    {ind:"Meningitis adjunct (caution — see dexamethasone)","dose":""},
+    {ind:"Neonatal Hypotension (refractory)",dose:"1 mg/kg/dose q12h IV"},
+  ], notes:"Equivalent anti-inflammatory potency: hydrocortisone 1 = prednisone 4 = dexamethasone 25. Mineralocorticoid activity present." },
+
+  { name:"Dexamethasone", generic:"dexamethasone sodium phosphate", class:"Corticosteroid (potent)", routes:["PO","IV","IM"], doses:[
+    {ind:"Bacterial Meningitis (H. influenzae type b)",dose:"0.15 mg/kg/dose IV q6h × 4 days; start with 1st antibiotic dose"},
+    {ind:"Croup (moderate-severe)",dose:"0.6 mg/kg single dose PO/IV/IM (max 16mg)"},
+    {ind:"Airway Edema (peri-extubation)",dose:"0.25–0.5 mg/kg/dose IV q6h × 4 doses (max 10mg/dose)"},
+    {ind:"Cerebral Edema",dose:"0.5–2 mg/kg/dose IV loading, then 0.25–0.5mg/kg/dose q6h"},
+    {ind:"Antiemetic (chemotherapy)",dose:"0.25–0.5 mg/kg/dose IV (max 10mg)"},
+    {ind:"Asthma Exacerbation",dose:"0.6 mg/kg single dose PO/IM (max 16mg)"},
+    {ind:"BPD prevention (premature)",dose:"0.15 mg/kg/dose × 3 days; 0.10 × 3 days; 0.05 × 2 days; 0.02 × 2 days"},
+    {ind:"Spinal Cord Injury (≤8h)",dose:"30 mg/kg IV bolus (controversial — see current guidelines)"},
+    {ind:"Immune Thrombocytopenia",dose:"0.6 mg/kg/day × 4 days (pulse) — adolescent protocol"},
+  ], notes:"No mineralocorticoid activity. Suppresses HPA axis — taper if prolonged use. Hyperglycemia, fluid retention, GI irritation. 25× potency of hydrocortisone." },
+
+  { name:"Prednisolone / Prednisone", generic:"prednisolone / prednisone", class:"Corticosteroid", routes:["PO"], doses:[
+    {ind:"Asthma Exacerbation (short course)",dose:"1–2 mg/kg/day ÷ q12h × 3–5 days (max 60mg/day)"},
+    {ind:"Nephrotic Syndrome (induction)",dose:"2 mg/kg/day once daily × 4–6 weeks (max 60mg)"},
+    {ind:"Nephrotic Syndrome (maintenance)",dose:"1.5 mg/kg alternate days × 4–6 weeks → taper"},
+    {ind:"Acute Severe Asthma",dose:"2 mg/kg loading, then 1–2mg/kg/day ÷ q12h"},
+    {ind:"Croup (oral alternative)",dose:"1 mg/kg/dose once (max 60mg); dexamethasone preferred"},
+    {ind:"Allergy/Anaphylaxis (adjunct)",dose:"1–2 mg/kg/day once daily × 3–5 days"},
+    {ind:"IBD / Autoimmune conditions",dose:"1–2 mg/kg/day (induction) → taper over weeks"},
+  ], notes:"Prednisone is prodrug → prednisolone. Use prednisolone in liver disease. 4× potency of hydrocortisone. Cushingoid features with prolonged use." },
+
+  { name:"Insulin (Regular)", generic:"insulin regular (human)", class:"Insulin", routes:["IV","SC","IM"], doses:[
+    {ind:"DKA (IV infusion — after fluid bolus)",dose:"0.05–0.1 unit/kg/hour (adjust per BG target 150–200 mg/dL)"},
+    {ind:"DKA (SC option if no IV)",dose:"0.1 unit/kg SC q2h once able to eat"},
+    {ind:"Hypoglycemia prevention during dextrose",dose:"1 unit per 4–5g dextrose"},
+    {ind:"Hyperkalemia (IV regular)",dose:"0.1 unit/kg IV with 0.5g/kg dextrose (10% — over 30 min)"},
+  ], notes:"DKA: Do NOT start insulin until K+ >3.5 mmol/L. Regular insulin for IV infusion only. Monitor BG q1h during DKA infusion." },
+
+  // NEONATAL-SPECIFIC
+  { name:"Surfactant (Beractant / Poractant)", generic:"beractant (Survanta) / poractant alfa (Curosurf)", class:"Pulmonary Surfactant", routes:["Intratracheal"], doses:[
+    {ind:"RDS (Beractant — prophylactic or rescue)",dose:"100 mg/kg (4 mL/kg) intratracheal; may repeat × 3 at 6h intervals"},
+    {ind:"RDS (Poractant alfa — prophylactic)",dose:"100–200 mg/kg (1.25–2.5 mL/kg) intratracheal"},
+    {ind:"RDS (Poractant alfa — rescue)",dose:"200 mg/kg (2.5 mL/kg); repeat at 100mg/kg q12h if needed"},
+    {ind:"Meconium Aspiration Syndrome (off-label)",dose:"100–150 mg/kg intratracheal (diluted lavage)"},
+  ], notes:"Administer in 2–4 aliquots with repositioning. INSURE or less invasive surfactant administration (LISA) technique preferred where available. Oxygen requirement and ventilator settings improve within minutes." },
+
+  { name:"Indomethacin (PDA closure)", generic:"indomethacin sodium trihydrate", class:"NSAID / PDA closure", routes:["IV"], doses:[
+    {ind:"PDA Closure (prophylactic — <12h)",dose:"0.1 mg/kg q24h × 3 doses"},
+    {ind:"PDA Closure (symptomatic — <48h age)",dose:"0.2 mg/kg → 0.1mg/kg → 0.1mg/kg (q12–24h)"},
+    {ind:"PDA Closure (symptomatic — 2–7d age)",dose:"0.2 mg/kg → 0.2mg/kg → 0.2mg/kg"},
+    {ind:"PDA Closure (symptomatic — >7d age)",dose:"0.25 mg/kg → 0.25mg/kg → 0.25mg/kg"},
+  ], notes:"Infuse over 20–30 min (or 30 min minimum — avoid rapid infusion causing IVH). Hold if urine output <0.6 mL/kg/h, SCr rising, platelet <60,000. Monitor renal function closely." },
+
+  { name:"Caffeine Citrate (Neonatal)", generic:"caffeine citrate", class:"Methylxanthine", routes:["PO","IV"], doses:[
+    {ind:"Apnea of Prematurity (loading)",dose:"20 mg/kg caffeine citrate IV/PO over 30 min"},
+    {ind:"Apnea of Prematurity (maintenance)",dose:"5–10 mg/kg/day once daily"},
+    {ind:"Extubation facilitation",dose:"Loading: 20–40 mg/kg; maintenance 10–20 mg/kg/day"},
+  ], notes:"Preferred over theophylline for apnea of prematurity (wider therapeutic index, once-daily dosing). Therapeutic range: 8–20 mg/L. Continue until 34–37 weeks corrected age." },
+
+  // ANTIMALARIALS
+  { name:"Artemether-Lumefantrine", generic:"coartem / AL", class:"Antimalarial (ACT)", routes:["PO"], doses:[
+    {ind:"Uncomplicated falciparum malaria (5–14kg)",dose:"1 tab (20mg/120mg) q12h × 3 days = 6 doses"},
+    {ind:"Uncomplicated falciparum malaria (15–24kg)",dose:"2 tabs q12h × 3 days = 6 doses"},
+    {ind:"Uncomplicated falciparum malaria (25–34kg)",dose:"3 tabs q12h × 3 days = 6 doses"},
+    {ind:"Uncomplicated falciparum malaria (≥35kg)",dose:"4 tabs q12h × 3 days = 6 doses"},
+  ], notes:"Must be taken with fatty food for absorption. QT prolongation (avoid quinidine concurrently). First-line ACT for uncomplicated P. falciparum in most countries." },
+
+  { name:"Artesunate (IV)", generic:"artesunate", class:"Antimalarial (Artemisinin)", routes:["IV","IM"], doses:[
+    {ind:"Severe Malaria (IV)",dose:"2.4 mg/kg IV at 0, 12, 24h then once daily"},
+    {ind:"Severe Malaria (IM)",dose:"2.4 mg/kg IM at 0, 12, 24h then once daily"},
+    {ind:"Children <20kg",dose:"3 mg/kg/dose (higher dose for smaller children)"},
+    {ind:"Rectal (pre-referral, rural)",dose:"10 mg/kg rectal artesunate suppository single dose → refer immediately"},
+  ], notes:"Drug of choice for severe/complicated malaria (superior to IV quinine). Delayed haemolysis risk post-treatment (monitor Hb). Follow with 3-day oral ACT." },
+
+  { name:"Chloroquine", generic:"chloroquine phosphate", class:"Antimalarial (4-aminoquinoline)", routes:["PO","IV"], doses:[
+    {ind:"P. vivax / P. ovale / P. malariae (PO)",dose:"10 mg base/kg on Day 1 & 2, then 5mg base/kg on Day 3 (max 600mg base/day)"},
+    {ind:"P. falciparum (chloroquine-sensitive areas only)","dose":"Same regimen as above"},
+    {ind:"Juvenile Idiopathic Arthritis",dose:"3–6 mg base/kg/day once daily (max 5mg/kg/day)"},
+  ], notes:"Resistance common in P. falciparum — check local susceptibility. Add primaquine for P. vivax/ovale (terminal prophylaxis; check G6PD first)." },
+
+  { name:"Primaquine", generic:"primaquine phosphate", class:"Antimalarial (8-aminoquinoline)", routes:["PO"], doses:[
+    {ind:"P. vivax/ovale Terminal Prophylaxis (normal G6PD)",dose:"0.5 mg base/kg/day × 14 days (max 30mg base/day)"},
+    {ind:"P. vivax (low sensitivity — Southeast Asia)",dose:"1 mg base/kg/day × 14 days"},
+    {ind:"PCP Prophylaxis (alternative)",dose:"0.5 mg base/kg/day (max 30mg)"},
+  ], notes:"ALWAYS check G6PD before use — causes hemolytic anaemia in G6PD deficiency. Avoid in pregnant and G6PD-deficient patients." },
+
+  // ANTITUBERCULARS
+  { name:"Isoniazid", generic:"isoniazid (INH)", class:"Antitubercular (first-line)", routes:["PO","IM"], doses:[
+    {ind:"Active TB (treatment)",dose:"10–15 mg/kg/day once daily (max 300mg)"},
+    {ind:"LTBI Prophylaxis (6-month)",dose:"10 mg/kg/day once daily × 6 months (max 300mg)"},
+    {ind:"LTBI Prophylaxis (3HP regimen)",dose:"15 mg/kg once weekly × 12 weeks (with rifapentine)"},
+  ], notes:"Pyridoxine 1–2 mg/kg/day supplementation recommended (prevents peripheral neuropathy). Monitor LFTs monthly. Fast vs slow acetylator status affects dose." },
+
+  { name:"Rifampicin", generic:"rifampin / rifampicin", class:"Antitubercular (first-line)", routes:["PO","IV"], doses:[
+    {ind:"Active TB",dose:"15 mg/kg/day once daily (max 600mg)"},
+    {ind:"Meningococcal prophylaxis",dose:"10 mg/kg/dose q12h × 2 days (max 600mg/dose); <1m: 5mg/kg q12h"},
+    {ind:"Hib prophylaxis",dose:"20 mg/kg/day once daily × 4 days (max 600mg/day)"},
+  ], notes:"Potent inducer of CYP3A4, 2C9 — many interactions. Orange discoloration of urine, tears, sweat. Hepatotoxic — avoid with severe hepatic disease. Never monotherapy." },
+
+  { name:"Pyrazinamide", generic:"pyrazinamide (PZA)", class:"Antitubercular (first-line)", routes:["PO"], doses:[
+    {ind:"Active TB (induction phase)",dose:"30–40 mg/kg/day once daily (max 2g/day)"},
+    {ind:"MDR-TB (prolonged)",dose:"30–40 mg/kg/day (individualized)"},
+  ], notes:"Hyperuricemia (arthropathy). Hepatotoxic — monitor LFTs. Use only in 2-month induction phase (standard regimen). Good CNS penetration." },
+
+  { name:"Ethambutol", generic:"ethambutol HCl", class:"Antitubercular (first-line)", routes:["PO"], doses:[
+    {ind:"Active TB",dose:"15–25 mg/kg/day once daily (max 1.6g/day)"},
+    {ind:"MDR-TB",dose:"20 mg/kg/day (individualized)"},
+  ], notes:"Optic neuritis (color vision, visual acuity changes) — monitor monthly; avoid if unable to report symptoms (young children). Avoid if GFR <10." },
+
+  // HEMATOLOGY
+  { name:"Vitamin K (Phytonadione)", generic:"phytomenadione / vitamin K1", class:"Fat-soluble Vitamin / Coagulation factor", routes:["IV","IM","PO"], doses:[
+    {ind:"VKDB Prophylaxis (neonatal — IM, preferred)",dose:"1 mg IM single dose (0.5mg if <1.5kg)"},
+    {ind:"VKDB Prophylaxis (oral regimen — less effective)",dose:"2 mg PO at birth; repeat at 1–2 weeks; 2mg at 4–6 weeks"},
+    {ind:"Warfarin reversal (minor bleeding — PO)",dose:"0.05–0.15 mg/kg PO"},
+    {ind:"Warfarin reversal (significant bleeding — IV)",dose:"0.03–0.1 mg/kg IV slow (max 10mg); infuse ≤1 mg/min"},
+    {ind:"Coagulopathy (hepatic disease)",dose:"0.1–1 mg/kg PO/IV once daily"},
+  ], notes:"IV bolus risk of anaphylaxis — dilute and infuse slowly. IM route preferred for neonates. Response within 6–12h (requires hepatic synthesis of factors)." },
+
+  { name:"Ferrous Sulfate / Oral Iron", generic:"ferrous sulfate", class:"Iron Supplement", routes:["PO"], doses:[
+    {ind:"Iron Deficiency Anaemia (treatment)",dose:"3–6 mg elemental iron/kg/day ÷ q8–12h (between meals for absorption)"},
+    {ind:"Premature Infant Supplementation",dose:"2–4 mg elemental iron/kg/day (start at 2 weeks, continue 12 months)"},
+    {ind:"Term Infant Supplementation",dose:"1 mg elemental iron/kg/day (start 4 months if formula-fed or exclusively BF)"},
+    {ind:"Prophylaxis (adolescent girls — WHO)",dose:"30–60 mg elemental iron once daily or weekly"},
+  ], notes:"Ferrous sulfate: 20% elemental iron. Ferrous fumarate: 33%. Take between meals for best absorption (vitamin C enhances). GI side effects: nausea, constipation." },
+
+  // ANTI-PARASITIC
+  { name:"Albendazole", generic:"albendazole", class:"Anthelmintic (benzimidazole)", routes:["PO"], doses:[
+    {ind:"Soil-transmitted helminths (≥2 years)",dose:"400 mg single dose (or two doses for Trichuris/severe)"},
+    {ind:"Soil-transmitted helminths (12–24m)",dose:"200 mg single dose"},
+    {ind:"Neurocysticercosis (active lesions)",dose:"15 mg/kg/day ÷ q12h × 8–30 days (max 800mg/day); with corticosteroids"},
+    {ind:"Hydatid cyst",dose:"15 mg/kg/day ÷ q12h × 28 days (cycle with 14-day rest); max 800mg/day"},
+    {ind:"Giardia (alternative)",dose:"400 mg once daily × 5 days"},
+    {ind:"Strongyloidiasis",dose:"400 mg/day ÷ q12h × 3 days"},
+  ], notes:"Take with fatty meal (increases absorption 5×). Teratogenic — avoid in first trimester. Hepatotoxic with prolonged use — monitor LFTs." },
+
+  { name:"Mebendazole", generic:"mebendazole", class:"Anthelmintic (benzimidazole)", routes:["PO"], doses:[
+    {ind:"Enterobiasis (pinworm, ≥2 years)",dose:"100 mg single dose; repeat in 2 weeks"},
+    {ind:"Ascariasis/Trichuriasis/Hookworm",dose:"100 mg q12h × 3 days OR 500 mg single dose (≥2 years)"},
+    {ind:"Strongyloidiasis (alternative)",dose:"200 mg q12h × 3 days"},
+  ], notes:"Poor bioavailability — works mainly in gut lumen. Avoid in <2 years. Treat whole household for pinworm. Repeat dose in 2 weeks for pinworm." },
+
+  { name:"Ivermectin", generic:"ivermectin", class:"Anthelmintic (macrocyclic lactone)", routes:["PO"], doses:[
+    {ind:"Strongyloidiasis",dose:"200 mcg/kg/day × 2 days (≥15kg)"},
+    {ind:"Onchocerciasis",dose:"150 mcg/kg single dose annually"},
+    {ind:"Scabies (Norwegian/crusted)",dose:"200 mcg/kg on Day 1, 2, 8, 9, 15 (+ topical)"},
+    {ind:"Scabies (standard, alternative)",dose:"200 mcg/kg once; repeat in 2 weeks"},
+    {ind:"Pediculosis capitis (head lice)",dose:"200–400 mcg/kg on Days 1 and 8"},
+    {ind:"Lymphatic filariasis",dose:"150–200 mcg/kg single annual dose"},
+  ], notes:"Avoid in children <15kg or <5 years. Take on empty stomach. Mazzotti reaction (fever, pruritus) in microfilaremic patients. Drug of choice for Strongyloides." },
+
+  // IMMUNOLOGY / BIOLOGICS
+  { name:"IVIG (Intravenous Immunoglobulin)", generic:"normal human immunoglobulin (IV)", class:"Immunoglobulin", routes:["IV"], doses:[
+    {ind:"Kawasaki Disease",dose:"2 g/kg as single infusion over 8–12h (+ aspirin)"},
+    {ind:"Immune Thrombocytopenia (ITP — urgent)",dose:"1 g/kg/day × 1–2 days (max 70g/dose)"},
+    {ind:"Guillain-Barré Syndrome",dose:"2 g/kg over 2–5 days (0.4g/kg/day × 5 days or 1g/kg × 2 days)"},
+    {ind:"Primary Immunodeficiency (maintenance)",dose:"400–600 mg/kg q3–4 weeks (titrate to IgG level)"},
+    {ind:"Neonatal Hemolytic Disease (adjunct)",dose:"0.5–1 g/kg IV over 4h (if bilirubin rising despite phototherapy)"},
+    {ind:"Hypogammaglobulinemia",dose:"400–600 mg/kg q3–4 weeks"},
+    {ind:"Toxic Shock Syndrome (adjunct)",dose:"2 g/kg single dose (off-label)"},
+  ], notes:"Slow infusion rate for first 30 min (anaphylaxis risk). Headache, fever common (infusion-related). Live virus vaccines contraindicated for 3–11 months after IVIG (immunization schedule). IgA-deficient patients: anaphylaxis risk." },
+
+  { name:"Hydroxychloroquine", generic:"hydroxychloroquine sulfate", class:"Antimalarial / DMARD", routes:["PO"], doses:[
+    {ind:"JIA / SLE / Dermatomyositis",dose:"3–5 mg/kg/day once daily (max 5mg/kg/day; never exceed 400mg/day)"},
+    {ind:"Malaria Prophylaxis",dose:"6.5 mg/kg/week (max 400mg) starting 2 weeks before, until 8 weeks after"},
+  ], notes:"Annual ophthalmology monitoring for retinopathy. Takes 2–3 months for full effect. Safer than chloroquine for long-term use. QT prolongation risk." },
+
+  // VACCINES / PROPHYLAXIS (additional)
+  { name:"Palivizumab", generic:"palivizumab", class:"RSV Monoclonal Antibody", routes:["IM"], doses:[
+    {ind:"RSV Prophylaxis (high-risk)",dose:"15 mg/kg IM monthly during RSV season (max 5 doses)"},
+  ], notes:"High-risk criteria: <29 weeks GA, CHD with hemodynamic compromise, CLD requiring medical treatment in 6 months prior, immunocompromised. Not for treatment of active RSV." },
+
+  { name:"Methylphenidate", generic:"methylphenidate HCl", class:"CNS Stimulant / ADHD", routes:["PO"], doses:[
+    {ind:"ADHD (immediate release, ≥6 years)",dose:"Start 5 mg q12h (breakfast+lunch); increase by 5mg/week; target 0.3–1 mg/kg/dose q8h (max 60mg/day)"},
+    {ind:"ADHD (extended release — Concerta)",dose:"18 mg once daily morning; increase to 36–54 mg/day"},
+    {ind:"ADHD (extended release — Ritalin LA)",dose:"10–40 mg once daily morning"},
+  ], notes:"Avoid PM dosing (insomnia). Monitor growth, BP, HR. Drug holiday consideration. No use <6 years." },
+
+  { name:"Melatonin", generic:"melatonin", class:"Neurohormone / Sleep Disorder", routes:["PO"], doses:[
+    {ind:"Insomnia / Circadian rhythm disorder",dose:"0.5–3 mg 30–60 min before bedtime; titrate up to 10mg if needed"},
+    {ind:"ASD-associated sleep disorder",dose:"1–5 mg at bedtime"},
+    {ind:"Jet lag",dose:"0.5–5 mg at target bedtime"},
+  ], notes:"Generally considered safe in children. Immediate-release for sleep onset; modified-release for maintenance. OTC in many countries." },
+
+  { name:"Zinc Sulfate", generic:"zinc sulfate", class:"Mineral Supplement", routes:["PO"], doses:[
+    {ind:"Acute Diarrhoea (WHO/UNICEF)",dose:"<6 months: 10 mg/day × 10–14 days; ≥6 months: 20 mg/day × 10–14 days"},
+    {ind:"Zinc Deficiency (treatment)",dose:"0.5–1 mg elemental zinc/kg/day ÷ q8h"},
+    {ind:"Prophylaxis (supplementation)",dose:"5–10 mg elemental zinc/day"},
+    {ind:"Acrodermatitis Enteropathica",dose:"0.5–3 mg elemental zinc/kg/day"},
+  ], notes:"Zinc reduces severity and duration of diarrhea, especially in malnourished children. Copper deficiency with prolonged high-dose zinc. Take with food if GI upset." },
+
+  { name:"ORS (Oral Rehydration Salts)", generic:"WHO low-osmolarity ORS", class:"Oral Rehydration", routes:["PO"], doses:[
+    {ind:"Mild Dehydration (3–5%)",dose:"50 mL/kg ORS over 3–4h; replace ongoing losses"},
+    {ind:"Moderate Dehydration (6–9%)",dose:"100 mL/kg ORS over 3–4h; reassess frequently"},
+    {ind:"Maintenance after rehydration",dose:"10 mL/kg/loose stool + 2 mL/kg/vomit episode"},
+    {ind:"Ongoing losses (default replacement)",dose:"5–10 mL/kg per stool"},
+  ], notes:"WHO low-osmolarity ORS (245 mOsm/L): Na 75, Cl 65, K 20, citrate 10, glucose 75 mmol/L. Reduces diarrhea volume vs classic ORS. Avoid plain water for rehydration in children." },
+
+  { name:"Aspirin (Acetylsalicylic Acid)", generic:"aspirin / acetylsalicylic acid", class:"NSAID / Antiplatelet", routes:["PO"], doses:[
+    {ind:"Kawasaki Disease (anti-inflammatory — acute)",dose:"80–100 mg/kg/day ÷ q6h until afebrile ≥48h"},
+    {ind:"Kawasaki Disease (antiplatelet — after)",dose:"3–5 mg/kg/day once daily × 6–8 weeks (or until echo normal)"},
+    {ind:"Systemic JIA",dose:"75–100 mg/kg/day ÷ q4–6h (obsolete; NSAIDs preferred)"},
+    {ind:"Ischemic Stroke / APS",dose:"3–5 mg/kg/day once daily (antiplatelet)"},
+  ], notes:"AVOID in viral illness (Reye syndrome). Avoid in children <12 years for routine fever/pain. Kawasaki is a major pediatric indication." },
+];
+
+// ============================================================
+// SITUATIONS DATABASE
+// ============================================================
+const SITUATIONS = [
+  { id:'cns', title:'CNS Infections', icon:'🧠', bg:'#1a2040',
+    sub:'Bacterial Meningitis, Encephalitis, Brain Abscess',
+    drugs:[
+      {name:'Cefotaxime',dose:'200–300 mg/kg/day IV ÷ q6h (max 12g/day)',priority:'first',note:'Empiric 1st line <3m'},
+      {name:'Ceftriaxone',dose:'100 mg/kg/day IV ÷ q12–24h (max 4g/day)',priority:'first',note:'Empiric 1st line >3m'},
+      {name:'Ampicillin',dose:'200–400 mg/kg/day IV ÷ q4–6h',priority:'first',note:'Add for Listeria (<3m, elderly, immunocomp)'},
+      {name:'Vancomycin',dose:'60–80 mg/kg/day IV ÷ q6h (trough 15–20)',priority:'second',note:'For pneumococcal meningitis or MRSA cover'},
+      {name:'Meropenem',dose:'120 mg/kg/day IV ÷ q8h (max 6g/day)',priority:'alt',note:'MDR GNBs / Pseudomonas / nosocomial'},
+      {name:'Dexamethasone',dose:'0.15 mg/kg/dose q6h × 4 days',priority:'first',note:'Start WITH antibiotics for Hib meningitis; may benefit pneumococcal'},
+      {name:'Acyclovir',dose:'10–15 mg/kg/dose q8h × 14–21 days',priority:'first',note:'Add empirically until HSV encephalitis excluded (CSF HSV PCR)'},
+      {name:'Metronidazole',dose:'30 mg/kg/day IV ÷ q6h',priority:'alt',note:'Add for brain abscess (anaerobic cover)'},
+    ]
+  },
+  { id:'sepsis', title:'Neonatal Sepsis', icon:'👶', bg:'#1a2a20',
+    sub:'Early-onset (<72h) and Late-onset Sepsis',
+    drugs:[
+      {name:'Ampicillin',dose:'50 mg/kg/dose q12h (≤7d); q8h (8–28d)',priority:'first',note:'EOS empiric — GBS/E.coli/Listeria cover'},
+      {name:'Gentamicin',dose:'4 mg/kg/dose q24h (term); 3.5mg/kg q24–48h (preterm)',priority:'first',note:'EOS 1st line combination with ampicillin'},
+      {name:'Cefotaxime',dose:'50 mg/kg/dose q12h (≤7d); q8h (8–28d)',priority:'second',note:'LOS empiric if Gram-negative meningitis suspected'},
+      {name:'Vancomycin',dose:'15 mg/kg/dose q8–12h (AUC-guided)',priority:'second',note:'LOS with MRSA risk (line-associated)'},
+      {name:'Fluconazole',dose:'6–12 mg/kg/day IV/PO (prophylaxis: 3–6mg/kg 2×/week)',priority:'alt',note:'Invasive candidiasis (especially ELBW)'},
+      {name:'Acyclovir',dose:'20 mg/kg/dose q8h × 14–21 days IV',priority:'first',note:'Neonatal HSV — start empirically if skin vesicles, seizures, hepatitis'},
+    ]
+  },
+  { id:'pneumonia', title:'Severe Pneumonia', icon:'🫁', bg:'#2a1a1a',
+    sub:'CAP, Hospital-acquired, Atypical, Aspiration',
+    drugs:[
+      {name:'Amoxicillin-Clavulanate',dose:'90 mg/kg/day ÷ q12h (PO)',priority:'first',note:'Outpatient CAP (school-age), mild-moderate'},
+      {name:'Ampicillin',dose:'200 mg/kg/day IV ÷ q6h',priority:'first',note:'Hospitalized CAP <5 years (good S. pneumo cover)'},
+      {name:'Ceftriaxone',dose:'75–100 mg/kg/day IV q24h',priority:'first',note:'Severe CAP (requires IV), >5 years'},
+      {name:'Azithromycin',dose:'10 mg/kg D1 (max 500), then 5mg/kg/day × 4d',priority:'second',note:'Atypical (Mycoplasma, Chlamydophila) or school-age add-on'},
+      {name:'Vancomycin',dose:'60–70 mg/kg/day IV ÷ q6h',priority:'alt',note:'MRSA pneumonia (cavitation, empyema, CA-MRSA)'},
+      {name:'Meropenem',dose:'60–120 mg/kg/day IV ÷ q8h',priority:'alt',note:'Nosocomial/ventilator-associated, MDR organisms'},
+      {name:'Clindamycin',dose:'30–40 mg/kg/day IV ÷ q6–8h',priority:'alt',note:'MRSA coverage + anaerobes for aspiration / necrotizing'},
+      {name:'Piperacillin-Tazobactam',dose:'300–400 mg/kg/day IV ÷ q6h',priority:'alt',note:'HAP/VAP, immunocompromised, aspiration, Pseudomonas risk'},
+    ]
+  },
+  { id:'febneutro', title:'Febrile Neutropenia', icon:'🩸', bg:'#2a2010',
+    sub:'Oncology patients, post-chemotherapy',
+    drugs:[
+      {name:'Piperacillin-Tazobactam',dose:'300–400 mg/kg/day IV ÷ q4–6h (extended infusion)',priority:'first',note:'HIGH RISK: 1st line monotherapy — broad spectrum'},
+      {name:'Cefepime',dose:'150 mg/kg/day IV ÷ q8h (max 6g/day)',priority:'first',note:'Alternative to pip-tazo (4th gen, Pseudomonas cover)'},
+      {name:'Meropenem',dose:'60–120 mg/kg/day IV ÷ q8h',priority:'second',note:'If Pseudomonas risk high, prior colonization, unstable'},
+      {name:'Vancomycin',dose:'60–70 mg/kg/day IV ÷ q6h',priority:'alt',note:'Add if catheter infection, MRSA risk, mucositis, hypotension, Gram+ on Gram stain'},
+      {name:'Caspofungin',dose:'70 mg/m² loading, then 50 mg/m²/day',priority:'alt',note:'Add antifungal if fever >96h, no response to ABX'},
+      {name:'Liposomal Ampho B',dose:'3 mg/kg/day IV',priority:'alt',note:'Proven invasive fungal infection (Aspergillus), unstable patient'},
+      {name:'Voriconazole',dose:'9mg/kg/dose q12h (2–12y); 6mg/kg loading q12h × 2 then 4mg/kg q12h (>12y)',priority:'alt',note:'Invasive aspergillosis treatment'},
+    ]
+  },
+  { id:'septicshock', title:'Septic Shock', icon:'⚡', bg:'#2a1a30',
+    sub:'Pediatric sepsis with cardiovascular dysfunction',
+    drugs:[
+      {name:'Ceftriaxone',dose:'100 mg/kg/day IV (community-acquired)',priority:'first',note:'Empiric for community sepsis (given early — within 1h)'},
+      {name:'Piperacillin-Tazobactam',dose:'300 mg/kg/day IV ÷ q6h',priority:'first',note:'Nosocomial / ICU-acquired sepsis'},
+      {name:'Vancomycin',dose:'60–70 mg/kg/day IV ÷ q6h',priority:'second',note:'MRSA risk, line-associated, Gram+ suspected'},
+      {name:'Meropenem',dose:'60–120 mg/kg/day IV ÷ q8h',priority:'alt',note:'MDR risk, prior ABX, known colonization'},
+      {name:'Hydrocortisone',dose:'2 mg/kg/day ÷ q6h IV (catecholamine-refractory)',priority:'second',note:'Only if fluid+vasopressor refractory shock (adrenal insufficiency)'},
+      {name:'Norepinephrine (infusion)',dose:'0.05–2 mcg/kg/min IV (titrate to MAP)',priority:'first',note:'First-line vasopressor (warm shock / cold shock after fluid)'},
+      {name:'Dopamine (infusion)',dose:'5–20 mcg/kg/min IV',priority:'second',note:'Alternative vasopressor if norepinephrine unavailable'},
+      {name:'Milrinone (infusion)',dose:'0.25–0.75 mcg/kg/min IV',priority:'alt',note:'Add for myocardial dysfunction / cold shock (after volume)'},
+    ]
+  },
+  { id:'uti', title:'Urinary Tract Infection', icon:'💧', bg:'#102030',
+    sub:'Cystitis, Pyelonephritis, Recurrent UTI',
+    drugs:[
+      {name:'Trimethoprim-SMX',dose:'8–10 mg/kg/day TMP ÷ q12h × 7–10d PO',priority:'first',note:'If susceptibility confirmed; not empiric in areas >20% resistance'},
+      {name:'Nitrofurantoin',dose:'5–7 mg/kg/day ÷ q6h × 5–7 days (cystitis only)',priority:'first',note:'Cystitis only — NOT for pyelonephritis or neonates'},
+      {name:'Cefixime',dose:'8 mg/kg/day once daily PO × 7–14 days',priority:'first',note:'Oral 3rd gen for pyelonephritis (outpatient step-down)'},
+      {name:'Ceftriaxone',dose:'75 mg/kg/day IV q24h × 10–14 days',priority:'second',note:'IV for pyelonephritis requiring admission'},
+      {name:'Gentamicin',dose:'7.5 mg/kg/day once daily IV',priority:'alt',note:'Gram-negative pyelonephritis — with antibiogram'},
+      {name:'Amoxicillin-Clavulanate',dose:'40–50 mg/kg/day ÷ q8h PO',priority:'alt',note:'Enterococcus UTI (check sensitivity)'},
+      {name:'TMP-SMX (prophylaxis)',dose:'2 mg/kg TMP once daily',priority:'second',note:'VUR, recurrent UTI prophylaxis'},
+    ]
+  },
+  { id:'skinsoft', title:'Skin & Soft Tissue Infections', icon:'🩹', bg:'#201a10',
+    sub:'Cellulitis, Abscess, Impetigo, Necrotizing Fasciitis',
+    drugs:[
+      {name:'Cephalexin',dose:'25–50 mg/kg/day PO ÷ q6–8h (max 4g/day)',priority:'first',note:'Non-purulent cellulitis (Strep predominant)'},
+      {name:'Amoxicillin-Clavulanate',dose:'45 mg/kg/day ÷ q12h PO',priority:'second',note:'Bite wounds (human/animal), polymicrobial'},
+      {name:'TMP-SMX',dose:'8–12 mg/kg/day TMP ÷ q12h PO',priority:'first',note:'Purulent infections / CA-MRSA abscesses'},
+      {name:'Clindamycin',dose:'30–40 mg/kg/day IV ÷ q6–8h (or 20–30 PO)',priority:'first',note:'MRSA coverage + antitoxin effect in TSST-1'},
+      {name:'Vancomycin',dose:'60–70 mg/kg/day IV ÷ q6h',priority:'second',note:'Severe SSTI, failed oral MRSA therapy, bacteremia'},
+      {name:'Piperacillin-Tazobactam',dose:'300 mg/kg/day IV ÷ q6h',priority:'alt',note:'Necrotizing fasciitis — empiric (+ clindamycin + vancomycin)'},
+      {name:'Meropenem',dose:'60 mg/kg/day IV ÷ q8h',priority:'alt',note:'MDR organisms, immunocompromised SSTI'},
+    ]
+  },
+  { id:'boneloin', title:'Bone & Joint Infections', icon:'🦴', bg:'#1a2810',
+    sub:'Septic Arthritis, Osteomyelitis, Discitis',
+    drugs:[
+      {name:'Cefazolin',dose:'50–100 mg/kg/day IV ÷ q8h (max 6g/day)',priority:'first',note:'MSSA osteomyelitis/septic arthritis — <5 years empiric'},
+      {name:'Flucloxacillin',dose:'100–150 mg/kg/day IV ÷ q6h (max 12g/day)',priority:'first',note:'MSSA (where flucloxacillin preferred over cefazolin)'},
+      {name:'Ceftriaxone',dose:'50–75 mg/kg/day IV q24h',priority:'second',note:'Add for Kingella kingae (<5y) or GN coverage needed'},
+      {name:'Vancomycin',dose:'60–70 mg/kg/day IV ÷ q6h',priority:'second',note:'MRSA osteomyelitis (all ages, community-acquired risk)'},
+      {name:'Clindamycin',dose:'30–40 mg/kg/day IV → PO step-down',priority:'alt',note:'PO step-down for MRSA/MSSA when clinical improvement (excellent bioavailability)'},
+      {name:'Linezolid',dose:'10 mg/kg/dose q8h PO/IV (max 600mg)',priority:'alt',note:'MRSA osteomyelitis — oral option with excellent bone penetration'},
+    ]
+  },
+  { id:'enteric', title:'Enteric Infections', icon:'🦠', bg:'#102020',
+    sub:'Typhoid, Salmonella, Shigella, E. coli',
+    drugs:[
+      {name:'Ceftriaxone',dose:'75–100 mg/kg/day IV × 10–14d (typhoid)',priority:'first',note:'Severe typhoid, enteric fever, invasive Salmonella'},
+      {name:'Azithromycin',dose:'20 mg/kg/day PO × 7d (typhoid)',priority:'first',note:'Uncomplicated typhoid, oral option, MDR strains'},
+      {name:'Cefixime',dose:'20 mg/kg/day PO × 7–14d',priority:'second',note:'Step-down for typhoid after IV, mild-moderate'},
+      {name:'Ciprofloxacin',dose:'20–30 mg/kg/day ÷ q12h × 7–10d',priority:'alt',note:'Ciprofloxacin-sensitive Shigella, typhoid (local sensitivity patterns)'},
+      {name:'Metronidazole',dose:'30–50 mg/kg/day ÷ q8h × 7–10d',priority:'first',note:'Amoebiasis (intestinal and hepatic abscess)'},
+      {name:'TMP-SMX',dose:'8 mg/kg/day TMP ÷ q12h',priority:'alt',note:'Shigella (confirm sensitivity) / traveler\'s diarrhea'},
+      {name:'Tinidazole',dose:'50 mg/kg single dose (max 2g) for giardia',priority:'alt',note:'Giardia, amoebiasis — single dose advantage'},
+    ]
+  },
+  { id:'parasitic', title:'Parasitic Infections', icon:'🪱', bg:'#201530',
+    sub:'Malaria, Helminthiasis, Leishmaniasis',
+    drugs:[
+      {name:'Artesunate IV',dose:'2.4 mg/kg at 0,12,24h then daily (3mg/kg if <20kg)',priority:'first',note:'Severe / complicated malaria — drug of choice'},
+      {name:'Artemether-Lumefantrine',dose:'Weight-based 6 doses over 3 days q12h',priority:'first',note:'Uncomplicated P. falciparum malaria'},
+      {name:'Chloroquine',dose:'10mg base/kg D1+2, 5mg base/kg D3',priority:'first',note:'P. vivax / P. ovale / P. malariae (sensitive)'},
+      {name:'Primaquine',dose:'0.5 mg base/kg/day × 14 days (check G6PD)',priority:'second',note:'P. vivax radical cure, G6PD normal only'},
+      {name:'Albendazole',dose:'400mg single dose (≥2y); 200mg (1–2y)',priority:'first',note:'STH (roundworm, hookworm, whipworm)'},
+      {name:'Ivermectin',dose:'200 mcg/kg single dose (≥15kg)',priority:'first',note:'Strongyloides, scabies, onchocerciasis'},
+      {name:'Liposomal Ampho B',dose:'3 mg/kg D1-5, D14, D21 (leishmaniasis)',priority:'first',note:'Visceral leishmaniasis (kala-azar)'},
+    ]
+  },
+  { id:'tb', title:'Tuberculosis', icon:'🦠', bg:'#302010',
+    sub:'Active TB, LTBI, MDR-TB, TB Meningitis',
+    drugs:[
+      {name:'Isoniazid (H)',dose:'10–15 mg/kg/day once daily (max 300mg)',priority:'first',note:'Component of all standard regimens'},
+      {name:'Rifampicin (R)',dose:'15 mg/kg/day once daily (max 600mg)',priority:'first',note:'Component of all standard regimens'},
+      {name:'Pyrazinamide (Z)',dose:'30–40 mg/kg/day once daily (max 2g)',priority:'first',note:'2-month induction phase'},
+      {name:'Ethambutol (E)',dose:'20–25 mg/kg/day once daily (max 1.6g)',priority:'first',note:'2-month induction phase (4th drug if resistance risk)'},
+      {name:'Dexamethasone',dose:'0.3–0.4 mg/kg/day IV/PO × 4–8 weeks (taper)',priority:'second',note:'TB MENINGITIS mandatory adjunct (reduces mortality/disability)'},
+      {name:'Levofloxacin',dose:'15–20 mg/kg/day once daily (max 1g)',priority:'alt',note:'MDR-TB group A drug — key component'},
+      {name:'Linezolid',dose:'10–15 mg/kg/day (children) for MDR-TB',priority:'alt',note:'MDR/XDR-TB group B drug'},
+    ]
+  },
+  { id:'antifungal', title:'Invasive Fungal Infections', icon:'🍄', bg:'#1a1030',
+    sub:'Candida, Aspergillus, Cryptococcus',
+    drugs:[
+      {name:'Caspofungin',dose:'70 mg/m² loading, then 50 mg/m²/day IV',priority:'first',note:'Invasive candidiasis 1st line (echinocandin)'},
+      {name:'Fluconazole',dose:'12 mg/kg loading, then 6–12 mg/kg/day IV/PO',priority:'second',note:'Candida step-down (confirmed sensitive strain, stable)'},
+      {name:'Voriconazole',dose:'As per age-based dosing q12h',priority:'first',note:'Invasive Aspergillosis — drug of choice'},
+      {name:'Liposomal Ampho B',dose:'3–5 mg/kg/day (candida/asperg); 6 mg/kg/day (CNS)',priority:'second',note:'CNS fungal infection; refractory disease; molds'},
+      {name:'Ampho B + 5-flucytosine',dose:'Ampho B 1mg/kg + 5-FC 100mg/kg/day ÷ q6h',priority:'first',note:'Cryptococcal meningitis induction (2 weeks)'},
+      {name:'Micafungin',dose:'4 mg/kg/day IV (prophylaxis 1 mg/kg/day)',priority:'alt',note:'Invasive candidiasis alternative echinocandin; prophylaxis HSCT'},
+    ]
+  },
+];
+
+// ============================================================
+// RENAL ADJUSTMENT DATABASE
+// ============================================================
+const RENAL = [
+  {drug:'Amoxicillin', class:'Penicillin', normal:'25–90 mg/kg/day ÷ q8–12h', mild:'No change', mod:'q12h extended interval', severe:'q24h', dialysis:'Dose after HD; supplement 250mg', note:''},
+  {drug:'Amoxicillin-Clav', class:'Penicillin+BLI', normal:'40–90 mg/kg/day ÷ q8–12h', mild:'No change', mod:'Avoid doses >500mg q8h; switch to q12h', severe:'q24h; avoid high dose', dialysis:'Supplement after HD', note:'Clavulanate not removed by HD'},
+  {drug:'Ampicillin', class:'Penicillin', normal:'100–400 mg/kg/day ÷ q6h', mild:'No change', mod:'q8–12h', severe:'q12h', dialysis:'Supplement after HD', note:''},
+  {drug:'Piperacillin-Tazobactam', class:'Extended Penicillin+BLI', normal:'200–400 mg/kg/day ÷ q6h', mild:'No change', mod:'Reduce dose by 25% or extend interval', severe:'Reduce dose; 200 mg/kg/day max', dialysis:'Supplement 2.25g after each HD', note:'Extended infusion improves PD attainment'},
+  {drug:'Cefazolin', class:'1st-gen Ceph', normal:'25–100 mg/kg/day ÷ q6–8h', mild:'q12h', mod:'q24h', severe:'q48h', dialysis:'Supplement after HD', note:'Significantly renally cleared'},
+  {drug:'Cefuroxime', class:'2nd-gen Ceph', normal:'75–150 mg/kg/day ÷ q8h', mild:'No change', mod:'q12h', severe:'q24h', dialysis:'Supplement after HD', note:''},
+  {drug:'Cefotaxime', class:'3rd-gen Ceph', normal:'100–300 mg/kg/day ÷ q4–8h', mild:'No change', mod:'q12h', severe:'q24h', dialysis:'Supplement after HD', note:''},
+  {drug:'Ceftriaxone', class:'3rd-gen Ceph', normal:'50–100 mg/kg/day ÷ q12–24h', mild:'No change', mod:'No change', severe:'Max 2g/day (no further adjustment needed)', dialysis:'No supplement needed (not HD-cleared)', note:'Biliary excretion — minimal renal adjustment'},
+  {drug:'Cefepime', class:'4th-gen Ceph', normal:'100–150 mg/kg/day ÷ q8–12h', mild:'q12h', mod:'q24h', severe:'q48h + dose reduction', dialysis:'Supplement after HD; daily dose q48h', note:'Neurotoxicity risk if underdosed in renal failure'},
+  {drug:'Ceftazidime', class:'3rd-gen (anti-pseudo)', normal:'90–200 mg/kg/day ÷ q8h', mild:'q12h', mod:'q24h', severe:'q48h', dialysis:'Supplement after HD', note:''},
+  {drug:'Meropenem', class:'Carbapenem', normal:'60–120 mg/kg/day ÷ q8h', mild:'q12h', mod:'50% dose reduction; q24h', severe:'25–50% dose q24h', dialysis:'Supplement after HD', note:'Extended infusion still beneficial if dose retained'},
+  {drug:'Imipenem', class:'Carbapenem', normal:'60–100 mg/kg/day ÷ q6h', mild:'Reduce to q8h', mod:'Reduce dose; q12h', severe:'Not recommended if GFR<10 (seizure risk)', dialysis:'Supplementation required; use cautiously', note:'Seizure threshold lowered in renal failure'},
+  {drug:'Gentamicin', class:'Aminoglycoside', normal:'7.5 mg/kg/day once daily', mild:'Extend interval to q36h', mod:'Extend to q48h; reduce dose', severe:'q72–96h; check levels', dialysis:'Supplement 1.5–2 mg/kg post-HD; check levels', note:'CRITICAL: TDM mandatory. Nephrotoxic and ototoxic.'},
+  {drug:'Tobramycin', class:'Aminoglycoside', normal:'7.5–10 mg/kg/day once daily', mild:'q36h', mod:'q48h', severe:'q72h+; individualize by levels', dialysis:'1.5–2 mg/kg post-HD; TDM', note:'Same monitoring as gentamicin'},
+  {drug:'Amikacin', class:'Aminoglycoside', normal:'15–22.5 mg/kg/day once daily', mild:'q36h', mod:'q48h', severe:'q72h+', dialysis:'5–7.5 mg/kg post-HD; TDM', note:'Monitor peak (20–35 mg/L) and trough (<5)'},
+  {drug:'Vancomycin', class:'Glycopeptide', normal:'60–80 mg/kg/day ÷ q6–8h', mild:'q12–24h based on levels', mod:'q24–48h based on levels', severe:'AUC-guided dosing essential; q48–72h', dialysis:'10–15 mg/kg post-HD (poorly removed); AUC-guided', note:'CRITICAL: AUC-guided (400–600) or trough-guided. Nephrotoxic.'},
+  {drug:'Teicoplanin', class:'Glycopeptide', normal:'10 mg/kg/day after loading', mild:'q48h', mod:'q72h', severe:'q72h', dialysis:'Not significantly removed; q72h', note:'Monitor trough >10 mg/L (general) or >15 (serious)'},
+  {drug:'Ciprofloxacin', class:'Fluoroquinolone', normal:'20–30 mg/kg/day ÷ q12h', mild:'No change', mod:'50–75% dose; q12h', severe:'50% dose; q12–24h', dialysis:'50% dose post-HD', note:''},
+  {drug:'Levofloxacin', class:'Fluoroquinolone', normal:'10–20 mg/kg/day ÷ q12–24h', mild:'No change', mod:'50% dose or q48h', severe:'50% dose then q48h', dialysis:'Supplement 50% dose post-HD', note:''},
+  {drug:'Trimethoprim-SMX', class:'Sulfonamide combination', normal:'8–20 mg TMP/kg/day ÷ q6–12h', mild:'No change', mod:'50% dose', severe:'AVOID (crystalluria, hyperkalemia)', dialysis:'Supplement post-HD; use cautiously', note:'AVOID in severe renal failure. Crystal nephropathy.'},
+  {drug:'Metronidazole', class:'Nitroimidazole', normal:'30 mg/kg/day ÷ q6–8h', mild:'No change', mod:'No change (minimal renal excretion)', severe:'Reduce dose by 50% if extended use', dialysis:'Supplement dose post-HD', note:'Hepatic metabolism — mainly hepatic clearance'},
+  {drug:'Acyclovir', class:'Antiviral', normal:'10–20 mg/kg/dose q8h IV', mild:'q12h', mod:'q24h with dose reduction', severe:'50% dose q24h', dialysis:'Supplement half dose post-HD', note:'Crystalline nephropathy risk — aggressive hydration required'},
+  {drug:'Oseltamivir', class:'Antiviral (influenza)', normal:'3–4.5 mg/kg/dose q12h × 5d', mild:'No change', mod:'Treatment: 30 mg once daily × 5d; Prophylaxis: 30 mg every other day', severe:'Treatment: 30 mg once daily; Prophylaxis: 30 mg once per week', dialysis:'30 mg after each HD (5 doses)', note:'Weight-based adjustment for small children'},
+  {drug:'Ganciclovir', class:'Antiviral (CMV)', normal:'5 mg/kg/dose q12h', mild:'2.5 mg/kg q12h', mod:'2.5 mg/kg q24h', severe:'1.25 mg/kg q24h', dialysis:'1.25 mg/kg 3×/week post-HD', note:'Myelosuppression worsens with accumulation'},
+  {drug:'Fluconazole', class:'Antifungal (triazole)', normal:'6–12 mg/kg/day', mild:'No change', mod:'50% dose', severe:'50% dose', dialysis:'Full dose post-HD (HD removes fluconazole)', note:'Partially removed by hemodialysis'},
+  {drug:'Linezolid', class:'Oxazolidinone', normal:'10 mg/kg/dose q8h', mild:'No change', mod:'No change (primarily non-renal)', severe:'Metabolite accumulation — monitor for toxicity', dialysis:'No dose change; metabolites removed', note:'Myelosuppression monitoring regardless of renal function'},
+  {drug:'Doxycycline', class:'Tetracycline', normal:'2–4 mg/kg/day ÷ q12h', mild:'No change', mod:'No change', severe:'No change (biliary/fecal excretion)', dialysis:'No change; not HD-removed', note:'Preferred tetracycline in renal impairment'},
+  {drug:'Rifampicin', class:'Rifamycin', normal:'15–20 mg/kg/day once', mild:'No change', mod:'No change', severe:'No change (hepatic excretion)', dialysis:'No supplement needed', note:'Hepatic metabolism — safe in renal impairment'},
+  {drug:'Isoniazid', class:'Antitubercular', normal:'10–15 mg/kg/day', mild:'No change', mod:'No change', severe:'No change (hepatic metabolism)', dialysis:'Supplement post-HD if fast acetylator', note:'Pyridoxine supplementation always recommended'},
+  {drug:'Ethambutol', class:'Antitubercular', normal:'20–25 mg/kg/day', mild:'q24–36h', mod:'q36–48h', severe:'AVOID if possible; q48h', dialysis:'15 mg/kg 3×/week post-HD', note:'Optic neuritis risk increases with accumulation'},
+  {drug:'Furosemide', class:'Loop Diuretic', normal:'1–2 mg/kg/dose q6–12h', mild:'No change', mod:'Higher doses needed (reduced tubular secretion)', severe:'Higher doses needed; may be ineffective (use torsemide)', dialysis:'Usually used to manage fluid; not contraindicated', note:'Ototoxic with aminoglycosides; higher doses in CKD'},
+  {drug:'Atenolol', class:'Beta-blocker', normal:'0.5–2 mg/kg/day once', mild:'q48h', mod:'q48h maximum', severe:'q48–72h', dialysis:'Supplement 25–50 mg post-HD', note:'Renally excreted — significant dose reduction needed'},
+  {drug:'Captopril', class:'ACE Inhibitor', normal:'0.1–2 mg/kg/dose q8h', mild:'75% dose', mod:'50% dose', severe:'25% dose; start very low', dialysis:'Supplement small dose post-HD; careful', note:'ACE inhibitors reduce GFR in bilateral RAS — avoid. Hyperkalemia.'},
+  {drug:'Enalapril', class:'ACE Inhibitor', normal:'0.05–0.5 mg/kg/day', mild:'75% of normal', mod:'50% of normal', severe:'25–50%; start at lowest dose', dialysis:'Supplement post-HD', note:'Avoid in bilateral renal artery stenosis. Risk of AKI.'},
+  {drug:'Digoxin', class:'Cardiac glycoside', normal:'See age-specific TDD', mild:'Reduce maintenance by 25%', mod:'Reduce maintenance by 50%; q36h', severe:'Reduce by 75%; q48h; TDM', dialysis:'No supplement (not HD-removed; small Vd)', note:'CRITICAL: Toxic range narrow. TDM mandatory. GFR affects excretion.'},
+  {drug:'Ibuprofen', class:'NSAID', normal:'5–10 mg/kg/dose q6–8h', mild:'Use with caution; short course', mod:'AVOID', severe:'AVOID', dialysis:'AVOID', note:'NSAIDs cause renal vasoconstriction — contraindicated in CKD. Worsen AKI.'},
+  {drug:'Morphine', class:'Opioid', normal:'0.05–0.1 mg/kg/dose', mild:'q6h (reduce frequency)', mod:'Reduce dose 50%; avoid M6G accumulation', severe:'AVOID or very low dose q8h+', dialysis:'AVOID or minimal dose; M6G accumulates', note:'Active metabolite morphine-6-glucuronide accumulates → toxicity'},
+  {drug:'Fentanyl', class:'Opioid', normal:'1–2 mcg/kg/dose', mild:'No change', mod:'Reduce by 25–50%', severe:'Reduce by 25–50%; monitor', dialysis:'Safe — preferred opioid in ESRD (no active metabolites)', note:'Preferred opioid in renal failure (fentanyl-ol inactive)'},
+  {drug:'Paracetamol', class:'Analgesic/Antipyretic', normal:'10–15 mg/kg q4–6h', mild:'No change', mod:'q8h extended interval', severe:'q8h; avoid chronic use', dialysis:'q8h; metabolites accumulate', note:'Safer than NSAIDs in renal impairment but dose-extend in severe CKD'},
+  {drug:'Ranitidine', class:'H2-blocker', normal:'2–4 mg/kg/day ÷ q12h', mild:'No change', mod:'50% dose', severe:'q24h', dialysis:'Supplement post-HD', note:'Note: Withdrawn in many countries (NDMA)'},
+  {drug:'Omeprazole', class:'PPI', normal:'0.5–1 mg/kg/dose once daily', mild:'No change', mod:'No change', severe:'No change', dialysis:'No change', note:'Hepatic metabolism — no renal adjustment needed'},
+  {drug:'Metformin', class:'Biguanide', normal:'500–1000 mg q12h', mild:'No change', mod:'AVOID (lactic acidosis risk)', severe:'AVOID', dialysis:'AVOID', note:'Not a pediatric standard but listed for adolescents with T2DM'},
+  {drug:'Valproate', class:'Anticonvulsant', normal:'10–60 mg/kg/day', mild:'No change', mod:'No change; monitor free levels', severe:'Reduce dose; monitor free levels (↓ protein binding)', dialysis:'Supplement post-HD (partially removed)', note:'Highly protein-bound; renal failure increases free fraction'},
+  {drug:'Levetiracetam', class:'Anticonvulsant', normal:'10–30 mg/kg/dose q12h', mild:'q12h no change', mod:'75% dose q12h', severe:'50% dose q12–24h', dialysis:'50% dose q24h; supplement 500mg post-HD', note:'Primarily renal excretion — dose adjustment essential in CKD'},
+  {drug:'Phenobarbital', class:'Barbiturate', normal:'3–8 mg/kg/day', mild:'No change', mod:'Increase interval slightly; monitor', severe:'Monitor; may need dose reduction', dialysis:'Partially removed; supplement post-HD', note:'Hepatic metabolism primarily; some renal'},
+  {drug:'Gabapentin', class:'Anticonvulsant/Neuropathic', normal:'10–15 mg/kg/dose q8h', mild:'Reduce to q12h', mod:'50% dose q12h', severe:'25% dose q24h', dialysis:'Supplement 100–300 mg post-HD', note:'100% renal excretion — significant dose reduction needed'},
+  {drug:'Fluconazole', class:'Azole Antifungal', normal:'6–12 mg/kg/day', mild:'No change', mod:'50% dose q24h', severe:'50% dose q24h', dialysis:'Full dose q24h post-HD (significantly removed by dialysis)', note:''},
+  {drug:'Ferrous Sulfate', class:'Iron supplement', normal:'3–6 mg elem Fe/kg/day', mild:'No change', mod:'No change', severe:'No change (GI absorption)', dialysis:'No change; may worsen oxidative stress', note:''},
+  {drug:'Albendazole', class:'Anthelmintic', normal:'400 mg or 15 mg/kg/day', mild:'No change', mod:'No change', severe:'No change', dialysis:'No change', note:'Hepatic metabolism; not significantly renally excreted'},
+  {drug:'Ivermectin', class:'Anthelmintic', normal:'200 mcg/kg single dose', mild:'No change', mod:'Use with caution', severe:'Data limited; use with caution', dialysis:'Data limited', note:''},
+  {drug:'Hydroxychloroquine', class:'DMARD/Antimalarial', normal:'3–5 mg/kg/day', mild:'No change', mod:'Use cautiously; reduce if needed', severe:'Avoid or 50% dose reduction', dialysis:'Not significantly HD-removed', note:''},
+  {drug:'TMP-SMX (prophylaxis)', class:'Sulfonamide', normal:'2 mg TMP/kg once daily', mild:'No change', mod:'Avoid if GFR<30', severe:'AVOID', dialysis:'AVOID or supplementation based on clinical need', note:'Risk of crystalluria, hyperkalemia, marrow suppression in CRF'},
+  {drug:'Azithromycin', class:'Macrolide', normal:'10 mg/kg D1, then 5 mg/kg × 4d', mild:'No change', mod:'No change', severe:'No change', dialysis:'No supplement (biliary excretion)', note:'Primarily hepatic — minimal renal adjustment needed'},
+  {drug:'Clindamycin', class:'Lincosamide', normal:'25–40 mg/kg/day ÷ q6–8h', mild:'No change', mod:'No change', severe:'No change', dialysis:'No supplement needed', note:'Hepatic metabolism; not significantly renally cleared'},
+  {drug:'Nitrofurantoin', class:'Urinary antiseptic', normal:'5–7 mg/kg/day ÷ q6h', mild:'Use with caution', mod:'AVOID (inadequate urine concentration + neuropathy risk)', severe:'AVOID', dialysis:'AVOID', note:'CONTRAINDICATED in CrCl <45 mL/min. Does not achieve therapeutic urine levels.'},
+  {drug:'Desmopressin (DDAVP)', class:'ADH analog', normal:'0.1–0.4 mcg/kg intranasal/SC', mild:'No change', mod:'Use with caution; fluid retention', severe:'Use with extreme caution; AVOID', dialysis:'AVOID in anuric patients', note:'Sodium monitoring essential; risk of hyponatremia'},
+];
+
+// ============================================================
+
+// ============================================================
+// APP STATE & LOGIC (Mobile-Optimized)
+// ============================================================
+let currentCat = 'all';
+let currentSearch = '';
+let currentGFR = 'all';
+let currentPanel = 'drugbank';
+let renalSearch = '';
+
+const cats = {};
+DRUGS.forEach(d => {
+  if (!cats[d.class]) cats[d.class] = [];
+  cats[d.class].push(d);
+});
+
+const isMobile = () => window.innerWidth < 768;
+
+// ============================================================
+// SIDEBAR / DRAWER BUILD
+// ============================================================
+function buildSidebar() {
+  const sb = document.getElementById('categorySidebar');
+  const dc = document.getElementById('drawerContent');
+  const allCount = document.getElementById('allCount');
+  allCount.textContent = DRUGS.length;
+
+  const catNames = Object.keys(cats).sort();
+
+  // Desktop sidebar
+  catNames.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = 'cat-btn';
+    btn.innerHTML = `${cat} <span class="cat-count">${cats[cat].length}</span>`;
+    btn.onclick = function() { filterCat(this, cat, 'sidebar'); };
+    sb.appendChild(btn);
+  });
+
+  // Mobile drawer
+  const allBtn = document.createElement('button');
+  allBtn.className = 'cat-btn active';
+  allBtn.id = 'drawer-all';
+  allBtn.innerHTML = `All Drugs <span class="cat-count">${DRUGS.length}</span>`;
+  allBtn.onclick = function() { filterCat(this, 'all', 'drawer'); };
+  dc.appendChild(allBtn);
+
+  const div = document.createElement('div');
+  div.className = 'divider';
+  dc.appendChild(div);
+
+  catNames.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = 'cat-btn';
+    btn.dataset.drawerBtn = cat;
+    btn.innerHTML = `${cat} <span class="cat-count">${cats[cat].length}</span>`;
+    btn.onclick = function() { filterCat(this, cat, 'drawer'); };
+    dc.appendChild(btn);
+  });
+}
+
+function filterCat(btn, cat, source) {
+  currentCat = cat;
+  // Update desktop sidebar
+  document.querySelectorAll('#categorySidebar .cat-btn').forEach(b => b.classList.remove('active'));
+  const sidebarBtns = document.querySelectorAll('#categorySidebar .cat-btn');
+  sidebarBtns.forEach(b => {
+    if ((cat === 'all' && b.textContent.startsWith('All')) || b.textContent.startsWith(cat)) {
+      b.classList.add('active');
+    }
+  });
+  // Update drawer
+  document.querySelectorAll('#drawerContent .cat-btn').forEach(b => b.classList.remove('active'));
+  const drawerBtns = document.querySelectorAll('#drawerContent .cat-btn');
+  drawerBtns.forEach(b => {
+    if ((cat === 'all' && b.id === 'drawer-all') || b.dataset.drawerBtn === cat) {
+      b.classList.add('active');
+    }
+  });
+  // Update label
+  const label = document.getElementById('currentCatLabel');
+  if (label) label.textContent = cat === 'all' ? 'All Drugs' : cat;
+
+  if (source === 'drawer') closeDrawer();
+  renderDrugs();
+}
+
+function openDrawer() {
+  document.getElementById('drawer').classList.add('open');
+  document.getElementById('drawerOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeDrawer() {
+  document.getElementById('drawer').classList.remove('open');
+  document.getElementById('drawerOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// ============================================================
+// DRUG RENDER
+// ============================================================
+function renderDrugs() {
+  const grid = document.getElementById('drugGrid');
+  const empty = document.getElementById('emptyState');
+  const info = document.getElementById('resultsInfo');
+  const infoMob = document.getElementById('resultsInfoMob');
+
+  let filtered = DRUGS;
+  if (currentCat !== 'all') filtered = filtered.filter(d => d.class === currentCat);
+  if (currentSearch) {
+    const q = currentSearch.toLowerCase();
+    filtered = filtered.filter(d =>
+      d.name.toLowerCase().includes(q) ||
+      d.generic.toLowerCase().includes(q) ||
+      d.class.toLowerCase().includes(q) ||
+      d.doses.some(dose => dose.ind && dose.ind.toLowerCase().includes(q))
+    );
+  }
+
+  const txt = `${filtered.length} drug${filtered.length !== 1 ? 's' : ''}`;
+  if (info) info.textContent = txt;
+  if (infoMob) infoMob.textContent = txt;
+
+  if (filtered.length === 0) {
+    grid.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+  grid.innerHTML = filtered.map((d, i) => buildDrugCard(d, i)).join('');
+}
+
+function calcDose(doseStr, wt) {
+  if (!wt || isNaN(wt)) return '';
+  const mgMatch = doseStr.match(/([\d.]+)[\s––-]*([\d.]+)?\s*mg\/kg/);
+  if (mgMatch) {
+    const low = parseFloat(mgMatch[1]);
+    const high = mgMatch[2] ? parseFloat(mgMatch[2]) : null;
+    return high
+      ? `<div class="dose-calc">= ${(low*wt).toFixed(0)}–${(high*wt).toFixed(0)} mg</div>`
+      : `<div class="dose-calc">= ${(low*wt).toFixed(0)} mg</div>`;
+  }
+  const mcgMatch = doseStr.match(/([\d.]+)[\s––-]*([\d.]+)?\s*mcg\/kg/);
+  if (mcgMatch) {
+    const low = parseFloat(mcgMatch[1]);
+    const high = mcgMatch[2] ? parseFloat(mcgMatch[2]) : null;
+    return high
+      ? `<div class="dose-calc">= ${(low*wt).toFixed(0)}–${(high*wt).toFixed(0)} mcg</div>`
+      : `<div class="dose-calc">= ${(low*wt).toFixed(0)} mcg</div>`;
+  }
+  return '';
+}
+
+function buildDrugCard(d, i) {
+  const wt = parseFloat(document.getElementById('weightInput').value);
+  const dosesHtml = d.doses.map(dose => {
+    if (!dose.dose) return '';
+    const calc = calcDose(dose.dose, wt);
+    return `<div class="dose-row">
+      <div class="dose-indication">${dose.ind}</div>
+      <div class="dose-value">${dose.dose}${calc}</div>
+    </div>`;
+  }).join('');
+  const noteHtml = d.notes ? `<div class="note-box">⚠️ ${d.notes}</div>` : '';
+  const routeTags = d.routes.map(r => `<span class="tag tag-route">${r}</span>`).join('');
+
+  return `<div class="drug-card" id="card-${i}">
+    <div class="drug-header" onclick="toggleCard(${i})">
+      <div class="drug-name">
+        <h3>${d.name}</h3>
+        <div class="generic">${d.generic}</div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0;">
+        <div class="drug-tags"><span class="tag tag-class">${d.class}</span></div>
+        <div class="drug-tags">${routeTags}</div>
+      </div>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="drug-body">
+      <div class="drug-body-inner">
+        <div class="dose-label">Indications & Doses</div>
+        ${dosesHtml}
+        ${noteHtml}
+      </div>
+    </div>
+  </div>`;
+}
+
+function toggleCard(i) {
+  document.getElementById('card-' + i).classList.toggle('expanded');
+}
+
+// ============================================================
+// SITUATIONS RENDER
+// ============================================================
+function renderSituations() {
+  const grid = document.getElementById('sitGrid');
+  const wt = parseFloat(document.getElementById('weightInput').value);
+  grid.innerHTML = SITUATIONS.map((s, i) => {
+    const drugsHtml = s.drugs.map(d => {
+      const prioClass = d.priority === 'first' ? 'p-first' : d.priority === 'second' ? 'p-second' : 'p-alt';
+      const prioLabel = d.priority === 'first' ? '1st' : d.priority === 'second' ? '2nd' : 'Alt';
+      let calcTag = '';
+      if (!isNaN(wt) && wt > 0 && d.dose) {
+        const m = d.dose.match(/([\d.]+)[\s––-]*([\d.]+)?\s*mg\/kg/);
+        if (m) {
+          const low = parseFloat(m[1]);
+          const high = m[2] ? parseFloat(m[2]) : null;
+          calcTag = high
+            ? ` <span style="color:var(--accent3);font-size:10px;">[${(low*wt).toFixed(0)}–${(high*wt).toFixed(0)}mg]</span>`
+            : ` <span style="color:var(--accent3);font-size:10px;">[${(low*wt).toFixed(0)}mg]</span>`;
+        }
+      }
+      return `<div class="sit-drug-row">
+        <div class="sit-drug-top">
+          <div class="sit-drug-name">${d.name}</div>
+          <span class="priority-badge ${prioClass}">${prioLabel}</span>
+        </div>
+        <div class="sit-drug-dose">${d.dose||''}${calcTag}</div>
+        <div class="sit-drug-note">${d.note||''}</div>
+      </div>`;
+    }).join('');
+    return `<div class="sit-card" id="sit-${i}">
+      <div class="sit-card-header" onclick="toggleSit(${i})">
+        <div class="sit-icon" style="background:${s.bg};">${s.icon}</div>
+        <div style="flex:1;min-width:0;">
+          <div class="sit-title">${s.title}</div>
+          <div class="sit-sub">${s.sub}</div>
+        </div>
+        <span class="chevron" style="color:var(--text3);transition:transform 0.25s;">▼</span>
+      </div>
+      <div class="sit-body">${drugsHtml}</div>
+    </div>`;
+  }).join('');
+}
+
+function toggleSit(i) {
+  const card = document.getElementById('sit-' + i);
+  card.classList.toggle('open');
+  const ch = card.querySelector('.sit-card-header .chevron');
+  if (ch) ch.style.transform = card.classList.contains('open') ? 'rotate(180deg)' : '';
+}
+
+// ============================================================
+// RENAL RENDER
+// ============================================================
+function getRenalFiltered() {
+  let data = RENAL;
+  if (renalSearch) {
+    const q = renalSearch.toLowerCase();
+    data = data.filter(r => r.drug.toLowerCase().includes(q) || r.class.toLowerCase().includes(q));
+  }
+  return data;
+}
+
+function renderRenalCards(gfr) {
+  const wrap = document.getElementById('renalCardWrap');
+  const data = getRenalFiltered();
+  wrap.innerHTML = data.map(r => {
+    function valClass(val) {
+      if (!val) return 'normal';
+      const v = val.toLowerCase();
+      if (v.includes('avoid')) return 'red';
+      if (v.includes('no change')) return 'normal';
+      return 'green';
+    }
+    function highlight(val, isActive) {
+      if (!val) return `<span class="renal-cell-val normal">—</span>`;
+      const v = val.toLowerCase();
+      const cls = isActive ? (v.includes('avoid') ? 'red' : 'green') : 'normal';
+      return `<span class="renal-cell-val ${cls}">${val}</span>`;
+    }
+    return `<div class="renal-card">
+      <div class="renal-card-header">
+        <div class="renal-drug-name">${r.drug}</div>
+        <span class="renal-class-tag">${r.class}</span>
+      </div>
+      <div class="renal-normal-dose">Normal: ${r.normal}</div>
+      <div class="renal-grid">
+        <div class="renal-cell">
+          <div class="renal-cell-label">GFR 30–50</div>
+          ${highlight(r.mild, gfr==='30-50')}
+        </div>
+        <div class="renal-cell">
+          <div class="renal-cell-label">GFR 10–29</div>
+          ${highlight(r.mod, gfr==='10-29')}
+        </div>
+        <div class="renal-cell">
+          <div class="renal-cell-label">GFR &lt;10</div>
+          ${highlight(r.severe, gfr==='<10')}
+        </div>
+        <div class="renal-cell">
+          <div class="renal-cell-label">Dialysis</div>
+          <span class="renal-cell-val purple">${r.dialysis||'—'}</span>
+        </div>
+      </div>
+      ${r.note ? `<div class="renal-note-text">📝 ${r.note}</div>` : ''}
+    </div>`;
+  }).join('');
+}
+
+function renderRenalTable(gfr) {
+  const body = document.getElementById('renalBody');
+  const data = getRenalFiltered();
+  body.innerHTML = data.map(r => {
+    const gfrMild = gfr==='30-50' ? `<span class="renal-val">${r.mild}</span>` : `<span class="renal-normal">${r.mild}</span>`;
+    const gfrMod = gfr==='10-29' ? `<span class="renal-val">${r.mod}</span>` : `<span class="renal-normal">${r.mod}</span>`;
+    const gfrSev = gfr==='<10'
+      ? (r.severe && r.severe.toLowerCase().includes('avoid') ? `<span class="renal-avoid">⛔ ${r.severe}</span>` : `<span class="renal-val">${r.severe}</span>`)
+      : `<span class="renal-normal">${r.severe}</span>`;
+    return `<tr>
+      <td class="drug-col">${r.drug}</td>
+      <td><span class="tag tag-class" style="font-size:9px;padding:2px 7px;">${r.class}</span></td>
+      <td style="font-family:'DM Mono',monospace;font-size:11px;color:var(--text2);">${r.normal}</td>
+      <td>${gfrMild}</td>
+      <td>${gfrMod}</td>
+      <td>${gfrSev}</td>
+      <td style="font-family:'DM Mono',monospace;font-size:11px;color:var(--purple);">${r.dialysis}</td>
+      <td style="font-size:11px;color:var(--text3);">${r.note}</td>
+    </tr>`;
+  }).join('');
+}
+
+function renderRenal(gfr) {
+  renderRenalCards(gfr);
+  renderRenalTable(gfr);
+}
+
+function filterGFR(gfr, btn) {
+  document.querySelectorAll('.gfr-badge').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  currentGFR = gfr;
+  renderRenal(gfr);
+}
+
+// ============================================================
+// PANEL SWITCHING
+// ============================================================
+function showPanel(panel) {
+  currentPanel = panel;
+  const panels = ['drugbank','situation','renal'];
+  panels.forEach(p => {
+    const el = document.getElementById('panel-' + p);
+    if (el) {
+      if (el.classList.contains('panel')) el.classList.toggle('active', p === panel);
+      else el.classList.toggle('active', p === panel);
+    }
+  });
+  // Desktop tabs
+  document.querySelectorAll('.tab').forEach((t, i) => {
+    t.classList.toggle('active', panels[i] === panel);
+  });
+  // Mobile bottom nav
+  document.querySelectorAll('.bnav-btn').forEach(b => b.classList.remove('active'));
+  const activeNav = document.getElementById('bnav-' + panel);
+  if (activeNav) activeNav.classList.add('active');
+  // Re-render situations with current weight
+  if (panel === 'situation') renderSituations();
+  // Scroll to top
+  window.scrollTo(0,0);
+}
+
+// ============================================================
+// EVENTS
+// ============================================================
+document.getElementById('searchInput').addEventListener('input', function() {
+  currentSearch = this.value.trim();
+  renderDrugs();
+});
+
+document.getElementById('weightInput').addEventListener('input', function() {
+  renderDrugs();
+  if (currentPanel === 'situation') renderSituations();
+});
+
+document.getElementById('renalSearch').addEventListener('input', function() {
+  renalSearch = this.value.trim();
+  renderRenal(currentGFR);
+});
+
+// Close drawer on escape
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
+
+// ============================================================
+// INIT
+// ============================================================
+buildSidebar();
+renderDrugs();
+renderSituations();
+renderRenal('all');
+
+</script>
+</body>
+</html>
