@@ -1008,12 +1008,44 @@ const DRUGS = [
     {ind:"COPD/Chronic (not primary indication)","dose":"0.25–0.5 mg nebu q6–8h"},
   ], notes:"Add ipratropium to salbutamol in FIRST 24 HOURS of severe exacerbation (prevents ICU admission). Do not use alone for bronchospasm. May cause paradoxical bronchospasm." },
 
-  { name:"Budesonide (Inhaled)", generic:"budesonide", class:"Inhaled Corticosteroid", routes:["Inhaled"], doses:[
-    {ind:"Mild persistent asthma (nebu)",dose:"0.25–0.5 mg/dose q12h (Pulmicort respules)"},
-    {ind:"Moderate-Severe (nebu)",dose:"0.5–1 mg/dose q12h"},
-    {ind:"Croup (nebu — racemic or L-epi adjunct)",dose:"2 mg (4mL of 0.5mg/mL) single dose; may repeat q12h"},
-    {ind:"MDI (HFA, >6 years)",dose:"180–360 mcg/day ÷ q12h (low dose); up to 720mcg/day (high dose)"},
-  ], notes:"Rinse mouth after use (oral candidiasis). Nebulized budesonide for croup shown equivalent to oral dexamethasone in mild-moderate cases." },
+  { name:"Levosalbutamol (Levalbuterol)", generic:"levosalbutamol / levalbuterol", class:"Short-acting Beta-2 Agonist", routes:["Inhaled","PO"], doses:[
+    {ind:"Acute Asthma (nebu, <5 years)",dose:"0.31 mg/dose q20 min × 3 (0.31 mg/3mL unit-dose respule)"},
+    {ind:"Acute Asthma (nebu, 5–11 years)",dose:"0.31–0.63 mg/dose q20 min × 3; up to 1.25 mg if severe"},
+    {ind:"Acute Asthma (nebu, ≥12 years)",dose:"0.63–1.25 mg/dose q4–8h; up to 1.25 mg q20 min × 3 (severe)"},
+    {ind:"Nebulization (standard dose — all ages)",dose:"0.025–0.05 mg/kg/dose (min 0.31 mg, max 1.25 mg) in 2.5 mL NS"},
+    {ind:"Continuous nebulization (severe)",dose:"0.25 mg/kg/hour (max 5 mg/hour) in NS"},
+    {ind:"Maintenance MDI (Xopenex HFA, ≥4 years)",dose:"45–90 mcg (1–2 puffs) q4–6h PRN"},
+    {ind:"Hyperkalemia (inhaled)",dose:"1.25 mg nebulized — may reduce K+ by 0.5–1 mmol/L"},
+  ], notes:"Pure R-enantiomer of salbutamol — 2× potency with fewer cardiac side effects (less tachycardia). Preferred in patients with baseline tachycardia or cardiac disease. Available as 0.31 mg/3mL, 0.63 mg/3mL, 1.25 mg/3mL respules." },
+
+  { name:"Budesonide / Budecort (Nebulised)", generic:"budesonide / budecort respules", class:"Inhaled Corticosteroid", routes:["Inhaled","MDI"], doses:[
+    {ind:"Mild persistent asthma (nebu, <12 years)",dose:"0.25–0.5 mg/dose q12h (Pulmicort / Budecort 0.5 mg respule)"},
+    {ind:"Moderate persistent asthma (nebu)",dose:"0.5 mg/dose q12h; or 1 mg once daily at night"},
+    {ind:"Severe persistent / step-up (nebu)",dose:"1 mg/dose q12h (max 2 mg/day)"},
+    {ind:"Acute exacerbation (nebu, step-up)",dose:"1 mg q6–8h for 24–48h → reduce to maintenance"},
+    {ind:"Croup (acute, nebulised — single treatment)",dose:"2 mg (4 mL of 0.5 mg/mL or 2 mL of 1 mg/mL) as single dose; repeat q12h if needed"},
+    {ind:"Croup (mild, alternative to dexamethasone)",dose:"2 mg nebulised once (evidence: equivalent to oral dexamethasone in mild-moderate croup)"},
+    {ind:"BPD prophylaxis (premature neonates)",dose:"0.5 mg/dose q12h via nebuliser for 7–28 days (adjunct)"},
+    {ind:"MDI (HFA, >6 years — low dose)",dose:"100–200 mcg/day ÷ q12h (Pulmicort 100/200 mcg/puff)"},
+    {ind:"MDI (HFA, >6 years — moderate dose)",dose:"200–400 mcg/day ÷ q12h"},
+    {ind:"MDI (HFA, >6 years — high dose)",dose:"400–800 mcg/day ÷ q12h"},
+    {ind:"Nebulization technique",dose:"Dilute respule in 2–3 mL NS if required; administer via jet nebuliser over 5–10 min"},
+  ], notes:"Rinse mouth/face after each nebulisation (prevents oral candidiasis, skin absorption). Store respules at 2–8°C; once foil opened use within 3 months. Budecort 0.5 mg/2 mL and 1 mg/2 mL respules available in India. Onset of action 1–3 days; full effect 4–6 weeks. Not for acute bronchospasm relief." },
+
+  { name:"Adrenaline / Epinephrine (Nebulised)", generic:"epinephrine / adrenaline 1:1000", class:"Sympathomimetic / Bronchodilator", routes:["Inhaled","IV","IM","SC"], doses:[
+    {ind:"Croup (moderate-severe, nebulised)",dose:"0.5 mg/kg of 1:1000 adrenaline (max 5 mL = 5 mg) via nebuliser; repeat q20–30 min PRN under monitoring"},
+    {ind:"Croup (standard fixed dose — practical)",dose:"2–4 mL of 1:1000 (2–4 mg) via nebuliser undiluted, over 10–15 min"},
+    {ind:"Croup (<6 months)",dose:"1–2 mL of 1:1000 (1–2 mg) via nebuliser"},
+    {ind:"Bronchiolitis (RSV — nebu, short-term relief)",dose:"1–2 mL of 1:1000 (1–2 mg) in 2 mL NS; evaluate response × 1 dose (not routinely recommended)"},
+    {ind:"Post-extubation stridor (nebulised)",dose:"3–5 mL of 1:1000 via nebuliser — transient relief; consider dexamethasone also"},
+    {ind:"Anaphylaxis (IM — 1st line)",dose:"0.01 mg/kg IM lateral thigh (max 0.5 mg); 1:1000 solution"},
+    {ind:"Anaphylaxis (<6 years — EpiPen Jr)",dose:"0.15 mg IM auto-injector (7.5–25 kg)"},
+    {ind:"Anaphylaxis (>25 kg — EpiPen)",dose:"0.3 mg IM auto-injector"},
+    {ind:"Cardiac Arrest (IV/IO)",dose:"0.01 mg/kg (0.1 mL/kg of 1:10,000) IV/IO q3–5 min (PALS)"},
+    {ind:"Septic Shock (infusion)",dose:"0.1–1 mcg/kg/min IV infusion (titrate)"},
+    {ind:"Severe Asthma / Status (SC)",dose:"0.01 mg/kg/dose SC q20 min × 3 (1:1000; max 0.5 mg/dose)"},
+    {ind:"Bradycardia (PALS)",dose:"0.01 mg/kg IV/IO (1:10,000)"},
+  ], notes:"NEBULISED CROUP: 1:1000 concentration (1 mg/mL); never use 1:10,000. Transient effect (1–2h) — observe for rebound stridor for ≥2–4h post-dose before discharge. ALWAYS combine with dexamethasone for sustained effect. Cold mist and positioning also helpful." },
 
   { name:"Montelukast", generic:"montelukast sodium", class:"Leukotriene Receptor Antagonist", routes:["PO"], doses:[
     {ind:"Asthma (<2 years)",dose:"4 mg once daily (granules)"},
@@ -1101,6 +1133,72 @@ const DRUGS = [
     {ind:"Allergy/Anaphylaxis (adjunct)",dose:"1–2 mg/kg/day once daily × 3–5 days"},
     {ind:"IBD / Autoimmune conditions",dose:"1–2 mg/kg/day (induction) → taper over weeks"},
   ], notes:"Prednisone is prodrug → prednisolone. Use prednisolone in liver disease. 4× potency of hydrocortisone. Cushingoid features with prolonged use." },
+
+  // NEPHROTIC SYNDROME DRUGS
+  { name:"Cyclophosphamide", generic:"cyclophosphamide", class:"Nephrotic Syndrome / Immunosuppressant", routes:["PO","IV"], doses:[
+    {ind:"SSNS — Frequently Relapsing (PO)",dose:"2–3 mg/kg/day once daily × 8–12 weeks (max 3 mg/kg/day; cumulative max 168 mg/kg)"},
+    {ind:"SSNS — Steroid-Dependent (PO)",dose:"2–3 mg/kg/day once daily × 12 weeks"},
+    {ind:"SRNS — IV pulse (bolus)",dose:"500–750 mg/m²/dose IV over 30–60 min monthly × 6 months (with mesna)"},
+    {ind:"MCNS relapse prevention",dose:"2 mg/kg/day PO × 8 weeks with concurrent prednisone taper"},
+  ], notes:"Cumulative total dose should NOT exceed 168–200 mg/kg (risk of gonadotoxicity, malignancy). Give in morning with high fluid intake. MESNA for IV use (prevents haemorrhagic cystitis). CBC fortnightly — hold if WBC <3000. Avoid live vaccines." },
+
+  { name:"Levamisole", generic:"levamisole hydrochloride", class:"Nephrotic Syndrome / Immunomodulator", routes:["PO"], doses:[
+    {ind:"SSNS — Frequently Relapsing (maintenance)",dose:"2.5 mg/kg alternate days (max 150 mg/dose) × 12–24 months"},
+    {ind:"Steroid-sparing (ISKDC protocol)",dose:"2.5 mg/kg on alternate days (same day as alternate-day prednisolone)"},
+    {ind:"Relapse reduction — adjunct",dose:"2.5 mg/kg on alternate days; continue for minimum 12 months"},
+  ], notes:"First-line steroid-sparing agent for FRNS/SDNS in Indian and Asian guidelines (cheaper, safer than cyclophosphamide for long-term). Monitor CBC monthly (agranulocytosis risk — rare). Hepatotoxicity rare. Give with food. Check CBC and LFT 3-monthly." },
+
+  { name:"Cyclosporine A", generic:"cyclosporine / ciclosporin", class:"Nephrotic Syndrome / Calcineurin Inhibitor", routes:["PO"], doses:[
+    {ind:"SRNS / SDNS (induction)",dose:"4–6 mg/kg/day ÷ q12h (target C2 level 800–1200 ng/mL OR C0 trough 80–120 ng/mL)"},
+    {ind:"SSNS — maintenance after remission",dose:"3–5 mg/kg/day ÷ q12h (lowest dose maintaining remission; trough 50–100 ng/mL)"},
+    {ind:"Nephrotic relapse prevention",dose:"4–5 mg/kg/day ÷ q12h; taper slowly after 12–24 months"},
+    {ind:"MCD / FSGS (initial therapy)",dose:"5–6 mg/kg/day ÷ q12h (with low-dose prednisolone)"},
+  ], notes:"Trough monitoring (C0) essential — target 80–120 ng/mL (general) or 100–150 ng/mL (FSGS). Nephrotoxicity major concern — check creatinine monthly; biopsy if Cr rises >30% from baseline. Hypertrichosis, gingival hyperplasia, hypertension common. Give on empty stomach (or consistently with meals). Avoid grapefruit." },
+
+  { name:"Tacrolimus", generic:"tacrolimus (FK506)", class:"Nephrotic Syndrome / Calcineurin Inhibitor", routes:["PO"], doses:[
+    {ind:"SRNS / FSGS (initial)",dose:"0.1–0.2 mg/kg/day ÷ q12h (target trough 5–10 ng/mL)"},
+    {ind:"SDNS maintenance",dose:"0.05–0.1 mg/kg/day ÷ q12h (trough 4–8 ng/mL)"},
+    {ind:"SRNS (combination with MMF)",dose:"0.05–0.1 mg/kg/day ÷ q12h + MMF; trough 4–6 ng/mL"},
+    {ind:"Steroid-sparing (long-term)",dose:"Lowest effective dose maintaining remission — trough 3–5 ng/mL"},
+  ], notes:"Preferred CNI in FSGS and steroid-resistant NS (better remission rates vs cyclosporine in some studies). TDM mandatory. Less hirsutism and gingival hyperplasia than cyclosporine. Diabetogenic. Nephrotoxic — same monitoring as cyclosporine. Give on empty stomach consistently." },
+
+  { name:"Mycophenolate Mofetil (MMF)", generic:"mycophenolate mofetil / MPA", class:"Nephrotic Syndrome / Immunosuppressant", routes:["PO"], doses:[
+    {ind:"SDNS / FRNS — steroid-sparing",dose:"600 mg/m²/dose q12h (max 1.5 g/dose, 3 g/day) × 12–24 months"},
+    {ind:"SRNS — combination with CNI or steroid",dose:"600 mg/m²/dose q12h (target: MPA AUC 30–60 mg·h/L or clinical response)"},
+    {ind:"Maintenance after remission",dose:"450–600 mg/m²/dose q12h; taper attempt after 12 months"},
+    {ind:"Practical weight-based",dose:"25–36 mg/kg/day ÷ q12h"},
+  ], notes:"Preferred steroid-sparing agent in steroid-dependent NS when long-term therapy planned (less toxic than cyclophosphamide). Teratogenic — contraception mandatory in adolescents. GI side effects (diarrhoea, nausea) common — take with food. CBC monthly. Avoid in active infections." },
+
+  { name:"Chlorambucil", generic:"chlorambucil", class:"Nephrotic Syndrome / Alkylating Agent", routes:["PO"], doses:[
+    {ind:"SSNS — Frequently Relapsing (ISKDC)",dose:"0.2 mg/kg/day × 8 weeks (cumulative max 11.2 mg/kg; do NOT exceed)"},
+    {ind:"Steroid-dependent (alternative to CPM)",dose:"0.1–0.2 mg/kg/day × 8 weeks"},
+  ], notes:"Higher gonadotoxicity risk than cyclophosphamide — avoid if possible; reserve for failed cyclophosphamide. Seizure risk (lower threshold in children). Carcinogenic at higher cumulative doses. CBC weekly during therapy. Strict cumulative dose limit." },
+
+  { name:"Rituximab (NS)", generic:"rituximab (anti-CD20 mAb)", class:"Nephrotic Syndrome / Biologic", routes:["IV"], doses:[
+    {ind:"SRNS / SDNS refractory (single dose)",dose:"375 mg/m²/dose IV over 4–6h × 1–4 doses (weekly)"},
+    {ind:"SRNS (induction — 2 dose protocol)",dose:"375 mg/m²/dose weekly × 2 doses (most common regimen in children)"},
+    {ind:"SDNS maintenance (high threshold for relapse)",dose:"375 mg/m²/dose IV every 6 months; or when CD19 >1% (B-cell re-population)"},
+    {ind:"MCD / FSGS refractory",dose:"375 mg/m²/week × 4 doses OR 750 mg/m²/dose × 2 doses (2 weeks apart)"},
+  ], notes:"For severe SDNS/SRNS refractory to CNIs and MMF. Monitor CD19/CD20 B-cell count — redose when B-cells repopulate (>1%). Infusion reactions: premedicate with methylprednisolone 2 mg/kg IV + antihistamine 30 min prior. Infection risk (PCP prophylaxis with TMP-SMX × 6 months post). Live vaccines contraindicated." },
+
+  { name:"Albumin 20% (Nephrotic)", generic:"human albumin 20%", class:"Nephrotic Syndrome / Plasma Expander", routes:["IV"], doses:[
+    {ind:"Severe oedema with diuretic resistance",dose:"0.5–1 g/kg IV over 2–4h (max 25 g/dose); followed immediately by IV furosemide 1–2 mg/kg"},
+    {ind:"Hypoalbuminaemia (<1.5 g/dL) with ascites/pleural",dose:"0.5–1 g/kg IV (20% albumin) → furosemide 1–2 mg/kg IV 1h after midpoint of infusion"},
+    {ind:"Symptomatic hypovolaemia in NS",dose:"10 mL/kg of 5% albumin (or 0.5 g/kg of 20%) slowly over 4h"},
+  ], notes:"Albumin infusion is TEMPORARY (half-life 4–6h in severe NS due to urinary losses). Always follow with IV furosemide to mobilise oedema fluid. Avoid in SBP, sepsis, severe respiratory distress. Do not use routinely — only for symptomatic severe oedema." },
+
+  { name:"Enalapril / ACEi (NS — proteinuria)", generic:"enalapril / ramipril / lisinopril", class:"Nephrotic Syndrome / ACE Inhibitor", routes:["PO"], doses:[
+    {ind:"Proteinuria reduction (enalapril)",dose:"0.05–0.5 mg/kg/day ÷ q12–24h (start low, titrate up)"},
+    {ind:"Hypertension in NS (enalapril)",dose:"0.1–0.5 mg/kg/day ÷ q12h (max 0.6 mg/kg/day or 40 mg/day)"},
+    {ind:"Ramipril (antiproteinuric — older children)",dose:"1–2.5 mg/m²/day once daily; titrate to 5 mg/m²/day"},
+  ], notes:"ACEi/ARBs reduce intraglomerular pressure and proteinuria — use as adjunct in SRNS regardless of BP. Monitor K+ and creatinine. Contraindicated in bilateral renal artery stenosis, pregnancy, severe hyperkalaemia." },
+
+  { name:"Furosemide + Spironolactone (NS oedema)", generic:"furosemide + spironolactone", class:"Nephrotic Syndrome / Diuretic combination", routes:["PO","IV"], doses:[
+    {ind:"Generalised oedema (oral furosemide)",dose:"1–3 mg/kg/day ÷ q12h PO (max 6 mg/kg/day)"},
+    {ind:"Resistant oedema (IV furosemide)",dose:"1–2 mg/kg/dose IV q6–12h; continuous infusion 0.05–0.4 mg/kg/h"},
+    {ind:"Spironolactone (adjunct, K-sparing)",dose:"1–3 mg/kg/day ÷ q12h PO (max 200 mg/day)"},
+    {ind:"Combination (practical)",dose:"Furosemide 1–2 mg/kg + Spironolactone 1.5 mg/kg OD or BD"},
+  ], notes:"Use diuretics cautiously — NS patients are intravascularly depleted despite peripheral oedema. Avoid aggressive diuresis (can precipitate AKI, thrombosis). Check electrolytes regularly. Add albumin infusion before diuretics if albumin <1.5 g/dL." },
 
   { name:"Insulin (Regular)", generic:"insulin regular (human)", class:"Insulin", routes:["IV","SC","IM"], doses:[
     {ind:"DKA (IV infusion — after fluid bolus)",dose:"0.05–0.1 unit/kg/hour (adjust per BG target 150–200 mg/dL)"},
@@ -1401,6 +1499,21 @@ const SITUATIONS = [
       {name:'Liposomal Ampho B',dose:'3 mg/kg D1-5, D14, D21 (leishmaniasis)',priority:'first',note:'Visceral leishmaniasis (kala-azar)'},
     ]
   },
+  { id:'nephrotic', title:'Nephrotic Syndrome', icon:'🫧', bg:'#102a30',
+    sub:'SSNS, FRNS, SDNS, SRNS — steroid & steroid-sparing protocols',
+    drugs:[
+      {name:'Prednisolone',dose:'2 mg/kg/day OD × 4–6 wk (max 60mg) → 1.5 mg/kg alt-days × 4–6 wk → taper',priority:'first',note:'First relapse / initial episode (ISKDC standard induction)'},
+      {name:'Prednisolone (relapse)',dose:'2 mg/kg/day OD until remission (3 consecutive nil proteinuria) → alt-day taper',priority:'first',note:'Relapse: reassert remission then taper as above'},
+      {name:'Levamisole',dose:'2.5 mg/kg alternate days (max 150 mg) × 12–24 months',priority:'second',note:'FRNS / SDNS — 1st steroid-sparing (India IAP guideline preferred)'},
+      {name:'Cyclophosphamide',dose:'2–3 mg/kg/day PO × 8–12 weeks (cumulative max 168 mg/kg)',priority:'second',note:'FRNS/SDNS — if levamisole fails or not available'},
+      {name:'Cyclosporine A',dose:'4–6 mg/kg/day ÷ q12h; trough 80–120 ng/mL × 12–24 months',priority:'alt',note:'SRNS / SDNS refractory to alkylating agents'},
+      {name:'Tacrolimus',dose:'0.1–0.2 mg/kg/day ÷ q12h; trough 5–10 ng/mL (induction)',priority:'alt',note:'SRNS / FSGS — preferred CNI; combine with low-dose prednisolone'},
+      {name:'Mycophenolate Mofetil',dose:'600 mg/m²/dose q12h (max 1.5 g/dose) × 12–24 months',priority:'alt',note:'SDNS — long-term steroid-sparing; fewer side effects than CPM'},
+      {name:'Rituximab',dose:'375 mg/m²/dose IV weekly × 2–4 doses (premedicate)',priority:'alt',note:'Refractory SRNS/SDNS after CNI + MMF failure'},
+      {name:'Furosemide + Spironolactone',dose:'Furosemide 1–2 mg/kg/day + Spironolactone 1–3 mg/kg/day',priority:'first',note:'Oedema management — use cautiously if albumin <1.5 g/dL (give albumin first)'},
+      {name:'Albumin 20%',dose:'0.5–1 g/kg IV over 2–4h → IV furosemide 1–2 mg/kg immediately after',priority:'second',note:'Severe oedema, diuretic-resistant, albumin <1.5 g/dL only'},
+    ]
+  },
   { id:'tb', title:'Tuberculosis', icon:'🦠', bg:'#302010',
     sub:'Active TB, LTBI, MDR-TB, TB Meningitis',
     drugs:[
@@ -1485,6 +1598,14 @@ const RENAL = [
   {drug:'Azithromycin', class:'Macrolide', normal:'10 mg/kg D1, then 5 mg/kg × 4d', mild:'No change', mod:'No change', severe:'No change', dialysis:'No supplement (biliary excretion)', note:'Primarily hepatic — minimal renal adjustment needed'},
   {drug:'Clindamycin', class:'Lincosamide', normal:'25–40 mg/kg/day ÷ q6–8h', mild:'No change', mod:'No change', severe:'No change', dialysis:'No supplement needed', note:'Hepatic metabolism; not significantly renally cleared'},
   {drug:'Nitrofurantoin', class:'Urinary antiseptic', normal:'5–7 mg/kg/day ÷ q6h', mild:'Use with caution', mod:'AVOID (inadequate urine concentration + neuropathy risk)', severe:'AVOID', dialysis:'AVOID', note:'CONTRAINDICATED in CrCl <45 mL/min. Does not achieve therapeutic urine levels.'},
+  {drug:'Levosalbutamol', class:'Beta-2 Agonist', normal:'0.025–0.05 mg/kg/dose nebu', mild:'No change', mod:'No change', severe:'No change (inhaled — minimal systemic absorption)', dialysis:'No change', note:'Inhaled route — negligible renal clearance'},
+  {drug:'Cyclophosphamide', class:'Alkylating Agent', normal:'2–3 mg/kg/day PO or IV pulse', mild:'No change', mod:'Reduce dose by 25%', severe:'Reduce dose by 50%; avoid if GFR <10', dialysis:'Dose post-HD; MESNA still required', note:'Active metabolites accumulate; acrolein-mediated bladder toxicity worse in CKD'},
+  {drug:'Cyclosporine A', class:'Calcineurin Inhibitor', normal:'4–6 mg/kg/day ÷ q12h', mild:'Monitor closely; potential nephrotoxicity', mod:'Use with extreme caution; reduce dose 25–50%', severe:'AVOID or very low dose with TDM', dialysis:'Not significantly removed; dose adjust by TDM', note:'Nephrotoxic — CKD significantly increases toxicity risk. TDM mandatory.'},
+  {drug:'Tacrolimus', class:'Calcineurin Inhibitor', normal:'0.1–0.2 mg/kg/day ÷ q12h', mild:'No change (TDM-guided)', mod:'TDM-guided; may need dose reduction', severe:'Reduce dose; TDM essential; avoid if oliguric', dialysis:'Not significantly HD-removed; TDM-guided', note:'Nephrotoxic — monitor creatinine monthly. Prolonged high levels worsen CKD.'},
+  {drug:'Mycophenolate Mofetil', class:'Immunosuppressant', normal:'600 mg/m²/dose q12h', mild:'No change', mod:'No change (hepatic metabolism)', severe:'Max 1 g/day if GFR <25 (MPAG accumulation)', dialysis:'MPAG partially removed; dose carefully', note:'Active metabolite MPAG accumulates in renal failure — GI toxicity increases'},
+  {drug:'Rituximab', class:'Anti-CD20 Biologic', normal:'375 mg/m² IV weekly × 1–4 doses', mild:'No change', mod:'No change', severe:'No change (non-renally cleared)', dialysis:'No change', note:'Protein binding — not cleared by HD. No renal dose adjustment needed.'},
+  {drug:'Chlorambucil', class:'Alkylating Agent', normal:'0.2 mg/kg/day × 8 weeks', mild:'No change', mod:'Reduce dose 25–50%', severe:'AVOID or use with extreme caution', dialysis:'Data limited; avoid if possible', note:''},
+  {drug:'Spironolactone', class:'K-sparing Diuretic', normal:'1–3 mg/kg/day ÷ q12h', mild:'Use with caution', mod:'AVOID (hyperkalaemia risk)', severe:'AVOID', dialysis:'AVOID', note:'Hyperkalemia risk markedly increased in CKD. Avoid with ACEi/ARB in CKD.'},
   {drug:'Desmopressin (DDAVP)', class:'ADH analog', normal:'0.1–0.4 mcg/kg intranasal/SC', mild:'No change', mod:'Use with caution; fluid retention', severe:'Use with extreme caution; AVOID', dialysis:'AVOID in anuric patients', note:'Sodium monitoring essential; risk of hyponatremia'},
 ];
 
