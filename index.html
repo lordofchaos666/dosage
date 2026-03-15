@@ -1005,7 +1005,7 @@ const DRUGS = [
     {ind:"Acute Severe Asthma (nebu, <20kg)",dose:"0.25 mg/dose combined with salbutamol q20 min × 3"},
     {ind:"Acute Severe Asthma (nebu, ≥20kg)",dose:"0.5 mg/dose combined with salbutamol q20 min × 3"},
     {ind:"MDI (acute)",dose:"4–8 puffs (18mcg/puff) q20 min × 3 (combined with salbutamol)"},
-    {ind:"COPD/Chronic (not primary indication)","dose":"0.25–0.5 mg nebu q6–8h"},
+    {ind:"COPD/Chronic (not primary indication)",dose:"0.25–0.5 mg nebu q6–8h"},
   ], notes:"Add ipratropium to salbutamol in FIRST 24 HOURS of severe exacerbation (prevents ICU admission). Do not use alone for bronchospasm. May cause paradoxical bronchospasm." },
 
   { name:"Levosalbutamol (Levalbuterol)", generic:"levosalbutamol / levalbuterol", class:"Short-acting Beta-2 Agonist", routes:["Inhaled","PO"], doses:[
@@ -1058,7 +1058,7 @@ const DRUGS = [
 
   { name:"Theophylline", generic:"theophylline / aminophylline", class:"Methylxanthine / Bronchodilator", routes:["PO","IV"], doses:[
     {ind:"Neonatal Apnea (loading IV — aminophylline)",dose:"5–6 mg/kg IV over 30 min; then 1.5–3 mg/kg/dose q8–12h"},
-    {ind:"Neonatal Apnea (caffeine preferred — see below)","dose":""},
+    {ind:"Neonatal Apnea (caffeine preferred — see below)",dose:""},
     {ind:"Asthma (acute, IV loading — aminophylline)",dose:"5 mg/kg IV over 30 min (max 500mg) if not already on theophylline"},
     {ind:"Asthma (IV maintenance infusion)",dose:"0.5–0.9 mg/kg/hour (age-dependent; see tables)"},
     {ind:"Asthma (PO maintenance)",dose:"Target serum level 5–15 mcg/mL; PO dose 12–14 mg/kg/day (theophylline)"},
@@ -1100,6 +1100,15 @@ const DRUGS = [
     {ind:"Post-op N&V",dose:"0.1–0.2 mg/kg/dose IV (max 10mg)"},
   ], notes:"Risk of extrapyramidal reactions (acute dystonia) in children — pretreat with diphenhydramine. FDA Black Box warning for tardive dyskinesia with long-term use. Avoid use >5 days." },
 
+  { name:"Racecadotril (Acetorphan)", generic:"racecadotril / thiorphan", class:"Antidiarrhoeal / Enkephalinase Inhibitor", routes:["PO"], doses:[
+    {ind:"Acute Diarrhoea (1 month–9 months)",dose:"1.5 mg/kg/dose TDS (three times daily) with each meal; max 7 days"},
+    {ind:"Acute Diarrhoea (9 months–30 months)",dose:"10 mg/dose TDS (sachet 10 mg) with meals; max 7 days"},
+    {ind:"Acute Diarrhoea (>30 months to 9 years)",dose:"20 mg/dose TDS (sachet 20 mg) with meals; max 7 days"},
+    {ind:"Acute Diarrhoea (>9 years / adolescent)",dose:"100 mg/dose TDS (capsule 100 mg) with meals; max 7 days"},
+    {ind:"Weight-based (all ages — practical)",dose:"1.5 mg/kg/dose TDS; round to nearest sachet size (10 mg or 20 mg)"},
+    {ind:"Neonates / Infants <1 month",dose:"Not recommended — insufficient data"},
+  ], notes:"Enkephalinase inhibitor — reduces intestinal hypersecretion without affecting gut motility (does NOT cause constipation or bloating unlike loperamide). ALWAYS use alongside ORS, NOT as a replacement. Approved in India, France, and multiple Asian/European countries. Not FDA-approved in USA. Reduces stool output and duration of diarrhoea by ~30%. Safe in viral gastroenteritis. Avoid in antibiotic-associated diarrhoea." },
+
   // ENDOCRINE / CORTICOSTEROIDS
   { name:"Hydrocortisone", generic:"hydrocortisone sodium succinate", class:"Corticosteroid (physiologic)", routes:["IV","IM","PO"], doses:[
     {ind:"Adrenal Crisis (acute)",dose:"50–100 mg/m²/dose IV bolus; then 100–150 mg/m²/day ÷ q6h"},
@@ -1108,7 +1117,7 @@ const DRUGS = [
     {ind:"Stress dosing (sick day)",dose:"3× usual maintenance dose PO; or 50mg/m²/dose IM if unable to take PO"},
     {ind:"Anaphylaxis (adjunct)",dose:"10 mg/kg IV (max 250mg)"},
     {ind:"Septic Shock (corticosteroid-naive refractory)",dose:"50 mg/m²/dose IV q6h"},
-    {ind:"Meningitis adjunct (caution — see dexamethasone)","dose":""},
+    {ind:"Meningitis adjunct (caution — see dexamethasone)",dose:""},
     {ind:"Neonatal Hypotension (refractory)",dose:"1 mg/kg/dose q12h IV"},
   ], notes:"Equivalent anti-inflammatory potency: hydrocortisone 1 = prednisone 4 = dexamethasone 25. Mineralocorticoid activity present." },
 
@@ -1245,7 +1254,7 @@ const DRUGS = [
 
   { name:"Chloroquine", generic:"chloroquine phosphate", class:"Antimalarial (4-aminoquinoline)", routes:["PO","IV"], doses:[
     {ind:"P. vivax / P. ovale / P. malariae (PO)",dose:"10 mg base/kg on Day 1 & 2, then 5mg base/kg on Day 3 (max 600mg base/day)"},
-    {ind:"P. falciparum (chloroquine-sensitive areas only)","dose":"Same regimen as above"},
+    {ind:"P. falciparum (chloroquine-sensitive areas only)",dose:"Same regimen as above"},
     {ind:"Juvenile Idiopathic Arthritis",dose:"3–6 mg base/kg/day once daily (max 5mg/kg/day)"},
   ], notes:"Resistance common in P. falciparum — check local susceptibility. Add primaquine for P. vivax/ovale (terminal prophylaxis; check G6PD first)." },
 
