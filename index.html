@@ -1381,6 +1381,676 @@ const DRUGS = [
     {ind:"Systemic JIA",dose:"75–100 mg/kg/day ÷ q4–6h (obsolete; NSAIDs preferred)"},
     {ind:"Ischemic Stroke / APS",dose:"3–5 mg/kg/day once daily (antiplatelet)"},
   ], notes:"AVOID in viral illness (Reye syndrome). Avoid in children <12 years for routine fever/pain. Kawasaki is a major pediatric indication." },
+
+
+  // ===== NEUROLOGY / ANTICONVULSANTS =====
+  { name:"Carbamazepine", generic:"carbamazepine / CBZ", class:"Anticonvulsant", routes:["PO"], doses:[
+    {ind:"Epilepsy — focal seizures (initial)",dose:"5 mg/kg/day ÷ q8–12h → titrate by 5mg/kg/week → max 20–35 mg/kg/day"},
+    {ind:"Epilepsy — children 6–12 years",dose:"100 mg q12h → increase by 100mg/week → usual 400–800 mg/day (max 1g/day)"},
+    {ind:"Epilepsy — >12 years / adolescent",dose:"200 mg q12h → increase by 200mg/week → usual 800–1200 mg/day (max 1.6g/day)"},
+    {ind:"Neonatal seizures (2nd line)",dose:"5–10 mg/kg/day ÷ q12h (level 4–12 mg/L)"},
+    {ind:"Trigeminal neuralgia / neuropathic pain",dose:"5–10 mg/kg/day ÷ q8–12h → titrate (max 20 mg/kg/day)"},
+    {ind:"Bipolar disorder (adolescent, adjunct)",dose:"200–400 mg/day ÷ q12h; titrate to clinical response"},
+  ], notes:"Therapeutic level: 4–12 mg/L (total). Potent CYP3A4 inducer AND substrate — autoinduction occurs over 3–5 weeks (levels fall 30–50%); recheck levels. Monitor CBC (aplastic anaemia rare), LFTs, Na+ (hyponatraemia). SJS/TEN risk (HLA-B*1502 — screen South/Southeast Asians before starting). Teratogenic." },
+
+  { name:"Oxcarbazepine", generic:"oxcarbazepine / OXC", class:"Anticonvulsant", routes:["PO"], doses:[
+    {ind:"Focal seizures (2–<4 years)",dose:"8–10 mg/kg/day ÷ q12h → titrate to max 60 mg/kg/day"},
+    {ind:"Focal seizures (4–16 years)",dose:"8–10 mg/kg/day ÷ q12h → max 46 mg/kg/day or 2400 mg/day"},
+    {ind:"Focal seizures (adolescent)",dose:"300 mg q12h → increase by 300mg/week → 600–1200 mg/day (max 2400 mg/day)"},
+  ], notes:"Analogue of carbamazepine — fewer drug interactions (weak CYP inducer). Major risk: hyponatraemia (monitor Na+ monthly). Titrate slowly to improve tolerability. No autoinduction. Active metabolite MHD measured (target 12–35 mg/L)." },
+
+  { name:"Topiramate", generic:"topiramate / TPM", class:"Anticonvulsant", routes:["PO"], doses:[
+    {ind:"Adjunct focal/generalised (2–<10 years)",dose:"1 mg/kg/day ÷ q12h → increase by 1–3 mg/kg/week → target 5–9 mg/kg/day"},
+    {ind:"Adjunct focal/generalised (≥10 years)",dose:"25 mg at night × 1 week → increase by 25–50 mg/week → usual 100–400 mg/day"},
+    {ind:"Lennox-Gastaut (adjunct)",dose:"1–3 mg/kg/day → target 5–6 mg/kg/day ÷ q12h (max 9 mg/kg/day)"},
+    {ind:"Migraine prophylaxis (adolescent)",dose:"25–50 mg once daily at night → 100 mg/day"},
+  ], notes:"Carbonic anhydrase inhibitor properties — nephrolithiasis (adequate hydration), metabolic acidosis (check bicarb), hyperthermia (heat stroke risk, especially children). Word-finding difficulty common. Anorexia and weight loss. Reduce dose in renal impairment." },
+
+  { name:"Clonazepam", generic:"clonazepam / CZP", class:"Benzodiazepine / Anticonvulsant", routes:["PO","IV"], doses:[
+    {ind:"Myoclonic / absence seizures (initial, <10 years)",dose:"0.01–0.03 mg/kg/day ÷ q8h → titrate by 0.25–0.5mg q3d → max 0.1–0.2 mg/kg/day"},
+    {ind:"Epilepsy (maintenance, all ages)",dose:"0.05–0.2 mg/kg/day ÷ q8–12h (max 20 mg/day)"},
+    {ind:"Infantile spasms / Lennox-Gastaut",dose:"0.01–0.05 mg/kg/day ÷ q8h → titrate slowly"},
+    {ind:"Status epilepticus (IV — 2nd line)",dose:"0.05–0.1 mg/kg IV slowly (max 4 mg); may repeat × 1"},
+    {ind:"Neonatal seizures (oral)",dose:"0.1–0.2 mg/kg/day ÷ q8–12h; start low"},
+  ], notes:"Long half-life (18–60h). Tolerance develops in 1–6 months (require dose escalation). Sedation, hypersalivation (problem in children with developmental delay — risk of aspiration). Respiratory depression with IV. Gradual taper on discontinuation." },
+
+  { name:"Nitrazepam", generic:"nitrazepam / NZP", class:"Benzodiazepine / Anticonvulsant", routes:["PO"], doses:[
+    {ind:"Infantile spasms / West syndrome",dose:"0.25–0.5 mg/kg/day ÷ q8–12h (max 10 mg/day); titrate slowly"},
+    {ind:"Myoclonic epilepsy / Lennox-Gastaut",dose:"0.3–1 mg/kg/day ÷ q8–12h; start 0.125 mg/kg/day"},
+    {ind:"Neonatal seizures (refractory)",dose:"0.1–0.3 mg/kg/dose q8–12h"},
+  ], notes:"Used in infantile spasms when ACTH/vigabatrin unavailable. Risk of aspiration pneumonia in children with hypotonia (hypersalivation). AVOID in respiratory compromise. Tolerance develops. Liver metabolism." },
+
+  { name:"Ethosuximide", generic:"ethosuximide / ESM", class:"Anticonvulsant (Succinimide)", routes:["PO"], doses:[
+    {ind:"Absence epilepsy (3–6 years, initial)",dose:"10–15 mg/kg/day ÷ q12h → increase by 5–10mg/kg/week → usual 20–30 mg/kg/day"},
+    {ind:"Absence epilepsy (>6 years)",dose:"250 mg q12h → increase by 250mg/week → usual 750–1250 mg/day (max 1.5g/day)"},
+  ], notes:"Drug of choice for pure childhood absence epilepsy (no generalised tonic-clonic seizures). Therapeutic level 40–100 mg/L. GI side effects (take with food). SLE-like syndrome (rare). Does NOT protect against GTC seizures — add valproate if both present." },
+
+  { name:"Vigabatrin", generic:"vigabatrin / VGB", class:"Anticonvulsant (GABA-T inhibitor)", routes:["PO"], doses:[
+    {ind:"Infantile spasms — 1st line (2–12 months)",dose:"50 mg/kg/day ÷ q12h → increase by 25–50 mg/kg every 3 days → max 150 mg/kg/day"},
+    {ind:"TSC-associated infantile spasms",dose:"100–150 mg/kg/day ÷ q12h (higher range preferred)"},
+    {ind:"Focal seizures (adjunct, ≥2 years)",dose:"40–80 mg/kg/day ÷ q12h (max 3g/day for children; 4g/day adults)"},
+  ], notes:"VISUAL FIELD DEFECT in 30–40% patients (irreversible — bilateral peripheral VF loss). Baseline and 6-monthly VF/ERG testing mandatory. MRI signal changes in basal ganglia (reversible in infants). Reserve for TSC infantile spasms (1st line) or refractory focal seizures. Renally cleared — reduce dose in CKD." },
+
+  { name:"Lacosamide", generic:"lacosamide / LCM", class:"Anticonvulsant (SCN slow-inactivation)", routes:["PO","IV"], doses:[
+    {ind:"Focal seizures (4–<17 years, <30 kg)",dose:"1 mg/kg/dose q12h → titrate by 1mg/kg/dose q1 week → target 3–6 mg/kg/dose q12h"},
+    {ind:"Focal seizures (4–<17 years, ≥30 kg and ≥17 years)",dose:"50 mg q12h → increase by 50mg/day weekly → usual 200–400 mg/day (max 400 mg/day)"},
+    {ind:"Status epilepticus (IV — 3rd line)",dose:"200–400 mg IV loading over 15–60 min (adult); weight-based 2–4 mg/kg in children"},
+  ], notes:"Minimal drug interactions. PR interval prolongation — ECG at baseline; avoid in 2nd/3rd degree AV block. Dizziness, diplopia dose-related. 100% oral bioavailability. Renal dose adjustment if GFR <30." },
+
+  { name:"Pyridoxine (B6) — Neonatal Seizures", generic:"pyridoxine hydrochloride / vitamin B6", class:"Vitamin / Anticonvulsant", routes:["IV","PO"], doses:[
+    {ind:"Pyridoxine-dependent epilepsy (IV diagnostic/therapeutic)",dose:"100 mg IV bolus (EEG monitoring); repeat if partial response (max 500 mg total)"},
+    {ind:"Pyridoxine-dependent epilepsy (maintenance PO)",dose:"15–30 mg/kg/day once daily (lifelong)"},
+    {ind:"Neonatal seizures (empiric IV trial)",dose:"50–100 mg IV stat; observe EEG for response"},
+    {ind:"Isoniazid prophylaxis (supplement)",dose:"1–2 mg/kg/day (max 25–50 mg/day)"},
+    {ind:"INH overdose (antidote IV)",dose:"Gram-for-gram IV dose equal to amount of INH ingested (up to 5g if unknown)"},
+    {ind:"Gyromitra mushroom poisoning",dose:"25 mg/kg IV (max 5g); repeat q15–30 min PRN"},
+  ], notes:"Pyridoxine-dependent epilepsy: ALDH7A1 mutation — diagnose by trial + plasma/urine pipecolic acid, α-AASA. IV dose may briefly worsen seizures (apnoea) — resuscitation equipment available. Also used for B6-responsive homocystinuria and gyromitra poisoning." },
+
+  { name:"ACTH / Tetracosactide", generic:"ACTH / tetracosactide (Synacthen)", class:"Anticonvulsant (Infantile Spasms)", routes:["IM"], doses:[
+    {ind:"West syndrome / Infantile spasms (standard)",dose:"40–60 units/day IM × 14 days → taper over 2–4 weeks"},
+    {ind:"West syndrome (high dose — UKISS)",dose:"150 units/m²/day IM × 14 days → taper"},
+    {ind:"Tetracosactide (Synacthen) — synthetic ACTH",dose:"0.02–0.04 mg/kg/day IM (max 0.625 mg/dose) × 14 days → taper"},
+    {ind:"Cryptogenic spasms (longer course)",dose:"Low-dose: 2–10 units/day × 4–6 weeks → taper"},
+  ], notes:"Treatment of choice for cryptogenic infantile spasms along with vigabatrin (TSC). Side effects: hypertension, hyperglycaemia, weight gain, irritability, immunosuppression, brain shrinkage (reversible), adrenal suppression on withdrawal. Monitor BP daily, glucose twice daily during treatment." },
+
+  { name:"Acetazolamide", generic:"acetazolamide", class:"Carbonic Anhydrase Inhibitor / Anticonvulsant", routes:["PO","IV"], doses:[
+    {ind:"Epilepsy (adjunct, especially catamenial)",dose:"8–30 mg/kg/day ÷ q8–12h (max 750 mg/day children; 1g/day adolescents)"},
+    {ind:"Hydrocephalus (medical — reducing CSF production)",dose:"25 mg/kg/day ÷ q6–8h → increase to 100 mg/kg/day (max 2g/day)"},
+    {ind:"Altitude sickness prophylaxis",dose:"2.5 mg/kg/dose q12h (max 125 mg/dose) start 24h before ascent"},
+    {ind:"Idiopathic intracranial hypertension",dose:"10–30 mg/kg/day ÷ q8–12h (max 2–4g/day)"},
+    {ind:"Periodic paralysis (hypoK+ type)",dose:"250 mg PO q6–8h PRN"},
+  ], notes:"Metabolic acidosis common — monitor bicarb. Nephrolithiasis risk (low citrate — ensure hydration). Sulfa allergy cross-reactivity (rare). Hypokalaemia. Not a first-line antiepileptic — tolerance develops in 6 months." },
+
+  { name:"Gabapentin", generic:"gabapentin", class:"Anticonvulsant / Neuropathic Analgesic", routes:["PO"], doses:[
+    {ind:"Focal seizures (adjunct, ≥3 years)",dose:"10–15 mg/kg/day ÷ q8h → titrate over 3 days → target 25–35 mg/kg/day (max 50 mg/kg/day or 3.6g/day)"},
+    {ind:"Neuropathic pain (children ≥3 years)",dose:"5 mg/kg at night → increase to 5 mg/kg q12h → 5 mg/kg q8h over 3 days; usual dose 10–35 mg/kg/day"},
+    {ind:"Restless leg syndrome / perioperative pain",dose:"5–15 mg/kg once at night"},
+  ], notes:"No protein binding, no liver metabolism, no drug interactions. 100% renal excretion — significant dose reduction in CKD (see renal table). Dizziness, somnolence, ataxia. Not absorbed linearly (saturable transporter) — divided dosing essential." },
+
+  { name:"Mannitol", generic:"mannitol 20%", class:"Osmotic Diuretic / Raised ICP", routes:["IV"], doses:[
+    {ind:"Raised ICP / Cerebral oedema (acute)",dose:"0.25–1 g/kg IV over 15–30 min; repeat q4–6h as needed (maintain serum osmolality <320 mOsm/kg)"},
+    {ind:"Acute angle-closure glaucoma",dose:"1–2 g/kg IV over 45 min"},
+    {ind:"Oliguric renal failure (test dose)",dose:"0.2 g/kg IV over 3–5 min; measure urine output over 1h"},
+    {ind:"Severe haemolysis / myoglobinuria",dose:"0.5 g/kg IV; then furosemide to maintain urine output"},
+  ], notes:"Contraindicated in anuria (renal failure without output) — will cause volume overload. Monitor serum osmolality and osmol gap. Rebound ICP rise can occur (use with HOB 30° elevation). Use with caution in cardiac failure. Filter through 5-micron filter if crystals form." },
+
+  { name:"Hypertonic Saline (3%)", generic:"hypertonic saline 3% NaCl", class:"Osmotic Therapy / Raised ICP", routes:["IV"], doses:[
+    {ind:"Acute symptomatic hyponatraemia (severe)",dose:"2–3 mL/kg of 3% NaCl IV over 10–20 min; repeat × 2 if seizures persist (max correction 1–2 mmol/L/h, total <10 mmol/L in 24h)"},
+    {ind:"Raised ICP (cerebral oedema)",dose:"2–5 mL/kg of 3% NaCl IV over 10–20 min; target Na 145–155 mmol/L"},
+    {ind:"Refractory raised ICP — continuous infusion",dose:"0.1–1 mL/kg/h of 3% NaCl (titrate to ICP/Na target)"},
+    {ind:"Traumatic brain injury — bolus",dose:"3 mL/kg 3% NaCl IV over 15 min; repeat if ICP >20 mmHg"},
+  ], notes:"Preferred over mannitol for raised ICP in many paediatric ICU protocols — sustained effect, no rebound. Monitor serum Na q2–4h. Do NOT correct Na >10 mmol/L in 24h (osmotic demyelination in chronic hyponatraemia). Central line preferred for continuous infusion (>2%). Max Na target: 155–160 mmol/L." },
+
+  { name:"Thiopental / Thiopentone", generic:"thiopental sodium", class:"Barbiturate / Anaesthetic / RSE", routes:["IV"], doses:[
+    {ind:"Induction of general anaesthesia",dose:"3–6 mg/kg IV slow (neonates: 3–4 mg/kg; infants: 5–8 mg/kg)"},
+    {ind:"Refractory Status Epilepticus (RSE) — burst suppression",dose:"Loading: 3–5 mg/kg IV; then infusion 1–5 mg/kg/hour (titrate to EEG burst suppression)"},
+    {ind:"Raised ICP (refractory — sedation/burst suppression)",dose:"1.5–3 mg/kg bolus IV; infusion 1–3 mg/kg/hour"},
+  ], notes:"Causes myocardial depression and hypotension — vasopressor support often required at RSE doses. Prolonged infusion → accumulation (very long half-life) → delayed awakening. PROPOFOL infusion syndrome is a concern with prolonged propofol — thiopental may be preferred for RSE. Requires EEG monitoring for burst suppression. Avoid in porphyria." },
+
+  { name:"Ketamine", generic:"ketamine hydrochloride", class:"Dissociative Anaesthetic / Sedative", routes:["IV","IM","PO","Intranasal"], doses:[
+    {ind:"Procedural sedation (IV)",dose:"1–2 mg/kg IV over 1–2 min; repeat 0.5–1 mg/kg q5–10 min PRN"},
+    {ind:"Procedural sedation (IM)",dose:"4–6 mg/kg IM (onset 5 min); single dose usually sufficient"},
+    {ind:"RSI induction",dose:"1–2 mg/kg IV"},
+    {ind:"Analgesic sub-dissociative (IV)",dose:"0.2–0.5 mg/kg IV over 10 min (low dose, no dissociation)"},
+    {ind:"Intranasal (procedural analgesia)",dose:"3–5 mg/kg IN (concentrated 100 mg/mL solution)"},
+    {ind:"Oral premedication",dose:"4–6 mg/kg PO (onset 20–30 min)"},
+    {ind:"Refractory Status Epilepticus",dose:"0.5–3 mg/kg bolus IV; then 0.3–3 mg/kg/hour infusion"},
+    {ind:"Bronchospasm (severe, adjunct)",dose:"1–2 mg/kg IV (bronchodilator effect via catecholamine release)"},
+  ], notes:"Maintains airway reflexes and spontaneous respiration. Causes bronchodilation — preferred for asthma/status. Sympathomimetic — raises BP and HR (advantage in haemodynamically unstable). Gives analgesia + sedation + amnesia. Emergence phenomena (hallucinations) — co-administer midazolam (0.05–0.1 mg/kg) for prolonged procedures. AVOID in uncontrolled hypertension, head injury with raised ICP (relative), psychiatric disorders." },
+
+  { name:"Propofol", generic:"propofol 1%", class:"IV Anaesthetic / Sedative", routes:["IV"], doses:[
+    {ind:"Induction (>3 years)",dose:"2–3 mg/kg IV titrated (give 1 mg/kg/min, stop at effect)"},
+    {ind:"Maintenance (TIVA, >3 years)",dose:"4–12 mg/kg/hour (125–200 mcg/kg/min); titrate"},
+    {ind:"Procedural sedation (ICU — short-term)",dose:"1–3 mg/kg/hour (25–50 mcg/kg/min); max 4h in children"},
+    {ind:"Anti-emetic (sub-hypnotic)",dose:"0.5–1 mg/kg IV slow (single dose)"},
+  ], notes:"PROPOFOL INFUSION SYNDROME (PRIS): metabolic acidosis + cardiac failure + rhabdomyolysis with infusions >4 mg/kg/hour for >48h — AVOID prolonged high-dose infusions in children. Contains soybean/egg lecithin (allergy). Painful injection — lignocaine 0.5–1 mg/kg IV prior. Causes hypotension, apnoea. NOT recommended for ICU sedation in children <16y (PRIS risk)." },
+
+  { name:"Dexmedetomidine", generic:"dexmedetomidine hydrochloride", class:"Alpha-2 Agonist / Sedative", routes:["IV","Intranasal"], doses:[
+    {ind:"ICU sedation — loading dose",dose:"0.5–1 mcg/kg IV over 10 min (may omit in haemodynamically unstable)"},
+    {ind:"ICU sedation — maintenance infusion",dose:"0.2–0.7 mcg/kg/hour (max 1.5 mcg/kg/hour)"},
+    {ind:"Procedural sedation (intranasal)",dose:"1–2 mcg/kg IN (concentrated 200 mcg/mL)"},
+    {ind:"Procedural sedation (IV)",dose:"0.5–1 mcg/kg IV over 10 min → 0.2–0.7 mcg/kg/hour"},
+    {ind:"Opioid/benzo-sparing sedation (PICU)",dose:"0.2–0.5 mcg/kg/hour; adjust to RASS target -1 to -2"},
+  ], notes:"Provides sedation WITHOUT respiratory depression (preserves airway). Sympatholytic — bradycardia and hypotension common (especially loading dose). Analgesic properties. Excellent for procedural sedation (cooperative sedation — patient rousable). No withdrawal syndrome. Preferred over benzodiazepines in PICU for non-intubated sedation." },
+
+  { name:"Sumatriptan", generic:"sumatriptan succinate", class:"Serotonin 5-HT1 Agonist / Antimigraine", routes:["PO","Intranasal","SC"], doses:[
+    {ind:"Acute migraine (PO, ≥12 years)",dose:"25–100 mg PO; may repeat after 2h (max 200 mg/24h)"},
+    {ind:"Acute migraine (intranasal, ≥12 years)",dose:"5–20 mg IN (one spray in one nostril); may repeat after 2h (max 40 mg/24h)"},
+    {ind:"Acute migraine (SC, ≥12 years)",dose:"3–6 mg SC; repeat after 1h if needed (max 12 mg/24h)"},
+    {ind:"Acute migraine (IN, 6–11 years — off-label)",dose:"5–10 mg IN (weight-based: 0.1 mg/kg); limited data"},
+  ], notes:"Not for prevention — acute treatment only. Contraindicated in basilar/hemiplegic migraine, ischaemic heart disease, uncontrolled HTN, cerebrovascular disease. Chest pain/tightness (vasospasm) — counsel patients. Triptan overuse headache if used >10 days/month." },
+
+  { name:"Atropine", generic:"atropine sulfate", class:"Anticholinergic / Antidote", routes:["IV","IM","ET","PO","Eye drops"], doses:[
+    {ind:"Bradycardia (PALS — symptomatic)",dose:"0.02 mg/kg IV/IO (min 0.1 mg, max 0.5 mg child, 1 mg adolescent); repeat × 1"},
+    {ind:"Premedication (anti-sialogogue)",dose:"0.02 mg/kg IV/IM (min 0.1 mg, max 0.6 mg) 30–60 min pre-op"},
+    {ind:"Organophosphate/Carbamate poisoning",dose:"0.05–0.1 mg/kg IV q5–10 min; titrate to secretion drying (NO maximum in OP poisoning)"},
+    {ind:"Endotracheal (ET — if no IV access, PALS)",dose:"0.04–0.06 mg/kg via ET tube; dilute in 1–5 mL NS"},
+    {ind:"RSI premedication (neonates/infants)",dose:"0.02 mg/kg IV (prevents bradycardia from laryngoscopy)"},
+    {ind:"Reversal of neuromuscular block (with neostigmine)",dose:"0.02 mg/kg IV (before neostigmine to prevent bradycardia)"},
+  ], notes:"Minimum 0.1 mg dose (paradoxical bradycardia with lower doses). In organophosphate poisoning: end-point is drying of secretions, not heart rate — may need massive doses (hundreds of mg). Causes mydriasis, flushing, tachycardia, urinary retention, hyperthermia. Antidote: physostigmine." },
+
+  { name:"Neostigmine", generic:"neostigmine methylsulfate", class:"Anticholinesterase / NMB Reversal", routes:["IV","IM","SC","PO"], doses:[
+    {ind:"Reversal of NDNMB (IV — with atropine)",dose:"0.04–0.07 mg/kg IV (max 2.5 mg/dose); give atropine 0.02 mg/kg first"},
+    {ind:"Myasthenia gravis (diagnosis)",dose:"0.025–0.04 mg/kg IM (max 1.5 mg); or 0.01–0.025 mg/kg IV"},
+    {ind:"Myasthenia gravis (maintenance PO)",dose:"0.3–1 mg/kg/dose q4–6h (max 375 mg/day); adjust to clinical response"},
+    {ind:"Neonatal myasthenia (IV)",dose:"0.05–0.15 mg/kg IV slowly q4–6h PRN; guided by feeding/respiratory status"},
+    {ind:"Post-op urinary retention / paralytic ileus",dose:"0.025–0.05 mg/kg SC/IM (max 0.5–1 mg)"},
+  ], notes:"Always co-administer atropine (prevents muscarinic side effects: bradycardia, bronchospasm, hypersalivation). For NMB reversal: confirm T4/T1 ratio >0.2 before reversing. Cholinergic crisis if overdose — give atropine. Shorter duration than sugammadex." },
+
+  { name:"Pyridostigmine", generic:"pyridostigmine bromide", class:"Anticholinesterase / Myasthenia", routes:["PO","IV"], doses:[
+    {ind:"Myasthenia gravis (oral, children)",dose:"1 mg/kg/dose q4–6h (max 7 mg/kg/day or 400 mg/day); titrate to functional response"},
+    {ind:"Myasthenia gravis (neonatal — IV if severe)",dose:"0.05–0.15 mg/kg IV q4–6h slowly"},
+    {ind:"Myasthenia gravis (sustained-release, >12y)",dose:"180 mg SR q12h (use only for overnight coverage)"},
+  ], notes:"Longer acting than neostigmine (PO t½ ~4h). Cholinergic side effects: cramps, diarrhoea, hypersalivation — glycopyrrolate or propantheline can be co-administered. Overdose → cholinergic crisis (weakness worsens) — distinguish from myasthenic crisis (Tensilon test)." },
+
+  // ===== NEUROMUSCULAR BLOCKING AGENTS (NMBAs) =====
+  { name:"Succinylcholine (Suxamethonium)", generic:"succinylcholine chloride / suxamethonium", class:"Depolarising NMBA / RSI", routes:["IV","IM"], doses:[
+    {ind:"RSI induction (IV, all ages)",dose:"1–2 mg/kg IV (infants/children: 2 mg/kg; adolescent/adult: 1–1.5 mg/kg); onset 45–60 sec"},
+    {ind:"RSI (IM — no IV access)",dose:"4–6 mg/kg IM (onset 3–4 min; max 150 mg)"},
+    {ind:"Laryngospasm (IV)",dose:"0.1–0.2 mg/kg IV (sub-paralytic for laryngospasm)"},
+    {ind:"Laryngospasm (IM — emergency no IV)",dose:"4 mg/kg IM (high IM dose for rapid effect)"},
+  ], notes:"CONTRAINDICATIONS: hyperkalaemia (burns >24h, crush injuries, denervation, prolonged immobility, muscular dystrophy, spinal cord injury >24h) — K+ rise 0.5–1 mmol/L normal, but can be fatal in high-risk patients. Malignant hyperthermia trigger. Masseter spasm. Phase II block with repeated doses. No antagonist available. Black box warning for children (undiagnosed myopathies)." },
+
+  { name:"Rocuronium", generic:"rocuronium bromide", class:"Non-depolarising NMBA / RSI", routes:["IV"], doses:[
+    {ind:"RSI intubation (high dose)",dose:"1.2 mg/kg IV (onset 60–90 sec — comparable to succinylcholine at this dose)"},
+    {ind:"Standard intubation / maintenance",dose:"0.6 mg/kg IV (onset 2–3 min); top-up 0.15 mg/kg q20–30 min PRN"},
+    {ind:"Maintenance infusion (PICU)",dose:"6–12 mcg/kg/min (0.36–0.72 mg/kg/hour); titrate to TOF"},
+    {ind:"Neonates (<28 days)",dose:"0.3 mg/kg IV (reduced dose; prolonged duration)"},
+  ], notes:"REVERSIBLE with sugammadex (full reversal in 3 min at 16 mg/kg dose). Preferred for RSI when succinylcholine contraindicated. Duration: 0.6 mg/kg → 30–60 min; 1.2 mg/kg → 60–90 min. Monitor Train-of-Four (TOF). Hepatic elimination — prolonged in liver failure." },
+
+  { name:"Vecuronium", generic:"vecuronium bromide", class:"Non-depolarising NMBA", routes:["IV"], doses:[
+    {ind:"Intubation (initial)",dose:"0.08–0.12 mg/kg IV (onset 3–5 min)"},
+    {ind:"Maintenance — bolus",dose:"0.02–0.05 mg/kg IV q25–40 min PRN"},
+    {ind:"Maintenance — infusion",dose:"1–2 mcg/kg/min; titrate to TOF"},
+    {ind:"Neonates (caution — prolonged)",dose:"0.05–0.1 mg/kg IV (duration may be 2–3× longer than in children)"},
+  ], notes:"Intermediate duration (25–40 min at intubating dose). No cardiovascular effects (no histamine release, no vagolysis). Hepatic metabolism → biliary/renal excretion. Accumulation in hepatic failure. Reversible with neostigmine or sugammadex." },
+
+  { name:"Atracurium", generic:"atracurium besylate", class:"Non-depolarising NMBA", routes:["IV"], doses:[
+    {ind:"Intubation (initial)",dose:"0.3–0.5 mg/kg IV (onset 2–3 min)"},
+    {ind:"Maintenance — bolus",dose:"0.08–0.1 mg/kg q15–25 min PRN"},
+    {ind:"Maintenance — infusion",dose:"5–10 mcg/kg/min (0.3–0.6 mg/kg/hour)"},
+    {ind:"PICU (neuromuscular blockade)",dose:"5–9 mcg/kg/min infusion; titrate to TOF 1–2 twitches"},
+  ], notes:"Hofmann elimination (spontaneous plasma ester hydrolysis) — NOT dependent on renal/hepatic function. PREFERRED in renal and hepatic failure. Laudanosine metabolite (seizure potential at very high doses). Histamine release at high doses (flushing, bronchospasm). Cisatracurium preferred over atracurium (less laudanosine, less histamine)." },
+
+  { name:"Cisatracurium", generic:"cisatracurium besylate", class:"Non-depolarising NMBA", routes:["IV"], doses:[
+    {ind:"Intubation (initial)",dose:"0.1–0.2 mg/kg IV (onset 2–3 min)"},
+    {ind:"Maintenance — bolus",dose:"0.03 mg/kg q20 min PRN"},
+    {ind:"Maintenance — infusion",dose:"1–3 mcg/kg/min; titrate to TOF"},
+    {ind:"PICU sedation/ventilation",dose:"1–2 mcg/kg/min; adjust by TOF monitoring"},
+  ], notes:"Stereoisomer of atracurium. Hofmann elimination — safe in renal and hepatic failure. LESS laudanosine and NO histamine release compared to atracurium. Preferred NDNMB for ICU (>3 times more potent than atracurium). Monitor TOF q4–6h." },
+
+  { name:"Sugammadex", generic:"sugammadex sodium", class:"Selective Muscle Relaxant Binding Agent / NMB Reversal", routes:["IV"], doses:[
+    {ind:"Routine reversal of rocuronium/vecuronium (TOF 2+)",dose:"2 mg/kg IV (rocuronium or vecuronium); full reversal in 2–3 min"},
+    {ind:"Deep block reversal (TOF 0, 1–2 PTC)",dose:"4 mg/kg IV; reversal in 2–3 min"},
+    {ind:"Immediate reversal — cannot intubate/ventilate emergency",dose:"16 mg/kg IV (reverses 1.2 mg/kg rocuronium RSI dose in 3 min)"},
+    {ind:"Paediatric dosing (age 2–17 years)",dose:"2 mg/kg (routine) or 4 mg/kg (deep) — same as adult; weight-based"},
+    {ind:"Children <2 years",dose:"Limited data; 2–4 mg/kg if used — monitor closely"},
+  ], notes:"Reverses ONLY rocuronium and vecuronium (encapsulation). Does NOT reverse succinylcholine or other NMBAs. Hormonal contraceptive binding — advise alternative contraception for 7 days post-dose. No anaphylaxis to atropine needed (unlike neostigmine). Expensive." },
+
+  { name:"Pancuronium", generic:"pancuronium bromide", class:"Non-depolarising NMBA (long-acting)", routes:["IV"], doses:[
+    {ind:"Intubation",dose:"0.08–0.1 mg/kg IV (onset 3–5 min; duration 60–100 min)"},
+    {ind:"Maintenance — bolus",dose:"0.01–0.02 mg/kg IV q20–40 min PRN"},
+    {ind:"NICU — paralysis for ventilation",dose:"0.04–0.1 mg/kg IV q1–4h PRN (or infusion 0.02–0.05 mg/kg/hour)"},
+    {ind:"Neonates",dose:"0.04–0.15 mg/kg IV (prolonged duration — use caution)"},
+  ], notes:"Long-acting (60–120 min). Vagolytic — causes tachycardia and increased BP (beneficial in hypotension, problematic in high BP). Renal excretion — prolonged in renal failure. Reversible with neostigmine. Largely superseded by intermediate agents (rocuronium/vecuronium) in modern practice." },
+
+  // ===== SPASTICITY / CNS MUSCLE RELAXANTS =====
+  { name:"Baclofen", generic:"baclofen", class:"Muscle Relaxant (GABA-B agonist)", routes:["PO","Intrathecal"], doses:[
+    {ind:"Spasticity (2–7 years, initial PO)",dose:"2.5 mg q8h → titrate by 2.5 mg/dose every 3 days → max 30–40 mg/day"},
+    {ind:"Spasticity (8–12 years, initial PO)",dose:"5 mg q8h → titrate → max 60 mg/day"},
+    {ind:"Spasticity (>12 years / adolescent PO)",dose:"5 mg q8h → titrate by 5mg/dose q3d → max 80 mg/day (sometimes 120 mg/day)"},
+    {ind:"Intrathecal test dose (ITB — pump)",dose:"25–50 mcg IT single dose; assess response over 4–8h"},
+    {ind:"Intrathecal maintenance (ITB pump)",dose:"Starting: 24h screening dose × 2; typical range 100–800 mcg/day (individualised)"},
+    {ind:"Hiccups (refractory)",dose:"5 mg q8h → up to 25 mg q8h"},
+  ], notes:"ABRUPT WITHDRAWAL → life-threatening: seizures, hyperthermia, rhabdomyolysis, autonomic instability (BACLOFEN WITHDRAWAL SYNDROME — medical emergency). Taper ALL discontinuations slowly. CNS depression, weakness, ataxia. Renal excretion — reduce dose in CKD. Intrathecal pump overdose: respiratory depression, coma — physostigmine antidote." },
+
+  { name:"Dantrolene", generic:"dantrolene sodium", class:"Muscle Relaxant / Malignant Hyperthermia Antidote", routes:["IV","PO"], doses:[
+    {ind:"Malignant Hyperthermia (MH) — acute (IV)",dose:"2.5 mg/kg IV rapid bolus; repeat q5min until resolved (max cumulative 10 mg/kg)"},
+    {ind:"MH — prevention (IV pre-op in high-risk)",dose:"2.5 mg/kg IV over 60 min (start 60 min before induction)"},
+    {ind:"MH — prevention (PO pre-op)",dose:"4–8 mg/kg/day ÷ q6h × 1–2 days before surgery"},
+    {ind:"Neuroleptic Malignant Syndrome (NMS — IV)",dose:"1–2.5 mg/kg IV q6h; titrate until rigidity resolves"},
+    {ind:"Spasticity (chronic PO, ≥5 years)",dose:"0.5 mg/kg/dose q6h → increase by 0.5 mg/kg/dose q7d → max 3 mg/kg/dose q6h (max 400 mg/day)"},
+  ], notes:"Drug of choice for malignant hyperthermia — acts on ryanodine receptor (peripheral, not CNS). For MH: have stock readily available in all operating rooms. Hepatotoxicity with chronic oral use (monitor LFTs monthly). Weakness is expected therapeutic effect. IV formulation: each 20mg vial requires 60mL sterile water to dissolve (difficult)." },
+
+  { name:"Tizanidine", generic:"tizanidine hydrochloride", class:"Muscle Relaxant (Alpha-2 agonist)", routes:["PO"], doses:[
+    {ind:"Spasticity (children ≥6 years)",dose:"0.05 mg/kg at night → titrate by 0.05 mg/kg/dose q3–4 days → max 0.3–0.5 mg/kg/day ÷ q8h (max 12 mg/day)"},
+    {ind:"Spasticity (adolescent)",dose:"2 mg at night → increase to 4 mg TDS over 2–4 weeks → max 36 mg/day"},
+  ], notes:"Alpha-2 agonist like clonidine — hypotension and sedation main side effects. Hepatotoxicity (monitor LFTs monthly for first 6 months). Short duration (3–6h) — timing doses to manage daytime/nocturnal spasticity. CYP1A2 substrate — fluvoxamine, ciprofloxacin dramatically raise levels. Do NOT combine with other CYP1A2 inhibitors." },
+
+  // ===== MISSING ANTIBIOTICS =====
+  { name:"Cefoperazone-Sulbactam", generic:"cefoperazone + sulbactam (Sulperazon)", class:"3rd-gen Cephalosporin + BLI", routes:["IV","IM"], doses:[
+    {ind:"Moderate infections (2:1 ratio — 1g/0.5g)",dose:"40–80 mg/kg/day of combined drug ÷ q6–12h (max 4g/day cefoperazone component)"},
+    {ind:"Severe/MDR infections (1:1 ratio — 1g/1g)",dose:"80–160 mg/kg/day ÷ q6–8h (max 8g/day combined; 4g sulbactam max)"},
+    {ind:"Acinetobacter baumannii (MDR)",dose:"High dose sulbactam component: sulbactam 6–12g/day ÷ q6h (sulbactam is active against Acinetobacter independently)"},
+    {ind:"Neonates (>2 weeks)",dose:"40–80 mg/kg/day ÷ q12h"},
+  ], notes:"Sulbactam has INTRINSIC activity against Acinetobacter baumannii (unlike other beta-lactamase inhibitors). Preferred over piperacillin-tazobactam for Acinetobacter coverage. Biliary excretion — minimal renal adjustment needed. Disulfiram reaction with alcohol (N-methylthiotetrazole side chain — same as cefotetan). Monitor PT (vitamin K dependent factor depression)." },
+
+  { name:"Cefpodoxime", generic:"cefpodoxime proxetil", class:"3rd-gen Cephalosporin (oral)", routes:["PO"], doses:[
+    {ind:"Acute Otitis Media (6 months–12 years)",dose:"5 mg/kg/dose q12h × 5–10 days (max 200 mg/dose)"},
+    {ind:"Community Pneumonia (oral step-down)",dose:"5 mg/kg/dose q12h × 7–14 days (max 200 mg/dose)"},
+    {ind:"UTI (uncomplicated/pyelonephritis step-down)",dose:"5 mg/kg/dose q12h × 7–14 days (max 200 mg/dose)"},
+    {ind:"Pharyngitis/tonsillitis",dose:"5 mg/kg/dose q12h × 5–10 days (max 100 mg/dose)"},
+    {ind:"Skin/Soft tissue",dose:"5 mg/kg/dose q12h × 7–14 days (max 200 mg/dose)"},
+  ], notes:"Better bioavailability than cefixime (50% vs 40%). Take with food for optimal absorption. Active against penicillinase-producing H. influenzae and M. catarrhalis. Not active against Pseudomonas or MRSA." },
+
+  { name:"Cefaclor", generic:"cefaclor", class:"2nd-gen Cephalosporin (oral)", routes:["PO"], doses:[
+    {ind:"Mild-moderate infections (children)",dose:"20–40 mg/kg/day ÷ q8h (max 1g/day); extended-release not for children"},
+    {ind:"Otitis Media",dose:"40 mg/kg/day ÷ q8h × 10 days (max 1g/day)"},
+    {ind:"Pharyngitis / Sinusitis",dose:"20–40 mg/kg/day ÷ q8h × 10 days"},
+    {ind:"UTI",dose:"20 mg/kg/day ÷ q8h × 7 days"},
+  ], notes:"Oral cephalosporin. Serum sickness-like reaction (arthralgia, rash, fever) occurs in ~2% — especially in re-treatment. Cover H. influenzae (including beta-lactamase producers). Suspension more palatable than capsule." },
+
+  { name:"Ampicillin-Sulbactam", generic:"ampicillin + sulbactam (Unasyn)", class:"Penicillin + BLI", routes:["IV","IM"], doses:[
+    {ind:"Mild-Moderate (IM)",dose:"100–200 mg/kg/day ampicillin component ÷ q6h (max 8g ampicillin/day)"},
+    {ind:"Severe infections (IV)",dose:"200 mg/kg/day ampicillin component ÷ q6h (max 8g/day ampicillin; ratio 2:1 amp:sulbactam)"},
+    {ind:"Intra-abdominal / pelvic infection",dose:"200 mg/kg/day ÷ q6h"},
+    {ind:"Acinetobacter (sulbactam component active)",dose:"High-dose: 300 mg/kg/day ÷ q6h (max sulbactam 4g/day)"},
+    {ind:"Neonates (≤7 days)",dose:"50 mg/kg/dose q12h (ampicillin component)"},
+  ], notes:"Sulbactam intrinsically active against Acinetobacter. Combined preparation 2:1 amp:sulbactam ratio. Covers anaerobes, gram-positives, gram-negatives (including ESBL-negative). Rash common (maculopapular — EBV-related). Renal adjustment required." },
+
+  { name:"Nitrofurantoin", generic:"nitrofurantoin / nitrofurantoin macrocrystals", class:"Urinary Antiseptic", routes:["PO"], doses:[
+    {ind:"UTI treatment (≥3 months, macrocrystals)",dose:"5–7 mg/kg/day ÷ q6h × 5–7 days (max 100 mg/dose; max 400 mg/day)"},
+    {ind:"UTI treatment (monohydrate/macrocrystals — q12h)",dose:"5–7 mg/kg/day ÷ q12h (Macrobid formulation)"},
+    {ind:"UTI prophylaxis / recurrent UTI",dose:"1–2 mg/kg once daily at bedtime (max 50–100 mg/day)"},
+    {ind:"Vesicoureteral reflux prophylaxis",dose:"1–2 mg/kg once daily"},
+  ], notes:"CONTRAINDICATED if CrCl <45 mL/min (inadequate urine concentration + peripheral neuropathy risk). Take with food (reduces GI side effects and improves absorption). Not for pyelonephritis or systemic infections. Pulmonary reactions (acute: hypersensitivity; chronic: fibrosis with prolonged use). Haemolysis in G6PD deficiency. Urine turns brown (warn family)." },
+
+  { name:"Chloramphenicol", generic:"chloramphenicol sodium succinate", class:"Bacteriostatic Antibiotic", routes:["IV","PO","Eye drops"], doses:[
+    {ind:"Bacterial Meningitis (reserve — penicillin allergy or no 3rd gen available)",dose:"75–100 mg/kg/day ÷ q6h IV (max 4g/day); therapeutic level 15–25 mg/L peak"},
+    {ind:"Typhoid fever (chloramphenicol-sensitive)",dose:"50–75 mg/kg/day ÷ q6h × 14 days (max 3g/day)"},
+    {ind:"Rickettsial disease (RMSF — alternative to doxycycline)",dose:"50–75 mg/kg/day ÷ q6h (max 4g/day)"},
+    {ind:"Brain abscess (anaerobic cover)",dose:"50 mg/kg/day ÷ q6h"},
+    {ind:"Conjunctivitis (1% eye drops)",dose:"1 drop q2–4h initially → reduce frequency as improves"},
+    {ind:"Neonates (grey baby — use with extreme caution)",dose:"25 mg/kg/day once daily (check levels — highly restricted)"},
+  ], notes:"GREY BABY SYNDROME in neonates (cardiovascular collapse, grey cyanosis) — avoid in neonates unless no alternative. Aplastic anaemia (1:40,000 — irreversible, idiosyncratic) — reserve for life-threatening infections where no alternative exists. Reversible dose-dependent bone marrow suppression. TDM: peak 15–25 mg/L, trough 5–10 mg/L. Many drug interactions (CYP inhibitor)." },
+
+  { name:"Colistin / Polymyxin E", generic:"colistin sulfate / colistimethate sodium (CMS)", class:"Polymyxin Antibiotic (last resort)", routes:["IV","Inhaled","PO"], doses:[
+    {ind:"MDR GNB infections (IV — CMS — international units)",dose:"Loading: 75,000 IU/kg IV over 30 min; Maintenance: 50,000 IU/kg/dose q8h (target AUC 50–100 mg·h/L)"},
+    {ind:"MDR GNB infections (IV — mg colistin base — CBA)",dose:"Loading: 5 mg CBA/kg; Maintenance: 2.5 mg CBA/dose q8–12h"},
+    {ind:"Inhaled (adjunct for MDR pneumonia/VAP)",dose:"CMS 1–2 million IU nebulised q8–12h (in addition to IV)"},
+    {ind:"GI decontamination (oral, non-absorbed)",dose:"Colistin sulfate 50,000 IU/kg/day ÷ q6–8h"},
+    {ind:"Neonates (MRNS/pan-resistant GNB)",dose:"CMS 2.5 mg CBA/kg/dose q12h — dose by AUC-guided TDM"},
+  ], notes:"LAST RESORT for MDR/XDR Acinetobacter, Pseudomonas, Klebsiella. NEPHROTOXIC (30–60%) — monitor creatinine daily. Neurotoxicity (apnoea, neuromuscular blockade, paraesthesias). CMS is a prodrug (hydrolysed to colistin). CMS ≠ colistin sulfate — do NOT interchange units. TDM strongly recommended. Avoid nephrotoxic combinations." },
+
+  { name:"Tigecycline", generic:"tigecycline", class:"Glycylcycline Antibiotic (last resort)", routes:["IV"], doses:[
+    {ind:"Complicated skin/soft tissue or intra-abdominal (≥8 years)",dose:"Loading 1.2 mg/kg IV over 60 min (max 100 mg); then 0.6 mg/kg/dose q12h (max 50 mg/dose)"},
+    {ind:"MDR Acinetobacter / ESBL infections (off-label — critically ill)",dose:"Loading 100 mg IV; then 50 mg q12h (adult dosing; paediatric data limited)"},
+    {ind:"CAP (≥18 years)",dose:"100 mg loading, then 50 mg q12h × 7–14 days"},
+  ], notes:"Broad spectrum including MRSA, VRE, ESBL. Does NOT cover Pseudomonas aeruginosa, Proteus, Providencia. FDA WARNING: higher all-cause mortality vs comparators in clinical trials — use only when alternatives not available. Nausea/vomiting main side effects (pre-treat with ondansetron). Teeth staining/bone deposition in children <8 years (tetracycline class)." },
+
+  { name:"Fosfomycin", generic:"fosfomycin trometamol / fosfomycin disodium", class:"Phosphonic Acid Antibiotic", routes:["PO","IV"], doses:[
+    {ind:"Uncomplicated UTI (PO — single dose, ≥12 years)",dose:"3g (one sachet) dissolved in water as single dose"},
+    {ind:"Complicated UTI / Recurrent UTI (PO)",dose:"3g q48–72h × 3 doses"},
+    {ind:"MDR UTI (IV — fosfomycin disodium)",dose:"200–400 mg/kg/day ÷ q6–8h IV (max 24g/day)"},
+    {ind:"MRSA adjunct / osteomyelitis (IV)",dose:"200 mg/kg/day ÷ q8h IV"},
+    {ind:"Children UTI (PO, off-label <12y)",dose:"2g sachet as single dose"},
+  ], notes:"PO form (trometamol) — excellent bioavailability for UTI (urine concentration 100-fold plasma). IV form — high sodium content. Resistance develops rapidly when used alone — ALWAYS combine IV fosfomycin with another agent. Covers ESBL, MRSA, VRE, MDR organisms. Electrolyte monitoring (high sodium load with IV)." },
+
+  { name:"Aztreonam", generic:"aztreonam", class:"Monobactam Antibiotic", routes:["IV","IM","Inhaled"], doses:[
+    {ind:"Moderate gram-negative infections (IV)",dose:"90–120 mg/kg/day ÷ q6–8h (max 6–8g/day)"},
+    {ind:"Severe MDR GNB / meningitis",dose:"150–200 mg/kg/day ÷ q6h (max 8g/day)"},
+    {ind:"CF pulmonary exacerbation (inhaled — Cayston)",dose:"75 mg nebulised TDS × 28 days (cycle on/off); age ≥7 years"},
+    {ind:"Neonates (≤7 days)",dose:"30 mg/kg/dose q12h"},
+    {ind:"Neonates (8–28 days)",dose:"30 mg/kg/dose q8h"},
+  ], notes:"SAFE in penicillin allergy (no cross-reactivity with beta-lactams — monobactam ring). Covers GRAM-NEGATIVE AEROBES only (no gram-positives, no anaerobes). Active against Pseudomonas. Cross-reactivity with ceftazidime (same R1 side chain) — use caution in ceftazidime-allergic patients. Renal dose adjustment required." },
+
+  // ===== CARDIOVASCULAR (NEW) =====
+  { name:"Nifedipine", generic:"nifedipine", class:"Calcium Channel Blocker / Antihypertensive", routes:["PO","SL"], doses:[
+    {ind:"Hypertension (acute, SL/bite and swallow)",dose:"0.25–0.5 mg/kg/dose SL (bite capsule, hold under tongue); max 10 mg; repeat q4–6h"},
+    {ind:"Hypertension (oral, maintenance)",dose:"0.25–0.5 mg/kg/dose q6–8h PO (immediate release); max 3 mg/kg/day"},
+    {ind:"Hypertension (extended release, ≥6 years)",dose:"0.25–0.5 mg/kg once daily (SR/XL); max 60–90 mg/day"},
+    {ind:"Pulmonary hypertension (adjunct)",dose:"0.5–1 mg/kg/day ÷ q6h (rarely used — sildenafil preferred)"},
+    {ind:"Raynaud's phenomenon",dose:"0.5 mg/kg/day ÷ q8h"},
+  ], notes:"SL use for acute hypertension controversial — can cause precipitous BP drop and stroke. Reflex tachycardia with short-acting form. Peripheral oedema common. Use extended-release for chronic hypertension. Grapefruit juice interaction (CYP3A4)." },
+
+  { name:"Amlodipine", generic:"amlodipine besylate", class:"Calcium Channel Blocker / Antihypertensive", routes:["PO"], doses:[
+    {ind:"Hypertension (6–17 years)",dose:"2.5–5 mg once daily (max 10 mg/day)"},
+    {ind:"Hypertension (1–6 years)",dose:"0.05–0.3 mg/kg once daily (max 5 mg/day)"},
+    {ind:"Stable angina (adolescent)",dose:"5–10 mg once daily"},
+    {ind:"Vasospastic angina / Raynaud's",dose:"5–10 mg once daily"},
+  ], notes:"Long half-life (35–50h) — once daily dosing. Minimal reflex tachycardia. Well tolerated. Peripheral oedema (dose-dependent, more with higher doses). Gradual onset (2–4 weeks for full antihypertensive effect). No dose adjustment for renal failure. Mild hepatic dose reduction." },
+
+  { name:"Labetalol", generic:"labetalol hydrochloride", class:"Alpha + Beta Blocker / Antihypertensive", routes:["IV","PO"], doses:[
+    {ind:"Hypertensive urgency/emergency (IV bolus)",dose:"0.2–1 mg/kg/dose IV over 2–5 min; repeat q10 min (max 40 mg/dose; cumulative max 300 mg)"},
+    {ind:"Hypertensive emergency (IV infusion)",dose:"0.25–3 mg/kg/hour; titrate to BP target"},
+    {ind:"Chronic hypertension (PO, ≥3 years)",dose:"2–4 mg/kg/day ÷ q12h (max 40 mg/kg/day or 1.2g/day)"},
+    {ind:"Hypertensive encephalopathy (IV)",dose:"Load 0.2–1 mg/kg → infusion 0.25–1 mg/kg/hour"},
+  ], notes:"Alpha:beta blockade ratio 1:7 (IV) or 1:3 (PO). Particularly useful in catecholamine-excess states (pheochromocytoma — caution: inadequate alpha blockade). Avoid in asthma, decompensated HF, bradycardia. Causes orthostatic hypotension. Hepatically metabolised." },
+
+  { name:"Hydralazine", generic:"hydralazine hydrochloride", class:"Direct Vasodilator / Antihypertensive", routes:["IV","IM","PO"], doses:[
+    {ind:"Hypertensive emergency (IV/IM)",dose:"0.1–0.5 mg/kg/dose IV slow (max 20 mg/dose) q4–6h"},
+    {ind:"Chronic hypertension (PO)",dose:"0.75–3 mg/kg/day ÷ q6h (max 7.5 mg/kg/day or 200 mg/day)"},
+    {ind:"CHF (vasodilator — with nitrates)",dose:"0.5–1 mg/kg/day ÷ q6h PO"},
+  ], notes:"Reflex tachycardia — combine with beta-blocker for chronic use. Drug-induced lupus with prolonged high-dose (>200mg/day for >6 months) — ANA monitoring. IV onset 10–20 min; peak 30–40 min. Use in pre-eclampsia/eclampsia (maternal care)." },
+
+  { name:"Sodium Nitroprusside", generic:"sodium nitroprusside", class:"Direct Vasodilator / Hypertensive Emergency", routes:["IV infusion"], doses:[
+    {ind:"Hypertensive emergency (infusion)",dose:"0.3–0.5 mcg/kg/min initially → titrate by 0.1–0.2 mcg/kg/min → usual 1–3 mcg/kg/min (max 8–10 mcg/kg/min; max duration 10 min at max dose)"},
+    {ind:"Controlled hypotension (surgical)",dose:"0.5–1 mcg/kg/min; titrate to effect"},
+    {ind:"Acute HF / low-output state (afterload reduction)",dose:"0.5–3 mcg/kg/min"},
+  ], notes:"CYANIDE TOXICITY risk with prolonged use (>72h) or high doses (>2 mcg/kg/min) — accumulation especially in renal/hepatic failure. Signs: metabolic acidosis, tachycardia, altered consciousness. Thiocyanate toxicity (renal failure). Protect infusion from light (aluminium foil). Give thiosulfate 12.5 mg/kg IV with high doses. Monitor thiocyanate levels >72h." },
+
+  { name:"Propranolol", generic:"propranolol hydrochloride", class:"Non-selective Beta-blocker", routes:["PO","IV"], doses:[
+    {ind:"SVT (acute IV)",dose:"0.01–0.1 mg/kg IV slow over 10 min (max 1 mg infant; 3 mg child); under ECG monitoring"},
+    {ind:"SVT prophylaxis (PO, <1 year)",dose:"0.5–1 mg/kg/day ÷ q6h → max 4–5 mg/kg/day"},
+    {ind:"SVT prophylaxis (PO, 1–5 years)",dose:"1–4 mg/kg/day ÷ q6–8h"},
+    {ind:"Hypertension (PO, all ages)",dose:"0.5–1 mg/kg/day ÷ q6–8h → max 4–8 mg/kg/day"},
+    {ind:"Migraine prophylaxis (≥6 years)",dose:"0.6–1.5 mg/kg/day ÷ q8h (max 4 mg/kg/day or 120 mg/day)"},
+    {ind:"Hyperthyroidism (thyroid storm adjunct)",dose:"0.01–0.1 mg/kg/dose IV q4–6h; or 1–2 mg/kg/day PO ÷ q8h"},
+    {ind:"Infantile haemangioma",dose:"1–3 mg/kg/day ÷ q8h (standard dose for IH — 2 mg/kg/day)"},
+    {ind:"Tetralogy of Fallot (Tet spells)",dose:"0.01–0.05 mg/kg IV slow; oral prophylaxis 2–4 mg/kg/day ÷ q6h"},
+    {ind:"Anxiety (acute, performance)",dose:"0.5–1 mg/kg PO PRN"},
+  ], notes:"Contraindicated in asthma (bronchospasm), decompensated HF, 2nd/3rd degree AVB, hypotension. Hypoglycaemia masking in diabetics. Abrupt withdrawal in CAD causes rebound. For infantile haemangioma: monitor glucose and HR — hold if HR <80 bpm (infant) or <60 bpm (older child)." },
+
+  { name:"Milrinone", generic:"milrinone lactate", class:"Phosphodiesterase-3 Inhibitor / Inodilator", routes:["IV"], doses:[
+    {ind:"Low cardiac output (post-cardiac surgery)",dose:"Loading 50 mcg/kg IV over 10 min → maintenance 0.25–0.75 mcg/kg/min"},
+    {ind:"Acute HF (no loading if hypotensive)",dose:"0.25–0.75 mcg/kg/min; titrate to haemodynamics (often omit loading)"},
+    {ind:"Pulmonary hypertension (PAH crisis)",dose:"0.3–0.5 mcg/kg/min (decreases PVR)"},
+    {ind:"Septic shock with myocardial dysfunction (adjunct)",dose:"0.25–0.5 mcg/kg/min"},
+  ], notes:"Positive inotropy + vasodilation (inodilator). Reduces PVR — beneficial in right heart failure and PAH. Hypotension main risk — avoid if already hypotensive. Renal dose adjustment (primarily renal excretion). Arrhythmias possible. Usually used with vasopressor to counteract vasodilation." },
+
+  { name:"Dopamine", generic:"dopamine hydrochloride", class:"Catecholamine / Vasopressor-Inotrope", routes:["IV infusion"], doses:[
+    {ind:"Dopaminergic / renal perfusion (low dose)",dose:"2–5 mcg/kg/min IV (increases renal blood flow — evidence limited)"},
+    {ind:"Inotropic (cardiac) effect",dose:"5–10 mcg/kg/min IV (primarily beta-1 — increases contractility/HR)"},
+    {ind:"Vasopressor effect",dose:"10–20 mcg/kg/min IV (alpha-1 dominant — SVR increase)"},
+    {ind:"Septic shock (alternative vasopressor)",dose:"5–20 mcg/kg/min; titrate to MAP target"},
+    {ind:"Bradycardia (if atropine fails — PALS)",dose:"2–20 mcg/kg/min infusion"},
+  ], notes:"Dose-dependent pharmacology (dopaminergic → beta → alpha as dose increases — overlap in practice). First-line vasopressor in some protocols for septic shock in children (Surviving Sepsis 2020: norepinephrine preferred in adults; dopamine acceptable in children with bradycardia). Tachyarrhythmia common. Extravasation causes tissue necrosis — phentolamine antidote." },
+
+  { name:"Dobutamine", generic:"dobutamine hydrochloride", class:"Synthetic Catecholamine / Inotrope", routes:["IV infusion"], doses:[
+    {ind:"Low cardiac output / cardiogenic shock",dose:"2.5–20 mcg/kg/min IV; titrate to cardiac output (usually 5–10 mcg/kg/min)"},
+    {ind:"Septic shock with myocardial dysfunction (adjunct)",dose:"2.5–10 mcg/kg/min (add to vasopressor)"},
+    {ind:"Stress echocardiography",dose:"5–40 mcg/kg/min protocol (adult dose; incremental)"},
+  ], notes:"Primarily beta-1 (inotropy) with some beta-2 (vasodilation) — net effect: increased CO, decreased SVR. Tachycardia and arrhythmias common. No renal/mesenteric effects (unlike dopamine). Tolerance develops after 72h (receptor downregulation). Hypotension possible (beta-2 vasodilation)." },
+
+  { name:"Norepinephrine (Noradrenaline)", generic:"norepinephrine / noradrenaline", class:"Catecholamine / Vasopressor", routes:["IV infusion"], doses:[
+    {ind:"Septic shock (1st-line vasopressor)",dose:"0.05–2 mcg/kg/min IV; start low, titrate to MAP target (MAP 50–65 mmHg)"},
+    {ind:"Distributive shock / anaphylaxis (after epinephrine)",dose:"0.05–0.5 mcg/kg/min IV infusion"},
+    {ind:"Post-cardiac arrest (haemodynamic support)",dose:"0.05–0.3 mcg/kg/min IV"},
+  ], notes:"First-line vasopressor in paediatric septic shock (Surviving Sepsis 2020). Primarily alpha-1 (vasoconstriction) with beta-1 (mild inotropy). Central line mandatory (extravasation → tissue necrosis — phentolamine antidote: 0.1–0.2 mg/kg local injection). Reflex bradycardia. Monitor distal perfusion." },
+
+  { name:"Sildenafil", generic:"sildenafil citrate", class:"PDE-5 Inhibitor / Pulmonary Vasodilator", routes:["PO","IV"], doses:[
+    {ind:"Pulmonary arterial hypertension (PAH, ≥1 year)",dose:"PO: 0.25–1 mg/kg/dose q6–8h (max 20 mg/dose q8h); start low, titrate"},
+    {ind:"PAH (≤20 kg, PO)",dose:"10 mg TDS (three times daily)"},
+    {ind:"PAH (>20 kg, PO)",dose:"20 mg TDS"},
+    {ind:"PAH (IV — bridging)",dose:"0.14 mg/kg/dose (1/7 of oral dose) IV q4–6h"},
+    {ind:"Persistent pulmonary hypertension of newborn (PPHN)",dose:"0.5–1 mg/kg/dose PO q6h; or 0.1 mg/kg IV loading then 0.07 mg/kg/hour infusion"},
+    {ind:"Raynaud's phenomenon (adolescent)",dose:"20 mg TDS"},
+  ], notes:"FDA warning in PAH: long-term use at high doses (>20 mg TDS) may worsen mortality in paediatric PAH. Use lowest effective dose. Do NOT use with nitrates (profound hypotension). Systemic hypotension main side effect. Headache, flushing, epistaxis. Visual changes (PDE6 cross-reactivity)." },
+
+  { name:"Magnesium Sulfate", generic:"magnesium sulfate (MgSO4)", class:"Electrolyte / Anticonvulsant / Bronchodilator", routes:["IV","IM"], doses:[
+    {ind:"Hypomagnesaemia (symptomatic — IV)",dose:"25–50 mg/kg/dose IV over 10–20 min (max 2g/dose); may repeat q6h"},
+    {ind:"Severe acute asthma (IV adjunct)",dose:"25–75 mg/kg IV over 20 min (max 2g); single dose in PICU"},
+    {ind:"Status epilepticus (eclampsia) / refractory SE",dose:"Load 25–50 mg/kg IV over 15–30 min (max 2g); then 10–20 mg/kg/hour infusion"},
+    {ind:"Torsades de Pointes (VT — IV)",dose:"25–50 mg/kg IV rapid (max 2g/dose) → follow by infusion"},
+    {ind:"Neonatal hypocalcaemia (adjunct) / HIE neuroprotection",dose:"250 mg/kg IV over 30 min (MgSO4 50% solution diluted)"},
+    {ind:"IM (eclampsia prophylaxis — obstetric use)",dose:"5g IM each buttock + 4g IV loading (Pritchard regimen — maternal)"},
+  ], notes:"Monitor: serum Mg, respiratory rate, deep tendon reflexes (loss of DTR = early toxicity at 5–6 mmol/L; respiratory arrest >7 mmol/L). ANTIDOTE: calcium gluconate 100 mg/kg IV. Renal excretion — accumulates in renal failure. Target serum Mg: 2–4 mmol/L (therapeutic)." },
+
+  // ===== ENDOCRINE (NEW) =====
+  { name:"Levothyroxine (T4)", generic:"levothyroxine sodium / thyroxine", class:"Thyroid Hormone", routes:["PO","IV"], doses:[
+    {ind:"Congenital hypothyroidism (0–3 months)",dose:"10–15 mcg/kg/day once daily PO; start at 50 mcg/day"},
+    {ind:"Congenital hypothyroidism (3–6 months)",dose:"8–10 mcg/kg/day once daily"},
+    {ind:"Hypothyroidism (6 months–1 year)",dose:"6–8 mcg/kg/day once daily"},
+    {ind:"Hypothyroidism (1–5 years)",dose:"5–6 mcg/kg/day once daily"},
+    {ind:"Hypothyroidism (6–12 years)",dose:"4–5 mcg/kg/day once daily"},
+    {ind:"Hypothyroidism (>12 years / adolescent)",dose:"2–3 mcg/kg/day once daily (max 100–150 mcg/day for most)"},
+    {ind:"Myxoedema coma / hypothyroid crisis (IV)",dose:"2–3 mcg/kg IV loading then 1–1.5 mcg/kg/day IV"},
+  ], notes:"Take on empty stomach (30–60 min before food; avoid calcium, iron, antacids). Target TSH 0.5–2 mU/L in congenital hypothyroidism. Monitor TSH 4–6 weeks after dose change. Inorganic (T4 to T3 conversion depends on selenium). Do NOT give with soy, fibre, cholestyramine." },
+
+  { name:"Carbimazole / Methimazole", generic:"carbimazole / methimazole (thiamazole)", class:"Antithyroid Drug", routes:["PO"], doses:[
+    {ind:"Hyperthyroidism (initial, neonates — methimazole)",dose:"0.5–1 mg/kg/day ÷ q8h; adjust by TFTs every 2–4 weeks"},
+    {ind:"Graves disease (children — initial)",dose:"0.25–0.5 mg/kg/day ÷ q8h (methimazole); or 0.5–1 mg/kg/day carbimazole ÷ q8h"},
+    {ind:"Graves disease (maintenance)",dose:"0.1–0.2 mg/kg/day once daily (methimazole) — block-replace approach"},
+    {ind:"Thyroid storm (high dose)",dose:"0.5–1 mg/kg/dose q6–8h (methimazole); or via NG if NPO"},
+  ], notes:"Carbimazole → converted to methimazole (active). AGRANULOCYTOSIS (0.3%) — STOP drug immediately if fever/sore throat; check WBC stat. Aplastic anaemia (rare). Monitor TFTs every 4–6 weeks. Vasculitis (ANCA+ve). Teratogenic (embryopathy with methimazole — PTU preferred in 1st trimester)." },
+
+  { name:"Propylthiouracil (PTU)", generic:"propylthiouracil", class:"Antithyroid Drug", routes:["PO"], doses:[
+    {ind:"Hyperthyroidism (initial, children)",dose:"5–7 mg/kg/day ÷ q8h (max 300 mg/day)"},
+    {ind:"Thyroid storm (high dose)",dose:"5–10 mg/kg/dose q4–6h via NG"},
+    {ind:"1st trimester of pregnancy (maternal)",dose:"100–150 mg q8h → reduce as TFTs normalise"},
+    {ind:"Neonatal hyperthyroidism (transient)",dose:"5–10 mg/kg/day ÷ q8h; adjust by TFTs"},
+  ], notes:"HEPATOTOXICITY — FDA Black Box (severe/fatal liver failure — more than carbimazole/methimazole). Reserve PTU for: thyroid storm, 1st trimester, methimazole allergy. Monitor LFTs monthly. Agranulocytosis similar to methimazole. Inhibits peripheral T4→T3 conversion (advantage in storm). PREFER methimazole for most paediatric hyperthyroidism." },
+
+  { name:"Fludrocortisone", generic:"fludrocortisone acetate", class:"Mineralocorticoid", routes:["PO"], doses:[
+    {ind:"Congenital adrenal hyperplasia (CAH) — mineralocorticoid replacement",dose:"0.05–0.2 mg/day once daily (50–200 mcg/day); infants often need higher (0.1–0.3 mg/day)"},
+    {ind:"Adrenal insufficiency (primary — Addison's)",dose:"0.05–0.1 mg/day once daily (0.1 mg/day usual adult dose)"},
+    {ind:"Postural hypotension (autonomic failure, adolescent)",dose:"0.1–0.2 mg/day once daily"},
+  ], notes:"Potent mineralocorticoid (125× hydrocortisone for Na retention) with weak glucocorticoid activity. Targets: normal BP, normal renin (mid-normal range), no salt craving. Side effects: hypertension, oedema, hypokalaemia — monitor BP and K+. During illness: increase only glucocorticoid (hydrocortisone), NOT fludrocortisone (mineralocorticoid reserve maintained)." },
+
+  { name:"Methylprednisolone (IV)", generic:"methylprednisolone sodium succinate (Solu-Medrol)", class:"Corticosteroid (IV)", routes:["IV","IM","PO"], doses:[
+    {ind:"Acute severe asthma (IV)",dose:"1–2 mg/kg/dose IV q6h (max 40–60 mg/dose) until oral tolerated"},
+    {ind:"Anaphylaxis (adjunct IV)",dose:"1–2 mg/kg/dose IV (max 125 mg/dose); single dose"},
+    {ind:"Nephrotic syndrome (pulse therapy — SRNS)",dose:"30 mg/kg IV over 60 min on 3 consecutive days × 6 monthly pulses (max 1g/pulse)"},
+    {ind:"Lupus nephritis / vasculitis (pulse)",dose:"30 mg/kg/day IV over 30–60 min × 3 days (max 1g/day)"},
+    {ind:"Spinal cord injury (controversial, <8h)",dose:"30 mg/kg IV bolus over 15 min then 5.4 mg/kg/hour × 23h (NASCIS 2 — NOT standard of care)"},
+    {ind:"Immune thrombocytopenia (ITP — pulse)",dose:"30 mg/kg/day × 3 days (max 1g/day)"},
+    {ind:"ARDS / severe pneumonia (IV)",dose:"1–2 mg/kg/day ÷ q6–12h × 5–7 days (with taper)"},
+  ], notes:"5× potency of hydrocortisone. Minimal mineralocorticoid activity. Hyperglycaemia, HTN, GI ulceration during pulse therapy — PPI cover. Acute psychosis with pulse therapy. Avascular necrosis with prolonged use. No taper needed for single doses <3 days (unless prolonged prior use)." },
+
+  { name:"Octreotide / Somatostatin", generic:"octreotide acetate", class:"Somatostatin Analogue", routes:["IV","SC"], doses:[
+    {ind:"Acute GI bleeding — oesophageal varices (IV)",dose:"Loading 1–2 mcg/kg IV bolus (max 100 mcg); then 1–2 mcg/kg/hour infusion × 3–5 days"},
+    {ind:"Congenital hyperinsulinism (CHI — IV infusion)",dose:"1–5 mcg/kg/hour IV; titrate to BG; max 20–40 mcg/kg/day"},
+    {ind:"Hypoglycaemia — hyperinsulinism (SC)",dose:"2–10 mcg/kg/dose SC q6–8h; titrate to BG"},
+    {ind:"Chylothorax (conservative management — SC/IV)",dose:"0.5–4 mcg/kg/hour IV infusion; or 1–10 mcg/kg/dose SC q6–8h"},
+    {ind:"Acromegaly / carcinoid (adolescent)",dose:"100–200 mcg SC q8h; or long-acting depot monthly"},
+  ], notes:"Tachyphylaxis develops in GI bleeding — limit to 5 days. Hyperglycaemia and hypoglycaemia (suppresses both insulin and glucagon). Gallstone formation with chronic use. Monitoring BG every 2–4h when starting. Administer SC slowly to reduce pain." },
+
+  { name:"Diazoxide", generic:"diazoxide", class:"Antihypertensive / Hyperglycaemic Agent", routes:["PO","IV"], doses:[
+    {ind:"Congenital hyperinsulinism (PO — KATP-channel responsive)",dose:"5–20 mg/kg/day ÷ q8h (start 5 mg/kg/day → titrate); given with hydrochlorothiazide"},
+    {ind:"Nesidioblastosis / SUR1/Kir6.2 mutations (PO)",dose:"10–15 mg/kg/day ÷ q8h — some respond; some do not (SUR1-KO)"},
+    {ind:"Hypertensive emergency (IV — rarely used now)",dose:"1–3 mg/kg IV rapid bolus (max 150 mg/dose); may repeat"},
+  ], notes:"PO for hyperinsulinism: coadminister hydrochlorothiazide (HCTZ) 1–3 mg/kg/day (counteracts fluid retention and potentiates diazoxide). Hirsutism (fine lanugo hair) common in infants — reversible. Oedema. Hyperuricaemia. Cardiac effect: positive inotrope. Stop if no response at 5 days (likely SUR-unresponsive — proceed to octreotide or surgery)." },
+
+  { name:"Glucagon", generic:"glucagon hydrochloride", class:"Hyperglycaemic Agent / Antidote", routes:["IV","IM","SC","Intranasal"], doses:[
+    {ind:"Hypoglycaemia (emergency, <25 kg — IM/SC)",dose:"0.5 mg (0.5 units) IM/SC (>10 kg: 1 mg IM)"},
+    {ind:"Hypoglycaemia (emergency, ≥25 kg — IM/SC)",dose:"1 mg (1 unit) IM/SC"},
+    {ind:"Hypoglycaemia (intranasal — Baqsimi, ≥4 years)",dose:"3 mg IN (one spray in one nostril)"},
+    {ind:"Beta-blocker / calcium channel blocker overdose (IV)",dose:"50–150 mcg/kg IV bolus (max 10 mg) → 50–150 mcg/kg/hour infusion"},
+    {ind:"Oesophageal foreign body (smooth muscle relaxant)",dose:"0.03–0.1 mg/kg IV (max 1 mg)"},
+  ], notes:"Mobilises hepatic glycogen → glucose — needs adequate glycogen stores (may fail in malnourished, prolonged fasting, liver disease). Causes nausea/vomiting (keep patient lateral during recovery). For beta-blocker OD: give calcium concurrently, then high-dose insulin-euglycaemia (HIE) protocol. Intranasal form: highly effective for paediatric diabetic emergencies at home." },
+
+  { name:"Desmopressin (DDAVP)", generic:"desmopressin acetate", class:"Vasopressin Analogue / ADH", routes:["IV","SC","Intranasal","PO"], doses:[
+    {ind:"Central diabetes insipidus (intranasal)",dose:"5–30 mcg/day ÷ q12–24h IN (solution 100 mcg/mL)"},
+    {ind:"Central diabetes insipidus (PO)",dose:"0.05–0.2 mg/dose q8h PO; titrate to urine output"},
+    {ind:"Enuresis (nocturnal, >6 years — PO)",dose:"0.2 mg at bedtime; may increase to 0.4 mg (max 0.6 mg)"},
+    {ind:"Enuresis (intranasal)",dose:"10–40 mcg at bedtime IN"},
+    {ind:"Mild haemophilia A / vWD type 1 (IV/SC)",dose:"0.3 mcg/kg IV over 15–30 min or SC; repeat q12–24h (tachyphylaxis after 3 doses)"},
+    {ind:"vWD bleeding (intranasal — Stimate 1.5 mg/mL)",dose:"<50 kg: 1 spray (150 mcg) IN; ≥50 kg: 2 sprays (300 mcg)"},
+    {ind:"Uremic bleeding (IV)",dose:"0.3 mcg/kg IV over 15 min"},
+  ], notes:"HYPONATRAEMIA risk — restrict fluid intake during treatment. Monitor serum Na q4–6h during initiation. Tachyphylaxis with repeated doses >3 in 24–48h (vWF/FVIII stores depleted). Avoid in cardiac disease, SIADH, hypertension. Regular (100 mcg/mL) nasal spray NOT for enuresis — use 10 mcg/spray formulation only." },
+
+  // ===== HAEMATOLOGY / COAGULATION =====
+  { name:"Unfractionated Heparin (UFH)", generic:"heparin sodium", class:"Anticoagulant", routes:["IV","SC"], doses:[
+    {ind:"DVT / PE treatment (IV loading)",dose:"75–100 units/kg IV bolus (max 5000 units); then maintenance infusion"},
+    {ind:"DVT/PE treatment (IV maintenance — <1 year)",dose:"28 units/kg/hour infusion; titrate to anti-Xa 0.35–0.7 units/mL"},
+    {ind:"DVT/PE treatment (IV maintenance — >1 year)",dose:"20 units/kg/hour infusion; titrate to anti-Xa or aPTT 60–85 sec"},
+    {ind:"Central line / arterial line flush",dose:"1–2 units/mL flush solution"},
+    {ind:"Cardiac bypass / ECMO circuit (high dose)",dose:"300–400 units/kg loading; target ACT >400 sec (on bypass)"},
+    {ind:"SC prophylaxis (adolescent)",dose:"5000 units SC q8–12h"},
+  ], notes:"Weight-based nomogram titration essential. Protamine reversal: 1 mg protamine per 100 units heparin (given in last 30–60 min). HIT (Heparin-Induced Thrombocytopenia) risk: monitor platelets q2d during therapy. AT-III dependent — may be ineffective in severe AT-III deficiency. UFH preferred when rapid reversal needed (t½ 60–90 min IV)." },
+
+  { name:"Enoxaparin (LMWH)", generic:"enoxaparin sodium", class:"Low Molecular Weight Heparin", routes:["SC"], doses:[
+    {ind:"DVT/PE treatment (< 2 months)",dose:"1.5 mg/kg/dose SC q12h; target anti-Xa 0.5–1 units/mL (4h post-dose)"},
+    {ind:"DVT/PE treatment (2 months–18 years)",dose:"1 mg/kg/dose SC q12h; target anti-Xa 0.5–1 units/mL"},
+    {ind:"DVT/PE prophylaxis (< 2 months)",dose:"0.75 mg/kg/dose SC q12h; target anti-Xa 0.1–0.3 units/mL"},
+    {ind:"DVT/PE prophylaxis (2 months–18 years)",dose:"0.5 mg/kg/dose SC q12h; target anti-Xa 0.1–0.3 units/mL"},
+    {ind:"Bridging therapy (AC interruption)",dose:"1 mg/kg SC q12h"},
+    {ind:"Neonates (premature)",dose:"2 mg/kg/dose SC q12h (higher requirement due to rapid clearance)"},
+  ], notes:"Anti-Xa monitoring (not aPTT) — check 4h post dose for steady-state levels. Partial reversal with protamine (60–75% vs UFH). Less HIT risk than UFH. Renal dose adjustment for CrCl <30 (use anti-Xa monitoring closely or switch to UFH)." },
+
+  { name:"Tranexamic Acid", generic:"tranexamic acid (TXA)", class:"Antifibrinolytic / Haemostatic", routes:["IV","PO"], doses:[
+    {ind:"Surgical bleeding prophylaxis (IV)",dose:"10–15 mg/kg IV over 15 min pre-incision; then 5–10 mg/kg/hour infusion intraoperatively"},
+    {ind:"Haemophilia / bleeding disorder (IV)",dose:"10–20 mg/kg/dose IV q6–8h"},
+    {ind:"Trauma with haemorrhage (IV — CRASH-2 principle)",dose:"15 mg/kg IV loading over 10 min (max 1g); then 1g over 8h (>8 years; adult dose)"},
+    {ind:"Menorrhagia (adolescent, PO)",dose:"1g PO q6–8h × 5 days (max 4g/day)"},
+    {ind:"Epistaxis / minor mucosal bleeding (PO)",dose:"25 mg/kg/dose (max 1.5g) PO q8h × 5 days"},
+    {ind:"Dental extraction in haemophilia (mouthwash/swallow)",dose:"10 mg/kg dose PO 4× daily × 7 days; or 5% solution mouthwash"},
+  ], notes:"Lysine analogue — blocks plasminogen binding to fibrin (anti-fibrinolytic). Not for upper urinary tract bleeding (clot retention in renal pelvis). Seizure risk at very high doses (competitive GABA-A antagonism). Thromboembolic risk (use cautiously in DIC — use only when fibrinolysis predominant). Administer IV slowly (≤100 mg/min — hypotension with rapid IV)." },
+
+  // ===== VITAMINS / ELECTROLYTES =====
+  { name:"Vitamin D (Cholecalciferol)", generic:"cholecalciferol / vitamin D3 / ergocalciferol (D2)", class:"Fat-soluble Vitamin", routes:["PO"], doses:[
+    {ind:"Vitamin D deficiency (treatment, <1 year)",dose:"1000–2000 IU/day × 3 months; then maintenance 400 IU/day"},
+    {ind:"Vitamin D deficiency (treatment, 1–18 years)",dose:"2000–4000 IU/day × 3 months; then maintenance 600–1000 IU/day"},
+    {ind:"Nutritional rickets (treatment)",dose:"2000–4000 IU/day × 12 weeks (OR 50,000 IU/week × 6–8 weeks in older children)"},
+    {ind:"Prophylaxis — breastfed infants",dose:"400 IU/day from birth"},
+    {ind:"Prophylaxis — formula-fed infants (<500mL/day formula)",dose:"400 IU/day"},
+    {ind:"Malabsorption / chronic liver disease",dose:"2000–10,000 IU/day (higher doses often needed — monitor 25-OHD levels)"},
+  ], notes:"Monitor 25-hydroxyvitamin D levels (target >50 nmol/L). Toxicity: hypercalcaemia, hypercalciuria, nephrocalcinosis — check Ca2+ after 3 months of treatment doses. Williams syndrome — heightened sensitivity to Vit D (hypercalcaemia risk). 1,25-dihydroxyvitamin D (calcitriol) for hypoparathyroidism and CKD (bypasses renal activation)." },
+
+  { name:"Calcium Gluconate", generic:"calcium gluconate 10%", class:"Electrolyte / Cardiac Stabiliser", routes:["IV","PO"], doses:[
+    {ind:"Symptomatic hypocalcaemia (acute IV)",dose:"100–200 mg/kg of 10% solution (9–18 mg/kg elemental Ca) IV over 5–10 min; then 200–800 mg/kg/day infusion"},
+    {ind:"Cardiac arrhythmia from hypocalcaemia (IV)",dose:"100 mg/kg IV of 10% solution over 2–5 min under ECG monitoring"},
+    {ind:"Hyperkalemia (cardiac stabilisation — IV)",dose:"100 mg/kg IV of 10% solution (max 3g/dose) over 3–5 min; repeat after 5 min if no response"},
+    {ind:"Neonatal hypocalcaemia (IV)",dose:"100–200 mg/kg of 10% (1–2 mL/kg) IV slowly (max 1g/dose) → infusion 400–800 mg/kg/day"},
+    {ind:"Calcium channel blocker OD (IV)",dose:"60 mg/kg IV over 5–10 min (may repeat × 3)"},
+    {ind:"Magnesium toxicity antidote (IV)",dose:"100 mg/kg IV slowly (antidote for Mg overdose)"},
+    {ind:"Oral supplement (maintenance PO)",dose:"500–1000 mg elemental Ca/day ÷ q6–12h"},
+  ], notes:"10% calcium gluconate = 9 mg/mL elemental Ca. DO NOT mix with bicarbonate (precipitates). Peripheral extravasation → tissue necrosis (central line preferred). Monitor ECG during IV infusion. Calcium CHLORIDE (10%): 3× more elemental Ca (27 mg/mL) — preferred in cardiac arrest but caustic (central line only)." },
+
+  { name:"Potassium Chloride (IV/PO)", generic:"potassium chloride / KCl", class:"Electrolyte Replacement", routes:["IV","PO"], doses:[
+    {ind:"Hypokalaemia (IV — oral not feasible)",dose:"0.2–0.5 mEq/kg/dose IV over 1–4h (max 0.5 mEq/kg/hour; max 40 mEq/dose); monitor ECG"},
+    {ind:"Hypokalaemia (mild-moderate, PO)",dose:"1–4 mEq/kg/day ÷ q6–8h PO; adjust by serum K+"},
+    {ind:"Routine maintenance IV (hypokalaemia prevention)",dose:"20–40 mEq/L in IV fluids (neonates: 0.1–0.2 mEq/kg/hour)"},
+    {ind:"Severe hypokalaemia (<2.5 mEq/L, ICU)",dose:"Max 0.5 mEq/kg/hour via central line; continuous ECG monitoring"},
+  ], notes:"NEVER give IV KCl undiluted (fatal). Max peripheral concentration 40 mEq/L (use central line for higher concentrations). Max IV rate 0.5 mEq/kg/hour (0.3 for neonates). Continuous ECG monitoring for IV replacement. Oral KCl liquid concentrated — dilute well (caustic to GI mucosa). Correct Mg2+ to correct refractory hypokalaemia." },
+
+  { name:"Sodium Bicarbonate", generic:"sodium bicarbonate (NaHCO3)", class:"Alkalinising Agent / Electrolyte", routes:["IV"], doses:[
+    {ind:"Metabolic acidosis (pH <7.1 severe)",dose:"1–2 mEq/kg IV slow over 30–60 min (or: dose = 0.3 × weight × base deficit; give half)"},
+    {ind:"Cardiac Arrest (PALS — 2nd line after 10 min)",dose:"1 mEq/kg IV/IO; may repeat q10 min (if prolonged arrest)"},
+    {ind:"Hyperkalaemia (ECG changes — acute)",dose:"1–2 mEq/kg IV over 5–10 min"},
+    {ind:"TCA overdose (toxicity — alkalinisation)",dose:"1–2 mEq/kg IV; target arterial pH 7.45–7.55"},
+    {ind:"Phenobarbital OD (alkaline urine for excretion)",dose:"1–2 mEq/kg IV → adjust to achieve urine pH 7.5–8"},
+    {ind:"Neonatal metabolic acidosis (birth asphyxia)",dose:"1–2 mEq/kg IV slow (only if adequately ventilated)"},
+  ], notes:"DILUTE to 0.5 mEq/mL (isotonic) for neonates (1:1 with sterile water — hypertonicity causes IVH). Worsens intracellular acidosis if inadequate ventilation (CO2 rises). Do NOT mix with calcium (precipitates). Hypernatraemia and hyperosmolality risk with repeated doses. Preferred only for specific indications (TCA OD, hyperkalaemia, selected metabolic acidosis)." },
+
+  { name:"Thiamine (Vitamin B1)", generic:"thiamine hydrochloride", class:"Water-soluble Vitamin / Antidote", routes:["IV","IM","PO"], doses:[
+    {ind:"Wernicke encephalopathy (treatment IV)",dose:"100–300 mg IV over 30 min q8h × 3 days → then 100 mg/day IV × 5 days"},
+    {ind:"Leigh syndrome / thiamine-dependent conditions (PO)",dose:"10–40 mg/kg/day (large doses); up to 400 mg/day"},
+    {ind:"Maple syrup urine disease (MSUD) thiamine-responsive",dose:"10–200 mg/day ÷ q8h; trial × 2–4 weeks"},
+    {ind:"Nutritional deficiency / refeeding (IV/IM/PO)",dose:"10–25 mg/day PO; or 25–100 mg IV/IM × 3–5 days"},
+    {ind:"Pyruvate dehydrogenase deficiency",dose:"100 mg/day (trial × 4 weeks)"},
+    {ind:"Pre-glucose administration (high risk)",dose:"100–200 mg IV (BEFORE glucose — Wernicke prevention)"},
+  ], notes:"ALWAYS give thiamine BEFORE glucose in suspected deficiency (glucose precipitates Wernicke encephalopathy in thiamine deficiency). IV thiamine: anaphylaxis rare but possible — slow infusion. Deficiency causes beriberi (wet = cardiac, dry = neurological). High doses safe (water-soluble)." },
+
+  { name:"Folic Acid", generic:"folic acid / pteroylglutamic acid", class:"Water-soluble Vitamin / Haematinic", routes:["PO","IV","IM"], doses:[
+    {ind:"Megaloblastic anaemia — folate deficiency (treatment)",dose:"Children: 0.1–0.4 mg/day PO × 4 months (infants 0.1 mg; older children 0.5–1 mg)"},
+    {ind:"Nutritional folate deficiency (maintenance)",dose:"0.1–0.5 mg/day PO"},
+    {ind:"Haemolytic anaemia (chronic folate supplementation)",dose:"1–5 mg/day PO"},
+    {ind:"MTX toxicity rescue (leucovorin — folinic acid)",dose:"Leucovorin: 15 mg/m²/dose IV q6h × 2 doses; high-dose rescue per protocol"},
+    {ind:"Pre-conception / pregnancy prevention NTD",dose:"0.4–0.8 mg/day PO (start 3 months preconception); 4 mg/day if prior NTD"},
+  ], notes:"Do not give folic acid alone for B12 deficiency (corrects anaemia but allows neurological damage to progress). Combined folate/B12 deficiency: treat both. Folinic acid (leucovorin) is the active form — bypasses DHFR (needed for MTX rescue and dihydropteroate synthase inhibitor toxicity)." },
+
+  { name:"Vitamin A", generic:"retinol palmitate / vitamin A", class:"Fat-soluble Vitamin", routes:["PO","IM"], doses:[
+    {ind:"Vitamin A deficiency — night blindness/Bitot spots (<1 year)",dose:"50,000 IU PO on day 1, day 2, day 14"},
+    {ind:"Vitamin A deficiency (1–5 years)",dose:"100,000 IU PO day 1; 100,000 IU day 2; 100,000 IU day 14"},
+    {ind:"Vitamin A deficiency (>5 years)",dose:"200,000 IU PO day 1; 200,000 IU day 2; 200,000 IU day 14"},
+    {ind:"Measles prophylaxis / treatment (high-dose WHO)",dose:"<6 months: 50,000 IU/day × 2 days; 6–11 months: 100,000 IU/day × 2 days; ≥12 months: 200,000 IU/day × 2 days"},
+    {ind:"Prevention (supplementation — India, 6 monthly)",dose:"6–11 months: 1 lakh IU PO; 12–59 months: 2 lakh IU q6 months"},
+  ], notes:"WHO essential medicine for VAD and measles. Toxicity: acutely — vomiting, raised ICP; chronic — teratogenic (avoid supplementation >10,000 IU/day in pregnancy). Bulging fontanelle in infants (benign, transient, with high dose). Give with fat-containing food for absorption." },
+
+  // ===== GI (NEW) =====
+  { name:"Domperidone", generic:"domperidone maleate", class:"Prokinetic / Antiemetic (D2 blocker — peripheral)", routes:["PO","PR"], doses:[
+    {ind:"Gastroparesis / GORD (PO, <12 years)",dose:"0.25–0.5 mg/kg/dose PO q6–8h (30 min before meals); max 0.5 mg/kg TDS"},
+    {ind:"Nausea/Vomiting (PO, >12 years / adolescent)",dose:"10 mg TDS (30 min before meals; max 30 mg/day) × ≤7 days"},
+    {ind:"Suppository (PR, nausea — >16 years)",dose:"60 mg PR q6–8h"},
+  ], notes:"QT PROLONGATION risk — FDA/EMA warning. Avoid with other QT-prolonging drugs, hepatic impairment. Use minimum effective dose for shortest time. Unlike metoclopramide, does NOT cross BBB well — fewer extrapyramidal effects. Prolactin elevation (gynaecomastia, galactorrhoea). Do not use in gut obstruction. Max treatment duration 7 days per EMA guidance." },
+
+  { name:"Lactulose", generic:"lactulose", class:"Osmotic Laxative / Ammonia Reducer", routes:["PO","PR"], doses:[
+    {ind:"Constipation (<1 year, PO)",dose:"2.5 mL q12h; adjust to effect"},
+    {ind:"Constipation (1–5 years, PO)",dose:"5–10 mL/day ÷ q12h; adjust"},
+    {ind:"Constipation (5–10 years, PO)",dose:"10 mL/dose q12h; adjust"},
+    {ind:"Constipation (>10 years, PO)",dose:"15–30 mL/dose q12h; adjust"},
+    {ind:"Hepatic encephalopathy (PO — titrate to 2–3 soft stools/day)",dose:"1–2 mL/kg/dose q6–8h → adjust; adult: 30–45 mL TDS-QDS"},
+    {ind:"HE — rectal enema (PR if NPO)",dose:"300 mL lactulose in 700 mL NS; retain 30 min; q4–6h"},
+  ], notes:"Onset 24–48h. Excessive doses → diarrhoea, electrolyte imbalance. Monitor electrolytes with chronic use. In HE: mechanism is acidification of colonic contents (traps NH4+). Fermented by colonic bacteria — gas (flatulence, bloating). Diabetes caution (sugar content). Also used as contrast for MRI bowel (diluted)." },
+
+  { name:"Ursodeoxycholic Acid (UDCA)", generic:"ursodeoxycholic acid / ursodiol", class:"Bile Acid / Hepatoprotective", routes:["PO"], doses:[
+    {ind:"Cholestatic liver disease / biliary atresia (post-Kasai)",dose:"10–20 mg/kg/day ÷ q12h PO"},
+    {ind:"TPN-associated cholestasis (PNAC)",dose:"10–30 mg/kg/day ÷ q8–12h"},
+    {ind:"Primary sclerosing cholangitis (PSC)",dose:"13–23 mg/kg/day ÷ q12h (high dose associated with worse outcomes in adult PSC — use standard dose)"},
+    {ind:"Cystic fibrosis liver disease",dose:"15–30 mg/kg/day ÷ q12h"},
+    {ind:"Gallstone dissolution (cholesterol stones)",dose:"8–10 mg/kg/day once at bedtime × 6–24 months"},
+  ], notes:"Generally well tolerated. Diarrhoea at high doses. Improves cholestasis biomarkers (GGT, ALP, bilirubin) and pruritus. Does NOT reverse established biliary atresia — adjunct only post-Kasai. Monitor LFTs every 3–6 months." },
+
+  { name:"N-Acetylcysteine (NAC)", generic:"N-acetylcysteine / acetylcysteine", class:"Antidote / Mucolytic", routes:["IV","PO","Inhaled"], doses:[
+    {ind:"Paracetamol overdose (IV — Rumack-Matthew nomogram indicated)",dose:"150 mg/kg IV over 60 min (loading); then 50 mg/kg over 4h; then 100 mg/kg over 16h (total 21h course)"},
+    {ind:"Paracetamol OD (PO — if IV not available)",dose:"140 mg/kg PO loading; then 70 mg/kg q4h × 17 doses (total 72h)"},
+    {ind:"Mucolytic — nebulised (cystic fibrosis / thick secretions)",dose:"3–5 mL of 10–20% solution nebulised q4–8h (dilute with NS if needed)"},
+    {ind:"Contrast nephropathy prevention (IV)",dose:"600–1200 mg PO q12h × 2 days (around contrast)"},
+    {ind:"Meconium ileus equivalent (rectal/oral)",dose:"2% solution 30–50 mL oral or rectal flush"},
+    {ind:"Renal protection in sepsis/AKI (IV adjunct, off-label)",dose:"600 mg PO/IV q12h"},
+  ], notes:"Start IV NAC for ALL paracetamol OD presenting <24h if Rumack-Matthew line suggests toxicity or if timed level unavailable and dose >150 mg/kg ingested. Side effects: anaphylactoid reaction (urticarial, bronchospasm) in 10–20% with IV loading — slow infusion rate, pretreat with antihistamine. Foul smell (sulfur) — warn patient/family." },
+
+  { name:"Pantoprazole (IV)", generic:"pantoprazole sodium sesquihydrate", class:"Proton Pump Inhibitor (IV)", routes:["IV","PO"], doses:[
+    {ind:"Stress ulcer prophylaxis / GI bleeding (IV, <40 kg)",dose:"0.5–1 mg/kg/dose IV once daily (max 40 mg)"},
+    {ind:"Stress ulcer prophylaxis / GI bleeding (IV, ≥40 kg)",dose:"40 mg IV once daily (max 80 mg/day)"},
+    {ind:"GERD / erosive oesophagitis (PO, ≥5 years, 15–40 kg)",dose:"20 mg once daily × 8 weeks"},
+    {ind:"GERD / erosive oesophagitis (PO, ≥5 years, >40 kg)",dose:"40 mg once daily × 8 weeks"},
+    {ind:"Helicobacter pylori eradication (with antibiotics)",dose:"0.5–1 mg/kg/day ÷ q12h × 14 days"},
+  ], notes:"Give IV over 15 min. Hypomagnesaemia with prolonged use (as with all PPIs). Drug interactions: clopidogrel (reduces antiplatelet effect), methotrexate (reduced clearance). Take PO 30–60 min before meals. IV form not approved for children <5 years routinely." },
+
+  // ===== ANTIHISTAMINES =====
+  { name:"Diphenhydramine", generic:"diphenhydramine hydrochloride", class:"1st-gen Antihistamine / Anti-emetic", routes:["PO","IV","IM"], doses:[
+    {ind:"Allergy / urticaria (PO/IV)",dose:"1–1.25 mg/kg/dose q4–6h (max 50 mg/dose; max 5 mg/kg/day or 300 mg/day)"},
+    {ind:"Anaphylaxis (adjunct IV — after epinephrine)",dose:"1 mg/kg IV over 5 min (max 50 mg)"},
+    {ind:"Extrapyramidal reaction / dystonia (IV — acute)",dose:"1–2 mg/kg IV (max 50 mg); then PO 1 mg/kg q6h × 24h"},
+    {ind:"Pruritus / motion sickness (PO)",dose:"1 mg/kg/dose q6h (max 25–50 mg/dose)"},
+    {ind:"Sedation / pre-op (PO/IM)",dose:"1 mg/kg (max 50 mg) at bedtime or 30–60 min pre-procedure"},
+    {ind:"Insomnia — short term (>2 years, PO)",dose:"1 mg/kg (max 25–50 mg) 30 min before sleep"},
+  ], notes:"AVOID in neonates and children <2 years (paradoxical excitation, risk of fatal respiratory depression in overdose). Sedation main effect. Anticholinergic effects: dry mouth, urinary retention, blurred vision, constipation. Tolerance to sedative effect develops (not for chronic insomnia). Preferred for acute dystonic reactions." },
+
+  { name:"Cetirizine", generic:"cetirizine dihydrochloride", class:"2nd-gen Antihistamine (non-sedating)", routes:["PO"], doses:[
+    {ind:"Allergic rhinitis / urticaria (6 months–<2 years)",dose:"2.5 mg once daily (0.25 mg/kg/day)"},
+    {ind:"Allergic rhinitis / urticaria (2–5 years)",dose:"2.5 mg once daily or q12h (max 5 mg/day)"},
+    {ind:"Allergic rhinitis / urticaria (6–11 years)",dose:"5 mg once daily or 2.5 mg q12h"},
+    {ind:"Allergic rhinitis / urticaria (≥12 years)",dose:"10 mg once daily"},
+    {ind:"Chronic urticaria (all ages — higher if needed)",dose:"Up to double dose in resistant CU (limited evidence)"},
+  ], notes:"Minimal sedation at standard doses (some sedation in young children). Renal dose adjustment required (50% dose if GFR <30). Avoid in end-stage renal disease. Takes 1–3 days for full effect. Levocetirizine (5 mg once daily ≥6 years) — R-enantiomer, slightly less sedation." },
+
+  { name:"Chlorpheniramine (Chlorphenamine)", generic:"chlorpheniramine maleate", class:"1st-gen Antihistamine", routes:["PO","IV","IM"], doses:[
+    {ind:"Allergy / urticaria (2–5 years, PO)",dose:"1 mg q4–6h (max 6 mg/day)"},
+    {ind:"Allergy / urticaria (6–11 years, PO)",dose:"2 mg q4–6h (max 12 mg/day)"},
+    {ind:"Allergy / urticaria (≥12 years, PO)",dose:"4 mg q4–6h (max 24 mg/day)"},
+    {ind:"Anaphylaxis adjunct (IV/IM)",dose:"0.1–0.2 mg/kg IV slowly (max 10 mg/dose)"},
+  ], notes:"Widely available in India. Sedating (first generation). Used as adjunct in anaphylaxis (after epinephrine) and transfusion reactions. Anticholinergic effects. Avoid in lower respiratory disease (thickens secretions)." },
+
+  { name:"Hydroxyzine", generic:"hydroxyzine hydrochloride / pamoate", class:"Antihistamine / Anxiolytic", routes:["PO","IM"], doses:[
+    {ind:"Pruritus (PO, children)",dose:"0.5–1 mg/kg/dose q6h (max 50 mg/dose; max 2.5 mg/kg/day)"},
+    {ind:"Anxiety / pre-operative sedation (PO)",dose:"0.5–1 mg/kg/dose PO (max 50 mg); 30–60 min pre-procedure"},
+    {ind:"Acute urticaria / atopic dermatitis (PO)",dose:"0.5–1 mg/kg/dose q6–8h"},
+    {ind:"IM (severe pruritus / sedation)",dose:"0.5–1 mg/kg/dose IM (max 25–50 mg/dose)"},
+  ], notes:"CNS depressant + antihistamine properties. Useful for procedural anxiolysis. QTc prolongation at higher doses. Sedation main side effect. Do NOT give IV (thrombosis, phlebitis risk — IM or oral only). Anticholinergic effects. Avoid in glaucoma, urinary retention." },
+
+  // ===== ANTIDOTES =====
+  { name:"Flumazenil", generic:"flumazenil", class:"Benzodiazepine Antagonist / Antidote", routes:["IV"], doses:[
+    {ind:"Benzodiazepine OD / reversal (IV)",dose:"0.01 mg/kg IV over 15 sec (max 0.2 mg/dose); repeat 0.01 mg/kg q1 min × 4 doses max (max total 1 mg)"},
+    {ind:"Reversal of conscious sedation (IV)",dose:"0.01 mg/kg IV q1 min as needed (max 0.2 mg/dose; max 1 mg total)"},
+  ], notes:"SHORT half-life (45–90 min) — resedation common (especially with long-acting BZDs like diazepam). Repeated dosing or infusion may be needed. CONTRAINDICATED in chronic BZD users or if used for seizure control (will precipitate withdrawal seizures). Can precipitate panic attacks. Do NOT use in suspected mixed TCA+BZD OD (removes BZD seizure protection)." },
+
+  { name:"Naloxone (Opioid Antidote)", generic:"naloxone hydrochloride", class:"Opioid Antagonist", routes:["IV","IM","SC","IN","ET"], doses:[
+    {ind:"Opioid OD — respiratory depression (<5 years or <20kg)",dose:"0.1 mg/kg IV/IM (max 2 mg); repeat q2–3 min PRN"},
+    {ind:"Opioid OD — respiratory depression (>20 kg or >5 years)",dose:"2 mg IV/IM; repeat q2–3 min (max 10 mg cumulative)"},
+    {ind:"Intranasal (pre-hospital / community)",dose:"4 mg IN per nostril (commercial device); may repeat × 1 after 2–3 min"},
+    {ind:"Neonatal opioid reversal (birth depressed infant)",dose:"0.01 mg/kg IV/IM/SC/ET; may repeat q2–3 min"},
+    {ind:"Continuous infusion (for long-acting opioid OD)",dose:"0.004–0.16 mg/kg/hour IV (⅔ of reversal dose/hour)"},
+    {ind:"Opioid-induced pruritus (low dose)",dose:"0.0005–0.002 mg/kg IV (without full reversal)"},
+  ], notes:"Duration 45–90 min (shorter than most opioids) — repeat dosing or infusion essential for long-acting OD (methadone, sustained-release opioids). Acute withdrawal in opioid-dependent patients (seizures, pulmonary oedema) — titrate carefully. For respiratory depression, use lowest dose to restore breathing (avoid precipitating pain/withdrawal)." },
+
+  { name:"Deferoxamine (Desferrioxamine)", generic:"deferoxamine mesilate / desferrioxamine", class:"Iron Chelator / Antidote", routes:["IV","IM","SC"], doses:[
+    {ind:"Acute iron poisoning (IV infusion — severe)",dose:"15 mg/kg/hour IV (max 80 mg/kg/day or 6g/day); continue until urine clear (vin rosé colour gone)"},
+    {ind:"Acute iron poisoning (IM — mild-moderate)",dose:"50 mg/kg IM (max 1g); may repeat q4–6h"},
+    {ind:"Chronic iron overload — thalassaemia (SC infusion pump)",dose:"20–60 mg/kg/day SC over 8–12h (5–7 nights/week); DFO: 35–50 mg/kg/day target"},
+    {ind:"Transfusional iron overload (IV — infusion with blood)",dose:"40 mg/kg IV over 4h with each blood transfusion (max 1g)"},
+  ], notes:"Urine turns orange/red/vin rosé colour (ferrioxamine excretion) — this CONFIRMS iron toxicity and monitors response. YERSINIA risk: deferoxamine is a siderophore for Yersinia enterocolitica — avoid in GI infection. Hypotension with rapid IV infusion. Pulmonary toxicity with very high doses. Auditory and ocular toxicity with chronic high doses (annual monitoring)." },
+
+  { name:"Atropine + Pralidoxime (OP Poisoning)", generic:"atropine + pralidoxime chloride (2-PAM)", class:"Organophosphate Antidote", routes:["IV","IM"], doses:[
+    {ind:"Organophosphate (Atropine — start immediately IV)",dose:"0.05–0.1 mg/kg IV q5–10 min until secretions dry (NO maximum dose — may need 20–100 mg total in severe OPs)"},
+    {ind:"OP poisoning — Pralidoxime (2-PAM) loading (IV)",dose:"25–50 mg/kg IV over 15–30 min (max 1–2g); start within 24h of exposure"},
+    {ind:"Pralidoxime — maintenance infusion",dose:"10–20 mg/kg/hour IV; continue for ≥48–72h after last atropine dose"},
+    {ind:"IM auto-injector (field treatment — DuoDote)",dose:"Atropine 2 mg + Pralidoxime 600 mg IM; repeat × 2 PRN (adult dosing)"},
+  ], notes:"ATROPINE: Titrate to secretion drying (not HR). PRALIDOXIME: Must be given BEFORE cholinesterase inhibition becomes irreversible (AGEING — OP-dependent: dimethyl OPs age in hours, diethyl OPs in days). Pralidoxime ineffective once ageing complete (carbamates do NOT cause ageing). Controversy around pralidoxime efficacy (WHO POET trial — no benefit at studied doses) — use atropine as primary; give 2-PAM especially for early presentation." },
+
+
 ];
 
 // ============================================================
@@ -1608,6 +2278,31 @@ const RENAL = [
   {drug:'Clindamycin', class:'Lincosamide', normal:'25–40 mg/kg/day ÷ q6–8h', mild:'No change', mod:'No change', severe:'No change', dialysis:'No supplement needed', note:'Hepatic metabolism; not significantly renally cleared'},
   {drug:'Nitrofurantoin', class:'Urinary antiseptic', normal:'5–7 mg/kg/day ÷ q6h', mild:'Use with caution', mod:'AVOID (inadequate urine concentration + neuropathy risk)', severe:'AVOID', dialysis:'AVOID', note:'CONTRAINDICATED in CrCl <45 mL/min. Does not achieve therapeutic urine levels.'},
   {drug:'Levosalbutamol', class:'Beta-2 Agonist', normal:'0.025–0.05 mg/kg/dose nebu', mild:'No change', mod:'No change', severe:'No change (inhaled — minimal systemic absorption)', dialysis:'No change', note:'Inhaled route — negligible renal clearance'},
+  {drug:'Carbamazepine', class:'Anticonvulsant', normal:'5–20 mg/kg/day ÷ q8–12h', mild:'No change', mod:'No change (hepatic metabolism)', severe:'No change; monitor levels', dialysis:'No supplement (not HD-removed)', note:'Hepatic — no renal adjustment. Monitor levels.'},
+  {drug:'Oxcarbazepine', class:'Anticonvulsant', normal:'8–46 mg/kg/day ÷ q12h', mild:'No change', mod:'Reduce by 50%; titrate', severe:'Reduce by 50%; start low', dialysis:'Partially removed; supplement after HD', note:'Active metabolite MHD renally excreted — accumulates in CKD'},
+  {drug:'Topiramate', class:'Anticonvulsant', normal:'1–9 mg/kg/day ÷ q12h', mild:'No change', mod:'Reduce by 50%', severe:'Reduce by 50%; q24h', dialysis:'Supplement half dose after HD', note:'70% renal excretion — significant reduction in CKD'},
+  {drug:'Vigabatrin', class:'Anticonvulsant', normal:'40–150 mg/kg/day ÷ q12h', mild:'Reduce 25%', mod:'Reduce 50%', severe:'Reduce 75%; q24h', dialysis:'Supplement post-HD (HD-cleared)', note:'100% renal excretion — major dose reduction in CKD essential'},
+  {drug:'Lacosamide', class:'Anticonvulsant', normal:'2–6 mg/kg/dose q12h', mild:'No change', mod:'Max 300 mg/day', severe:'Max 250 mg/day', dialysis:'Supplement 50% dose post-HD', note:'Partially renally cleared — reduce in severe CKD'},
+  {drug:'Mannitol', class:'Osmotic diuretic', normal:'0.25–1 g/kg q4–6h', mild:'Use with caution', mod:'AVOID or single dose only', severe:'AVOID (will cause fluid overload in anuria)', dialysis:'Contraindicated in anuric patients', note:'AVOID in anuria — accumulates, causes fluid overload'},
+  {drug:'Colistin (CMS)', class:'Polymyxin', normal:'2.5 mg CBA/dose q8h', mild:'Reduce dose; q12h', mod:'1.5 mg CBA/dose q12h', severe:'1.25 mg CBA/dose q24h; AUC-guided', dialysis:'Supplement after HD; TDM essential', note:'CRITICAL renal adjustment — major nephrotoxin. TDM mandatory.'},
+  {drug:'Fosfomycin IV', class:'Phosphonic antibiotic', normal:'200 mg/kg/day ÷ q6–8h', mild:'No change', mod:'50% dose reduction', severe:'25% dose; q24h', dialysis:'Supplement post-HD (HD-removed)', note:'High sodium load with IV — watch electrolytes in CKD'},
+  {drug:'Aztreonam', class:'Monobactam', normal:'90–150 mg/kg/day ÷ q6–8h', mild:'q8h', mod:'q12h; reduce 50%', severe:'Reduce 50–75%; q24h', dialysis:'Supplement post-HD', note:'Primarily renal excretion — significant dose reduction in CKD'},
+  {drug:'Ampicillin-Sulbactam', class:'Penicillin+BLI', normal:'200 mg/kg/day amp ÷ q6h', mild:'q8–12h', mod:'q12h; reduce dose', severe:'q24h; 50% dose', dialysis:'Supplement post-HD', note:'Sulbactam renally cleared — adjust both components'},
+  {drug:'Nitrofurantoin', class:'Urinary antiseptic', normal:'5–7 mg/kg/day ÷ q6h', mild:'Use with caution', mod:'AVOID (CrCl <45)', severe:'AVOID', dialysis:'AVOID', note:'CONTRAINDICATED GFR<45. Neuropathy + inadequate urine levels in CKD.'},
+  {drug:'Baclofen', class:'Muscle relaxant (GABA-B)', normal:'0.75–2 mg/kg/day ÷ q8h', mild:'Reduce by 25%', mod:'Reduce by 50%', severe:'Reduce by 75%; start very low', dialysis:'Not significantly HD-removed; very low dose', note:'Renal excretion — severe toxicity (coma, seizures) in CKD if not reduced'},
+  {drug:'Thiopental', class:'Barbiturate', normal:'3–6 mg/kg induction; 1–5 mg/kg/h RSE', mild:'No change', mod:'No change (hepatic)', severe:'Reduce dose (protein binding decreased)', dialysis:'No change', note:'Hepatic metabolism; active metabolite pentobarbital — may accumulate'},
+  {drug:'Dexmedetomidine', class:'Alpha-2 agonist', normal:'0.2–0.7 mcg/kg/hour', mild:'No change (hepatic)', mod:'No change; monitor', severe:'No change; monitor haemodynamics', dialysis:'No change (not HD-removed)', note:'Hepatic — no significant renal adjustment. Metabolites inactive.'},
+  {drug:'Unfractionated Heparin', class:'Anticoagulant', normal:'20–28 units/kg/hour infusion', mild:'No change; monitor aPTT', mod:'No change; monitor', severe:'No change (hepatic clearance); monitor anti-Xa', dialysis:'No change; use anti-Xa monitoring', note:'Hepatic clearance; renal failure may prolong effect — monitor closely'},
+  {drug:'Enoxaparin', class:'LMWH', normal:'1 mg/kg/dose q12h', mild:'No change; monitor anti-Xa', mod:'Reduce to q24h; anti-Xa monitoring', severe:'0.5 mg/kg/dose q24h; anti-Xa mandatory', dialysis:'Use UFH instead; HD-removed to some degree', note:'CRITICAL: anti-Xa monitoring essential in CKD <30 (accumulation risk)'},
+  {drug:'Tranexamic Acid', class:'Antifibrinolytic', normal:'10–15 mg/kg q6–8h', mild:'q8h', mod:'q12h; reduce dose 50%', severe:'q24h; 25% dose', dialysis:'Supplement post-HD (partially removed)', note:'Primarily renal excretion — dose reduce in CKD'},
+  {drug:'Flumazenil', class:'BZD antagonist', normal:'0.01 mg/kg q1min PRN', mild:'No change (hepatic)', mod:'No change', severe:'No change', dialysis:'No change', note:'Hepatic metabolism — no renal adjustment'},
+  {drug:'Deferoxamine', class:'Iron chelator', normal:'15 mg/kg/hour IV', mild:'Use with caution', mod:'Reduce dose; max 6 mg/kg/hour', severe:'AVOID (accumulation of ferrioxamine)', dialysis:'HD can remove some ferrioxamine; use cautiously', note:'Ferrioxamine accumulates in renal failure — reduce dose or avoid'},
+  {drug:'Levothyroxine', class:'Thyroid hormone', normal:'2–15 mcg/kg/day once daily', mild:'No change', mod:'No change (hepatic)', severe:'No change', dialysis:'No change', note:'Protein-bound — not HD-removed. No renal adjustment needed.'},
+  {drug:'Carbimazole/Methimazole', class:'Antithyroid', normal:'0.25–1 mg/kg/day ÷ q8h', mild:'No change', mod:'No change (hepatic)', severe:'No change', dialysis:'No change', note:'Hepatic metabolism — no significant renal adjustment needed'},
+  {drug:'Sildenafil', class:'PDE-5 inhibitor', normal:'0.25–1 mg/kg/dose q6–8h', mild:'No change', mod:'Start at lower dose', severe:'Start at lowest dose (0.25 mg/kg/dose)', dialysis:'No change (hepatic metabolism)', note:'Hepatic — no major renal adjustment. Accumulation possible in severe CKD.'},
+  {drug:'Labetalol', class:'Alpha+Beta blocker', normal:'0.25–3 mg/kg/hour IV', mild:'No change', mod:'No change (hepatic)', severe:'No change; monitor BP closely', dialysis:'Not significantly HD-removed', note:'Hepatic metabolism — no significant renal adjustment'},
+  {drug:'Hydralazine', class:'Direct vasodilator', normal:'0.1–0.5 mg/kg/dose q4–6h', mild:'q8h', mod:'q8–12h', severe:'q12–24h', dialysis:'Supplement post-HD', note:'Slower acetylators (genetic) have higher plasma levels; renally cleared'},
+  {drug:'Pralidoxime (2-PAM)', class:'OP antidote', normal:'25–50 mg/kg loading then 10–20 mg/kg/h', mild:'Reduce by 25%', mod:'Reduce by 50%', severe:'Avoid continuous infusion; single doses only', dialysis:'Supplement post-HD', note:'Primarily renally excreted — reduce in CKD'},
   {drug:'Cyclophosphamide', class:'Alkylating Agent', normal:'2–3 mg/kg/day PO or IV pulse', mild:'No change', mod:'Reduce dose by 25%', severe:'Reduce dose by 50%; avoid if GFR <10', dialysis:'Dose post-HD; MESNA still required', note:'Active metabolites accumulate; acrolein-mediated bladder toxicity worse in CKD'},
   {drug:'Cyclosporine A', class:'Calcineurin Inhibitor', normal:'4–6 mg/kg/day ÷ q12h', mild:'Monitor closely; potential nephrotoxicity', mod:'Use with extreme caution; reduce dose 25–50%', severe:'AVOID or very low dose with TDM', dialysis:'Not significantly removed; dose adjust by TDM', note:'Nephrotoxic — CKD significantly increases toxicity risk. TDM mandatory.'},
   {drug:'Tacrolimus', class:'Calcineurin Inhibitor', normal:'0.1–0.2 mg/kg/day ÷ q12h', mild:'No change (TDM-guided)', mod:'TDM-guided; may need dose reduction', severe:'Reduce dose; TDM essential; avoid if oliguric', dialysis:'Not significantly HD-removed; TDM-guided', note:'Nephrotoxic — monitor creatinine monthly. Prolonged high levels worsen CKD.'},
