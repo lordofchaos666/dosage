@@ -2051,6 +2051,342 @@ const DRUGS = [
   ], notes:"ATROPINE: Titrate to secretion drying (not HR). PRALIDOXIME: Must be given BEFORE cholinesterase inhibition becomes irreversible (AGEING — OP-dependent: dimethyl OPs age in hours, diethyl OPs in days). Pralidoxime ineffective once ageing complete (carbamates do NOT cause ageing). Controversy around pralidoxime efficacy (WHO POET trial — no benefit at studied doses) — use atropine as primary; give 2-PAM especially for early presentation." },
 
 
+
+
+  // ===== PSYCHIATRY / PSYCHOPHARMACOLOGY =====
+  { name:"Risperidone", generic:"risperidone", class:"Atypical Antipsychotic (D2/5-HT2A)", routes:["PO"], doses:[
+    {ind:"Schizophrenia / Psychosis (13–17 years — initial)",dose:"0.5 mg once daily → increase by 0.5–1 mg/day every 24h → target 3 mg/day (range 1–6 mg/day)"},
+    {ind:"Schizophrenia (5–12 years — off-label)",dose:"0.01–0.06 mg/kg/day; start 0.25–0.5 mg/day → max 6 mg/day"},
+    {ind:"Bipolar mania (10–17 years)",dose:"0.5 mg once daily → increase by 0.5–1 mg/day → target 1–2.5 mg/day (max 6 mg/day)"},
+    {ind:"Irritability / ASD (5–16 years)",dose:"<20 kg: 0.25 mg/day → target 0.5 mg/day; ≥20 kg: 0.5 mg/day → target 1 mg/day (max 3 mg/day)"},
+    {ind:"Tourette syndrome (adjunct)",dose:"0.25–0.5 mg/day → titrate to 1–3 mg/day"},
+    {ind:"Conduct disorder / aggression (school-age)",dose:"0.25–0.5 mg/day → max 2 mg/day (lowest effective dose)"},
+  ], notes:"Metabolic effects: weight gain, hyperlipidaemia, hyperglycaemia — monitor fasting glucose, lipids, weight/BMI q3 months. EPS/akathisia at higher doses. Prolactin elevation (gynecomastia, galactorrhoea). QTc prolongation. Renal/hepatic impairment — start at 0.5 mg q12h. Long-acting injectable form not approved for children." },
+
+  { name:"Olanzapine", generic:"olanzapine", class:"Atypical Antipsychotic", routes:["PO","IM"], doses:[
+    {ind:"Schizophrenia / psychosis (13–17 years — initial)",dose:"2.5 mg once daily → titrate by 2.5–5 mg/week → target 10 mg/day (range 2.5–20 mg/day)"},
+    {ind:"Bipolar mania (13–17 years — initial)",dose:"2.5 mg once daily → titrate → target 10 mg/day (range 2.5–20 mg/day)"},
+    {ind:"Acute agitation (IM — >12 years)",dose:"2.5–10 mg IM (max 10 mg/dose; max 30 mg/24h); avoid with benzodiazepines IM"},
+    {ind:"Chemotherapy-induced N&V (off-label — adjunct)",dose:"0.1–0.14 mg/kg once daily (max 10 mg) × 4 days with chemo"},
+    {ind:"Anorexia nervosa (off-label — adjunct)",dose:"2.5–10 mg once daily"},
+  ], notes:"Highest metabolic risk of all atypicals — significant weight gain (5–10 kg common), hyperglycaemia, dyslipidaemia. Monitor HbA1c, fasting lipids, weight/BMI monthly for 3 months then quarterly. Sedation high. Avoid IM + IV BZD simultaneously (respiratory arrest reported). Long QTc (less than quetiapine/haloperidol)." },
+
+  { name:"Quetiapine", generic:"quetiapine fumarate", class:"Atypical Antipsychotic", routes:["PO"], doses:[
+    {ind:"Schizophrenia (13–17 years — Day 1)",dose:"25 mg q12h → Day 2: 50 mg q12h → Day 3: 100 mg q12h → Day 4: 150 mg q12h → usual 400–800 mg/day"},
+    {ind:"Bipolar mania (10–17 years — Day 1)",dose:"25 mg q12h → increase by 100 mg/day to Day 4 → 400–600 mg/day (max 600 mg/day)"},
+    {ind:"Bipolar depression (adolescent — off-label)",dose:"50 mg at night → titrate to 150–300 mg/day"},
+    {ind:"Insomnia / anxiety (low dose — adolescent, off-label)",dose:"12.5–50 mg at night (use lowest effective dose for short duration)"},
+    {ind:"Acute mania adjunct (older adolescent)",dose:"400–800 mg/day ÷ q12h"},
+  ], notes:"Metabolic effects moderate (between olanzapine and aripiprazole). Prolonged QTc — baseline ECG. Orthostatic hypotension (start low titrate slow). Sedation at low doses (H1 antagonism) — used off-label for insomnia but FDA does not approve. Cataract risk (Beagle dogs study) — annual ophthalmology exam suggested for long-term use. Extended-release (XR) — once daily dosing." },
+
+  { name:"Aripiprazole", generic:"aripiprazole", class:"Atypical Antipsychotic (D2 partial agonist)", routes:["PO","IM"], doses:[
+    {ind:"Schizophrenia (13–17 years — initial)",dose:"2 mg once daily → increase to 5 mg after 2 days → 10 mg after 2 more days → target 10 mg/day (max 30 mg/day)"},
+    {ind:"Bipolar mania (10–17 years — initial)",dose:"2 mg/day → 5 mg after 2 days → 10 mg after 2 days → usual 10–30 mg/day"},
+    {ind:"Irritability in ASD (6–17 years)",dose:"2 mg/day → 5 mg after 1 week → titrate q1 week → usual 5–15 mg/day (max 15 mg/day)"},
+    {ind:"Tourette syndrome (6–18 years)",dose:"2 mg/day → titrate → 5–20 mg/day (max 20 mg/day)"},
+    {ind:"Major depression (adjunct to SSRI — ≥18y, off-label <18)",dose:"2–5 mg/day → max 15 mg/day"},
+    {ind:"Acute agitation (IM — ≥13 years)",dose:"5.25–9.75 mg IM (max 9.75 mg/dose; max 30 mg/24h)"},
+  ], notes:"Best metabolic profile of atypicals (partial D2 agonist — activates/blocks depending on dopamine tone). Minimal weight gain. Akathisia most common EPS (10–25%) — may require dose reduction or propranolol. Nausea/vomiting (D2 partial agonism in CTZ). QTc minimal effect. CYP2D6/3A4 substrate — interactions with fluoxetine, carbamazepine." },
+
+  { name:"Clozapine", generic:"clozapine", class:"Atypical Antipsychotic (treatment-resistant)", routes:["PO"], doses:[
+    {ind:"Treatment-resistant schizophrenia (≥16 years — initial)",dose:"12.5 mg once or twice daily → increase by 25–50 mg/day over 1–2 weeks → usual 300–450 mg/day (max 900 mg/day)"},
+    {ind:"Treatment-resistant schizophrenia (12–15 years — off-label)",dose:"12.5 mg/day → titrate slowly → usual 100–400 mg/day"},
+    {ind:"Bipolar — refractory / suicidality reduction",dose:"150–600 mg/day ÷ q12h; titrate slowly"},
+  ], notes:"MANDATORY WBC/ANC MONITORING (REMS programme): CBC weekly × 6 months → fortnightly × 6 months → monthly. STOP if ANC <1500/mm³ (1000 in benign ethnic neutropenia). AGRANULOCYTOSIS 1–2% — fatal if missed. Myocarditis (early weeks — check Troponin, CRP at weeks 1–4). Seizures (dose-dependent, >600 mg/day). Hypersalivation, sedation, weight gain, constipation (fatal ileus). Metabolic syndrome. Reserved for 2 failed antipsychotics." },
+
+  { name:"Haloperidol", generic:"haloperidol", class:"Typical Antipsychotic (D2 blocker)", routes:["PO","IV","IM"], doses:[
+    {ind:"Psychosis / acute agitation (3–12 years, PO)",dose:"0.05–0.15 mg/kg/day ÷ q8–12h; start 0.025 mg/kg/day → max 0.15 mg/kg/day"},
+    {ind:"Psychosis (>12 years, PO)",dose:"0.5–5 mg q8–12h → titrate → max 20 mg/day"},
+    {ind:"Acute agitation (IV — ICU — off-label)",dose:"0.025–0.05 mg/kg IV slowly; may repeat q30 min (not FDA-approved IV but widely used in PICU)"},
+    {ind:"Acute agitation (IM)",dose:"0.05–0.15 mg/kg IM (max 5–10 mg/dose); or 1–5 mg IM in adolescent"},
+    {ind:"Tourette syndrome (PO)",dose:"0.025–0.075 mg/kg/day ÷ q8–12h → target 0.05–0.15 mg/kg/day"},
+    {ind:"Nausea/vomiting — chemotherapy or opioids (IV/PO)",dose:"0.01–0.05 mg/kg/dose IV q4–8h (max 5 mg/dose)"},
+    {ind:"Hiccups — refractory (PO/IM)",dose:"0.5–2 mg PO/IM q8h"},
+  ], notes:"High EPS risk (dystonia, akathisia, parkinsonism, tardive dyskinesia) — especially in children. Dystonia antidote: diphenhydramine 1 mg/kg IV or benztropine 0.02 mg/kg IV. QTc prolongation (IV > IM > PO). Avoid with other QT-prolonging drugs. NMS risk (rare but life-threatening). Not first-line in children — use only when atypicals inappropriate." },
+
+  { name:"Chlorpromazine", generic:"chlorpromazine hydrochloride", class:"Typical Antipsychotic (Phenothiazine)", routes:["PO","IM","IV","PR"], doses:[
+    {ind:"Psychosis (>6 months — PO)",dose:"0.5–1 mg/kg/dose q4–8h (max 75 mg/day <5 years; 200 mg/day 5–12 years)"},
+    {ind:"Acute agitation (IM)",dose:"0.5 mg/kg/dose IM q6–8h (max 75 mg <5 years; 75–150 mg older children)"},
+    {ind:"Nausea/vomiting (PO/IM)",dose:"0.5–1 mg/kg/dose q4–6h"},
+    {ind:"Hiccups — refractory (IM/IV)",dose:"25–50 mg IM; then slow IV infusion if IM fails"},
+    {ind:"Tetanus (muscle relaxant adjunct — IM)",dose:"0.5–1 mg/kg/dose q4–6h IM; combined with diazepam"},
+    {ind:"Intractable nausea (PR)",dose:"1 mg/kg PR q6–8h"},
+  ], notes:"Extensive EPS, anticholinergic, and adrenergic side effects. Photosensitivity — use sunscreen. Jaundice (cholestatic). Hypotension with IV. Lower seizure threshold. NMS risk. Largely superseded by atypicals for psychosis; still used in nausea/hiccups/tetanus in developing countries (including India)." },
+
+  { name:"Fluoxetine", generic:"fluoxetine hydrochloride", class:"SSRI / Antidepressant", routes:["PO"], doses:[
+    {ind:"MDD (8–18 years — initial)",dose:"10 mg once daily × 1–2 weeks → increase to 20 mg once daily; range 10–60 mg/day (max 60 mg/day)"},
+    {ind:"OCD (7–17 years — initial)",dose:"10 mg once daily (lower weight); 10–20 mg once daily → titrate by 10 mg/week → usual 20–60 mg/day (max 60 mg/day)"},
+    {ind:"Anxiety disorders (off-label, ≥8 years)",dose:"5–10 mg once daily → titrate to 20–40 mg/day"},
+    {ind:"Bulimia nervosa (adolescent)",dose:"60 mg once daily (FDA approved for adults; use for adolescents off-label)"},
+    {ind:"PMDD (adolescent)",dose:"10–20 mg/day continuously or luteal phase only"},
+  ], notes:"ONLY FDA-approved antidepressant for MDD in children ≥8y (+ escitalopram ≥12y). BLACK BOX: increased suicidal ideation in children/adolescents — monitor weekly × 4 weeks, fortnightly × 4 weeks, then monthly. Activating (akathisia, insomnia, anxiety early on — reduce dose). Long half-life (7 days for norfluoxetine) — missed doses less critical; also means withdrawal-free. Avoid MAOIs within 5 weeks. Serotonin syndrome with tramadol, triptans." },
+
+  { name:"Sertraline", generic:"sertraline hydrochloride", class:"SSRI / Antidepressant", routes:["PO"], doses:[
+    {ind:"OCD (6–12 years — initial)",dose:"25 mg once daily → increase by 25 mg/week → usual 50–200 mg/day (max 200 mg/day)"},
+    {ind:"OCD (13–17 years — initial)",dose:"50 mg once daily → titrate by 50 mg/week → usual 50–200 mg/day"},
+    {ind:"MDD (≥13 years — off-label)",dose:"25–50 mg once daily → titrate → usual 50–200 mg/day"},
+    {ind:"PTSD / social anxiety (adolescent)",dose:"25 mg once daily → 50–200 mg/day"},
+    {ind:"Panic disorder (adolescent)",dose:"25 mg once daily → titrate to 50–200 mg/day"},
+  ], notes:"FDA-approved for paediatric OCD ≥6 years. Most commonly used SSRI for paediatric anxiety disorders (though off-label for MDD). Same BLACK BOX warning as all antidepressants. GI effects (nausea, diarrhoea) most common — take with food. Sexual dysfunction. Fewer drug interactions than fluoxetine (minimal CYP2D6 inhibition at low doses)." },
+
+  { name:"Escitalopram", generic:"escitalopram oxalate", class:"SSRI / Antidepressant", routes:["PO"], doses:[
+    {ind:"MDD (12–17 years — initial)",dose:"10 mg once daily × 3 weeks; may increase to 20 mg once daily (max 20 mg/day)"},
+    {ind:"Anxiety (GAD, SAD — off-label ≥12y)",dose:"5–10 mg once daily → 10–20 mg/day"},
+    {ind:"OCD (off-label, ≥12 years)",dose:"5–10 mg once daily → 10–40 mg/day"},
+  ], notes:"FDA-approved for MDD ≥12 years (with fluoxetine). S-enantiomer of citalopram — cleaner pharmacology. QTc prolongation (dose-related, more than fluoxetine) — avoid with QT-prolonging drugs. Same BLACK BOX suicidality warning. Generally well tolerated; fewer drug interactions (mild CYP2C19 inhibitor)." },
+
+  { name:"Fluvoxamine", generic:"fluvoxamine maleate", class:"SSRI / Antidepressant", routes:["PO"], doses:[
+    {ind:"OCD (8–17 years — initial)",dose:"25 mg at bedtime → increase by 25 mg every 4–7 days → usual 50–200 mg/day; divide q12h if >50 mg"},
+    {ind:"Social anxiety (adolescent — off-label)",dose:"25–50 mg at bedtime → 100–300 mg/day"},
+    {ind:"ASD — anxiety/repetitive behaviours (off-label)",dose:"25 mg at bedtime → 100–300 mg/day"},
+  ], notes:"FDA-approved for paediatric OCD ≥8y. Potent CYP1A2 and CYP3A4 inhibitor — major interactions with clozapine, theophylline, tizanidine, ramelteon (avoid combinations). Most sedating SSRI — dosing at night preferred. GI side effects common." },
+
+  { name:"Imipramine", generic:"imipramine hydrochloride", class:"Tricyclic Antidepressant (TCA)", routes:["PO"], doses:[
+    {ind:"Enuresis (nocturnal, ≥6 years)",dose:"10–25 mg at bedtime → max 50 mg (<12y); 75 mg (>12y); do not exceed 2.5 mg/kg/day"},
+    {ind:"MDD (not first-line — ≥6 years)",dose:"1–3 mg/kg/day ÷ q8h → max 5 mg/kg/day (monitor ECG)"},
+    {ind:"ADHD — refractory (2nd line)",dose:"1–5 mg/kg/day ÷ q8h"},
+    {ind:"Panic disorder / anxiety (adolescent, 2nd line)",dose:"25–100 mg/day ÷ q8h"},
+    {ind:"Neuropathic pain (adjunct)",dose:"0.2–0.5 mg/kg at night → titrate to 1–3 mg/kg/night"},
+  ], notes:"ECG MONITORING MANDATORY: QTc prolongation, QRS widening, PR prolongation. TOXIC DOSE = 10× therapeutic — single pill can be fatal in toddler. BLACK BOX for suicidality (all antidepressants in youth). Not first-line antidepressant (SSRIs preferred). Anticholinergic effects. Sudden death risk in children with cardiac disease. Check ECG before starting and with dose changes." },
+
+  { name:"Amitriptyline", generic:"amitriptyline hydrochloride", class:"Tricyclic Antidepressant", routes:["PO"], doses:[
+    {ind:"Migraine prophylaxis (≥6 years)",dose:"0.1–0.5 mg/kg at night → titrate to 1 mg/kg/night (max 75–100 mg/night)"},
+    {ind:"Neuropathic pain / functional abdominal pain",dose:"0.1–0.3 mg/kg at night (max 75 mg/night)"},
+    {ind:"Enuresis — 2nd line (≥6 years)",dose:"10–25 mg at night (max 50 mg <12y; 75 mg ≥12y)"},
+    {ind:"MDD (adolescent — not first-line)",dose:"25 mg at night → titrate → usual 50–150 mg/day"},
+    {ind:"Cyclic vomiting syndrome (prophylaxis)",dose:"0.5–1 mg/kg at night (max 75 mg)"},
+  ], notes:"Most sedating TCA — dosing at night. Same cardiac risks as imipramine (QTc, QRS) — ECG before starting. OVERDOSE VERY DANGEROUS — children most at risk (keep out of reach). Used primarily for pain/migraine/CVS prophylaxis rather than depression in paediatric practice. Anticholinergic: dry mouth, constipation, urinary retention." },
+
+  { name:"Methylphenidate (Extended Release)", generic:"methylphenidate HCl (Concerta / Ritalin LA / Medikinet)", class:"CNS Stimulant / ADHD", routes:["PO"], doses:[
+    {ind:"ADHD (IR — ≥6 years — initial)",dose:"5 mg q12h (breakfast + lunch) → increase by 5 mg/week → usual 0.3–1 mg/kg/dose q8h (max 60 mg/day)"},
+    {ind:"ADHD (Concerta XL — ≥6 years)",dose:"18 mg once daily morning → increase by 18 mg/week → usual 36–54 mg/day (max 72 mg/day)"},
+    {ind:"ADHD (Ritalin LA)",dose:"10–20 mg once daily morning → increase by 10 mg/week → max 60 mg/day"},
+    {ind:"ADHD (Medikinet — early start)",dose:"5 mg q12h → titrate"},
+    {ind:"Narcolepsy (≥6 years)",dose:"5–10 mg q12h → titrate → max 60 mg/day"},
+  ], notes:"Controlled substance. Avoid PM dosing (insomnia). Drug holiday (weekends/summers) consideration for growth monitoring — monitor height/weight quarterly. Appetite suppression → weight loss. Monitor BP and HR at each visit. Do NOT use in tics that worsen with stimulants, psychosis, structural cardiac disease, severe anxiety. FDA black box: potential for abuse." },
+
+  { name:"Atomoxetine", generic:"atomoxetine hydrochloride", class:"NRI / Non-stimulant ADHD", routes:["PO"], doses:[
+    {ind:"ADHD (<70 kg — initial)",dose:"0.5 mg/kg/day once daily (morning) × 4 weeks → increase to 1.2 mg/kg/day; target 1.2–1.4 mg/kg/day (max 1.4 mg/kg/day or 100 mg/day)"},
+    {ind:"ADHD (≥70 kg — initial)",dose:"40 mg once daily × 4 weeks → 80 mg once daily → may increase to 100 mg/day (max)"},
+  ], notes:"NON-STIMULANT — preferred when stimulant abuse risk, tics, anxiety co-morbid with ADHD, or stimulants fail. 4–8 week lag to full effect (unlike stimulants, immediate effect). BLACK BOX: suicidal ideation — monitor. Hepatotoxicity (rare, <0.02%) — stop if jaundice. CYP2D6 substrate (poor metabolisers have higher levels). BP/HR monitoring. Sexual dysfunction. Do NOT use with MAOIs." },
+
+  { name:"Lisdexamfetamine", generic:"lisdexamfetamine dimesylate (Vyvanse)", class:"CNS Stimulant / ADHD", routes:["PO"], doses:[
+    {ind:"ADHD (6–17 years — initial)",dose:"20–30 mg once daily morning → increase by 10–20 mg/week → usual 30–70 mg/day (max 70 mg/day)"},
+    {ind:"Binge eating disorder (18+ years)",dose:"30 mg/day → 50–70 mg/day (max)"},
+  ], notes:"Prodrug (dexamfetamine after hydrolysis) — less abuse potential than amphetamine (cannot inject/snort). Onset slower than immediate-release. Same monitoring as methylphenidate (BP, HR, weight, height, appetite, sleep, tics, mood). Controlled substance." },
+
+  { name:"Clonidine (Psych indications)", generic:"clonidine hydrochloride", class:"Alpha-2 Agonist / Non-stimulant", routes:["PO","Patch"], doses:[
+    {ind:"ADHD adjunct / hyperactivity (≥6 years)",dose:"0.05 mg at bedtime → increase by 0.05 mg/week → 0.1–0.4 mg/day ÷ q6–8h (max 0.4 mg/day)"},
+    {ind:"Tic disorders / Tourette (off-label)",dose:"0.05 mg/day → 0.1–0.4 mg/day ÷ q8h"},
+    {ind:"PTSD nightmares (off-label)",dose:"0.1–0.3 mg at bedtime"},
+    {ind:"Opioid / benzo withdrawal (facilitation)",dose:"3–5 mcg/kg/dose q4–8h (max 0.3 mg/dose); titrate to HR/BP"},
+    {ind:"Sedation pre-procedure (oral)",dose:"3–4 mcg/kg PO 45–60 min before (max 200 mcg)"},
+    {ind:"Hypertension (PO)",dose:"5–10 mcg/kg/day ÷ q8–12h → max 25 mcg/kg/day (max 0.9 mg/day)"},
+  ], notes:"REBOUND HYPERTENSION on abrupt withdrawal — taper all discontinuations. Sedation, dry mouth, bradycardia, hypotension. Useful for ADHD when tics or sleep problems co-exist. Extended-release (Kapvay/Intuniv-guanfacine) better tolerated once-daily. Patch (TTS): change weekly; skin reactions common." },
+
+  { name:"Guanfacine", generic:"guanfacine hydrochloride (Intuniv ER)", class:"Alpha-2A Agonist / Non-stimulant ADHD", routes:["PO"], doses:[
+    {ind:"ADHD (6–17 years — ER formulation)",dose:"1 mg once daily → increase by 1 mg/week → usual 1–4 mg/day (max 4 mg/day <45 kg; max 7 mg/day ≥45 kg)"},
+    {ind:"Hypertension (IR formulation — older children)",dose:"0.5–2 mg PO once daily"},
+    {ind:"Tic disorders / Tourette (off-label)",dose:"0.5–3 mg/day once daily (ER form)"},
+  ], notes:"More selective for alpha-2A subtype than clonidine — less sedation, less BP drop. Less rebound hypertension than clonidine. Extended-release (Intuniv) given once daily. May be used as monotherapy or adjunct to stimulants. Do NOT crush/chew ER tablets (dose dumping)." },
+
+  { name:"Lorazepam (Anxiety/Panic)", generic:"lorazepam", class:"Benzodiazepine / Anxiolytic", routes:["PO","IV","SL"], doses:[
+    {ind:"Anxiety — acute (PO/SL, ≥12 years)",dose:"0.5–1 mg PO/SL; may repeat after 4–6h (max 4 mg/day)"},
+    {ind:"Procedural anxiety (PO, children)",dose:"0.02–0.05 mg/kg PO 1h before (max 2 mg)"},
+    {ind:"Panic disorder (short-term — adolescent)",dose:"0.5–1 mg PO q8–12h (shortest duration; avoid regular use >4 weeks)"},
+    {ind:"Alcohol withdrawal (adolescent)",dose:"1–4 mg PO/IV q6h; titrate via CIWA protocol"},
+  ], notes:"Intended for short-term use only (risk of dependence). Sublingual onset faster than oral. Avoid chronic use in anxiety disorders — use SSRIs/SNRIs for maintenance. Respiratory depression, sedation, memory impairment." },
+
+  { name:"Lithium Carbonate", generic:"lithium carbonate", class:"Mood Stabiliser", routes:["PO"], doses:[
+    {ind:"Bipolar disorder (≥12 years — initial)",dose:"300 mg PO q12h → increase by 300 mg every 3–5 days → target serum level 0.8–1.2 mmol/L (acute mania)"},
+    {ind:"Bipolar disorder (maintenance)",dose:"Target serum level 0.6–1 mmol/L; usual 600–1200 mg/day ÷ q12h"},
+    {ind:"Bipolar disorder (6–12 years — off-label)",dose:"10–30 mg/kg/day ÷ q8h (children have higher clearance); target levels same"},
+    {ind:"Schizoaffective disorder / augmentation",dose:"Same as bipolar maintenance"},
+  ], notes:"NARROW THERAPEUTIC INDEX (levels 0.6–1.2 mmol/L; toxic >1.5 mmol/L; dangerous >2 mmol/L). Check levels every 5–7 days initially, then monthly. TOXICITY SIGNS: coarse tremor, diarrhoea, confusion, ataxia, seizures, coma — STOP and hydrate. DEHYDRATION/NSAIDs/ACEi can raise lithium levels precipitously. Hypothyroidism (20–40%) and hyperparathyroidism with long-term use. Renal function and thyroid tests every 6 months. Teratogenic (Ebstein anomaly). Plenty of fluid and consistent Na+ intake essential." },
+
+  { name:"Sodium Valproate (Mood Stabiliser)", generic:"sodium valproate / valproic acid", class:"Mood Stabiliser / Anticonvulsant", routes:["PO","IV"], doses:[
+    {ind:"Bipolar mania (adolescent — acute)",dose:"15–20 mg/kg/day ÷ q8–12h → titrate by 250–500 mg/day → target level 50–100 mg/L"},
+    {ind:"Bipolar maintenance",dose:"10–20 mg/kg/day ÷ q8–12h; target serum level 50–100 mg/L"},
+    {ind:"Epilepsy (all types — see also Anticonvulsant section)",dose:"10–60 mg/kg/day; see anticonvulsant entry"},
+  ], notes:"See anticonvulsant entry. For psychiatric use: CONTRAINDICATED in females of childbearing potential (teratogen — neural tube defects, PCOS, cognitive impairment in exposed offspring). Polycystic ovarian syndrome. Weight gain. Pancreatitis. Monitor LFTs, CBC, ammonia." },
+
+  { name:"Lamotrigine (Mood Stabiliser)", generic:"lamotrigine / LTG", class:"Mood Stabiliser / Anticonvulsant", routes:["PO"], doses:[
+    {ind:"Bipolar I (depression phase) — adolescent",dose:"25 mg once daily × 2 weeks → 50 mg/day × 2 weeks → 100 mg/day × 1 week → 200 mg/day"},
+    {ind:"Focal/generalised epilepsy (2–12 years) — WITHOUT VPA",dose:"0.3 mg/kg/day × 2 wk → 0.6 mg/kg/day × 2 wk → increase by 0.6 mg/kg every 2 wk → usual 5–15 mg/kg/day (max 400 mg/day)"},
+    {ind:"Epilepsy — WITH VPA (VPA doubles LTG levels)",dose:"Halve ALL doses and slow titration — start 0.15 mg/kg/day × 2 weeks"},
+    {ind:"Lennox-Gastaut adjunct (≥2 years)",dose:"As per epilepsy dosing above based on concomitant therapy"},
+  ], notes:"TITRATION IS CRITICAL — rapid titration causes SJS/TEN (Stevens-Johnson syndrome). If dose missed for >5 days, restart at lowest dose. SJS risk higher when combined with valproate (inhibits metabolism). Rash in 10% — reassess every rash carefully. No metabolic effects. Hepatic glucuronidation — oral contraceptives halve lamotrigine levels (increase dose on OCP). Preferred mood stabiliser in bipolar depression in adolescent females." },
+
+  { name:"Diazepam (Anxiety / Muscle Spasm)", generic:"diazepam", class:"Benzodiazepine / Anxiolytic / Muscle Relaxant", routes:["PO","IV","IM","PR"], doses:[
+    {ind:"Anxiety (short-term, ≥6 months PO)",dose:"0.04–0.3 mg/kg/dose q4–6h (max 0.6 mg/kg in 8h)"},
+    {ind:"Muscle spasm (PO)",dose:"0.04–0.3 mg/kg/dose q4–6h"},
+    {ind:"Procedural sedation (PO pre-med)",dose:"0.2–0.4 mg/kg PO 45–60 min before"},
+    {ind:"Tetanus — spasm control (IV/PR)",dose:"0.1–0.3 mg/kg/dose q1–4h; titrate to spasm control; infusion 0.1–0.3 mg/kg/hour"},
+    {ind:"Alcohol withdrawal (acute)",dose:"0.1–0.25 mg/kg IV q6–8h; titrate via CIWA"},
+    {ind:"Status epilepticus (see anticonvulsant section)",dose:"0.2–0.5 mg/kg IV (max 10 mg); 0.5 mg/kg PR (max 20 mg)"},
+  ], notes:"Long half-life and active metabolites (desmethyldiazepam t½ 36–200h) — accumulation with repeated doses. Avoid chronic use (dependence, cognitive effects). NOT for long-term anxiety — use SSRIs. For tetanus: high doses required; respiratory support essential." },
+
+  { name:"Buspirone", generic:"buspirone hydrochloride", class:"Anxiolytic (5-HT1A partial agonist)", routes:["PO"], doses:[
+    {ind:"Generalised anxiety disorder (≥6 years — off-label)",dose:"2.5–5 mg q8h → increase by 5 mg/day q2–3 days → usual 15–30 mg/day ÷ q8h (max 60 mg/day)"},
+    {ind:"ASD — anxiety/agitation (off-label)",dose:"2.5–5 mg q12h → titrate → 15–60 mg/day"},
+  ], notes:"NON-BENZODIAZEPINE anxiolytic — no dependence, no sedation, no respiratory depression. Onset delayed 2–4 weeks (unlike BZDs). No cross-tolerance with benzodiazepines (does NOT prevent BZD withdrawal). Dizziness, headache, nausea (common early). Preferred for chronic GAD where BZD dependence is a concern. CYP3A4 substrate — interactions with azoles, macrolides." },
+
+  { name:"N-Acetylcysteine (OCD/ASD adjunct)", generic:"N-acetylcysteine / NAC (glutamate modulator)", class:"Glutamate Modulator / Adjunct", routes:["PO"], doses:[
+    {ind:"OCD adjunct (≥8 years — off-label)",dose:"600 mg once daily × 4 weeks → 600 mg q12h × 4 weeks → 900 mg q12h (titrate to response)"},
+    {ind:"ASD — irritability, repetitive behaviours (off-label)",dose:"900 mg once daily × 4 weeks → 900 mg q12h; max 2700 mg/day"},
+    {ind:"Trichotillomania / skin picking (off-label)",dose:"1200–2400 mg/day ÷ q12h"},
+  ], notes:"Precursor to glutathione and modulates glutamate signalling. Off-label use supported by emerging evidence in OCD, ASD, and body-focused repetitive behaviours. Generally well tolerated (GI upset). Sulfurous smell. Start low and titrate. Not first-line — adjunct to primary therapy." },
+
+  { name:"Melatonin (Sleep / ASD)", generic:"melatonin", class:"Neurohormone / Sleep Aid", routes:["PO"], doses:[
+    {ind:"Insomnia / circadian rhythm disorder (children)",dose:"0.5–1 mg 30–60 min before bedtime → titrate to 3–5 mg if needed"},
+    {ind:"ASD-associated sleep disorder",dose:"1–5 mg at bedtime (may go up to 10 mg in severe cases)"},
+    {ind:"Delayed sleep phase (adolescent)",dose:"0.5–3 mg, 5–6 hours before desired sleep time"},
+    {ind:"Jet lag",dose:"0.5–5 mg at target bedtime for 2–5 days"},
+  ], notes:"Generally safe; limited long-term paediatric data. Immediate-release for sleep-onset problems; modified-release for sleep maintenance. May affect pubertal timing with prolonged high-dose use (theoretical — monitor growth/development with chronic use). Use lowest effective dose for shortest time. Non-habit forming." },
+
+  // ===== VITAMINS — COMPLETE REFERENCE =====
+  { name:"Vitamin B12 (Cyanocobalamin)", generic:"cyanocobalamin / hydroxocobalamin", class:"Water-soluble Vitamin / Haematinic", routes:["IM","IV","PO","IN"], doses:[
+    {ind:"Nutritional B12 deficiency (IM — initial repletion)",dose:"1000 mcg IM once daily × 7 days → then weekly × 4 weeks → monthly (maintenance)"},
+    {ind:"Nutritional B12 deficiency (PO — oral repletion)",dose:"1000–2000 mcg PO once daily (high-dose oral effective even without intrinsic factor)"},
+    {ind:"B12 deficiency (<1 year, IM)",dose:"100–200 mcg IM once daily × 7 days → then monthly"},
+    {ind:"Pernicious anaemia (lifelong IM)",dose:"1000 mcg IM monthly (lifelong)"},
+    {ind:"Methylmalonic acidaemia / homocystinuria (B12-responsive)",dose:"Hydroxocobalamin: 1 mg/kg/day IM → may increase; some require 1–10 mg/day"},
+    {ind:"Cyanide poisoning antidote (IV hydroxocobalamin)",dose:"70 mg/kg IV over 15 min (adult 5g IV); may repeat"},
+  ], notes:"Hydroxocobalamin preferred over cyanocobalamin for severe deficiency and metabolic disorders (longer retention). Megaloblastic anaemia — do NOT treat with folate alone if B12 deficiency present (corrects anaemia but allows subacute combined degeneration of spinal cord to progress). Oral high-dose repletion is effective and preferred when IM not possible. Red-orange urine with hydroxocobalamin (normal, transient)." },
+
+  { name:"Vitamin C (Ascorbic Acid)", generic:"ascorbic acid / vitamin C", class:"Water-soluble Vitamin / Antioxidant", routes:["PO","IV"], doses:[
+    {ind:"Scurvy (treatment)",dose:"<6 months: 50 mg/day PO × 4 weeks; 6 months–12 years: 100–300 mg/day ÷ q8h × 4 weeks; >12 years: 500–1000 mg/day × 4 weeks"},
+    {ind:"Deficiency — supplementation",dose:"35–100 mg/day PO"},
+    {ind:"Iron absorption enhancement",dose:"100–200 mg with each iron dose (take simultaneously)"},
+    {ind:"Methaemoglobinaemia (alternative if methylene blue unavailable)",dose:"0.5 g/kg IV (max 20g) as temporary measure"},
+    {ind:"Chemical iron chelation (desferrioxamine adjunct)",dose:"100–200 mg/day PO (start 1 month after DFO, enhances excretion)"},
+    {ind:"Nutritional prophylaxis (infant)",dose:"35–50 mg/day PO"},
+  ], notes:"Water-soluble — excess excreted renally (oxalate stones at very high doses >2g/day). RDA: 15 mg/day (infants) to 75–90 mg/day (adolescents). Smokers need 35 mg extra/day. IV ascorbic acid in high doses — renal tubular precipitation of oxalate in G6PD deficiency. Vitamin C with DFO — enhances iron excretion but do not start until 1 month of DFO (cardiac toxicity if iron overloaded before DFO initiated)." },
+
+  { name:"Vitamin E (Tocopherol)", generic:"alpha-tocopherol / vitamin E", class:"Fat-soluble Vitamin / Antioxidant", routes:["PO"], doses:[
+    {ind:"Vitamin E deficiency (treatment — neonates)",dose:"25–50 IU/kg/day PO × 4–6 weeks"},
+    {ind:"Vitamin E deficiency (treatment — older children)",dose:"200–800 IU/day PO × 4–6 weeks"},
+    {ind:"Premature infant supplementation",dose:"25 IU/kg/day PO until term equivalent (prevent haemolytic anaemia, IVH)"},
+    {ind:"Chronic malabsorption / abetalipoproteinaemia",dose:"100 IU/kg/day PO → adjust by serum level (may need 1000–5000 IU/day)"},
+    {ind:"Intrahepatic cholestasis (water-soluble form)",dose:"25 IU/kg/day (water-miscible form — TPGS) — improves absorption"},
+    {ind:"AVED (ataxia with vitamin E deficiency — TTPA mutation)",dose:"400–1200 IU/day PO (lifelong — prevents ataxia progression)"},
+  ], notes:"Fat-soluble — absorption requires bile salts. In cholestatic disorders use water-miscible (TPGS/tocopheryl polyethylene glycol succinate) form. Antioxidant — protects membranes. RDA: 4–15 mg/day. Deficiency: haemolytic anaemia (prematures), spinocerebellar ataxia (AVED). High dose >400 IU/day may increase bleeding risk (inhibits Vit K)." },
+
+  { name:"Vitamin K2 / Menatetrenone", generic:"menaquinone-4 (MK-4) / menadione", class:"Fat-soluble Vitamin / Coagulation", routes:["PO"], doses:[
+    {ind:"Warfarin-related Vit K deficiency (PO)",dose:"0.03–0.15 mg/kg PO (max 10 mg); see also Phytonadione entry"},
+    {ind:"Haemorrhagic disease prevention beyond neonatal phase",dose:"Vitamin K1 (phytonadione) preferred — see separate entry"},
+    {ind:"Osteoporosis prevention (adjunct, adolescent)",dose:"45 mg/day MK-4 (evidence limited in paediatrics)"},
+  ], notes:"Phytonadione (K1) is the standard for VKDB prophylaxis and warfarin reversal. K2 forms (MK-4, MK-7) have roles in bone metabolism and arterial calcification. Menadione (K3) is synthetic — associated with haemolysis/kernicterus in neonates (AVOID). For clinical use, phytonadione (K1) is the standard." },
+
+  { name:"Niacin (Vitamin B3)", generic:"nicotinic acid / niacinamide / niacin", class:"Water-soluble Vitamin / Lipid-modifying", routes:["PO","IV"], doses:[
+    {ind:"Pellagra (treatment — PO)",dose:"Children: 50–100 mg TDS × 3–4 weeks until recovery"},
+    {ind:"Hartnup disease (tryptophan transport defect)",dose:"50–200 mg/day PO (niacinamide form — no flushing); lifelong"},
+    {ind:"Deficiency / supplementation",dose:"5–20 mg/day PO (as part of multivitamin or B-complex)"},
+    {ind:"Dyslipidaemia (nicotinic acid — adolescent, off-label)",dose:"100 mg TDS → slow titration → 1–3g/day (flushing limits use)"},
+  ], notes:"Pellagra: dermatitis, diarrhoea, dementia (3 Ds). Niacinamide (nicotinamide) for metabolic/deficiency use — no flushing, no lipid effect. Nicotinic acid (flush form) for dyslipidaemia — significant flushing (pretreat with aspirin 30 min before). Hartnup disease — impaired tryptophan absorption (niacin precursor) — lifelong supplementation prevents neurological crises." },
+
+  { name:"Riboflavin (Vitamin B2)", generic:"riboflavin", class:"Water-soluble Vitamin", routes:["PO"], doses:[
+    {ind:"Deficiency (ariboflavinosis — treatment)",dose:"3–10 mg/day PO × 4–6 weeks (children); adult 5–30 mg/day"},
+    {ind:"Migraine prophylaxis (≥12 years — evidence-based)",dose:"200–400 mg/day PO"},
+    {ind:"Riboflavin-responsive MADD (multiple acyl CoA dehydrogenase deficiency)",dose:"100–300 mg/day PO; some patients respond dramatically"},
+    {ind:"Fatty acid oxidation disorders (adjunct)",dose:"50–300 mg/day PO (trial in specific enzyme defects)"},
+  ], notes:"Water-soluble. Urine turns bright yellow (normal, harmless). Signs of deficiency: angular stomatitis, cheilosis, corneal vascularisation, seborrhoeic dermatitis, normocytic anaemia. Riboflavin plays key role in FAD/FMN cofactors for MADD — high-dose supplementation can be life-saving in riboflavin-responsive MADD." },
+
+  { name:"Pyridoxine — B6 (General Use)", generic:"pyridoxine hydrochloride", class:"Water-soluble Vitamin", routes:["PO","IV","IM"], doses:[
+    {ind:"Deficiency (dietary — PO)",dose:"1–5 mg/day PO (infants); 5–25 mg/day (older children)"},
+    {ind:"INH prophylaxis supplement",dose:"1–2 mg/kg/day PO (max 25–50 mg/day); give with every INH course"},
+    {ind:"Sideroblastic anaemia (B6-responsive)",dose:"200–600 mg/day PO × 3 months (trial); if responsive reduce to 2–15 mg/day"},
+    {ind:"Gyromitra mushroom poisoning (antidote)",dose:"25 mg/kg IV (max 5g); repeat q15–30 min until seizures controlled"},
+    {ind:"INH overdose (antidote)",dose:"Gram-for-gram IV equal to INH ingested (max 5g if amount unknown)"},
+    {ind:"Nausea of pregnancy (adolescent — with doxylamine)",dose:"10–25 mg q8h"},
+  ], notes:"See also separate neonatal seizures entry (pyridoxine-dependent epilepsy). Peripheral neuropathy with chronic MEGA-doses (>500 mg/day for months). RDA: 0.1 mg (infants) to 1.3 mg (adolescents). Active form: PLP (pyridoxal phosphate). ALSP/PDE: ALDH7A1 mutation — pyridoxine trial diagnostic (see neonatal seizure entry)." },
+
+  { name:"Pantothenic Acid (Vitamin B5)", generic:"calcium pantothenate / pantothenic acid", class:"Water-soluble Vitamin", routes:["PO"], doses:[
+    {ind:"Supplementation (general)",dose:"2–7 mg/day PO (adequate intake; deficiency extremely rare in isolation)"},
+    {ind:"Pantothenate kinase-associated neurodegeneration (PKAN)",dose:"Pantothenate supplementation 1–3g/day PO — limited evidence; may slow progression"},
+    {ind:"Part of B-complex supplement",dose:"Per product formulation — included in most B-complex preparations"},
+  ], notes:"Coenzyme A precursor. Isolated deficiency extremely rare (present in virtually all foods). Deficiency: burning feet syndrome, paraesthesias. Key component of CoA (essential for fatty acid metabolism, Krebs cycle). PKAN (Hallervorden-Spatz syndrome) — neurodegeneration with brain iron accumulation; pantothenate kinase mutation." },
+
+  { name:"Biotin (Vitamin B7)", generic:"biotin / vitamin H", class:"Water-soluble Vitamin", routes:["PO","IV"], doses:[
+    {ind:"Nutritional deficiency (treatment)",dose:"5–10 mg/day PO"},
+    {ind:"Biotinidase deficiency (neonatal screening detected — lifelong)",dose:"5–20 mg/day PO (usually 5–10 mg/day for most patients); lifelong therapy"},
+    {ind:"Holocarboxylase synthetase deficiency",dose:"10–40 mg/day PO (high-dose; titrate to response)"},
+    {ind:"Propionic acidaemia (adjunct)",dose:"10 mg/day PO"},
+    {ind:"Alopecia / brittle nails (unproven — supplemental use)",dose:"5–10 mg/day PO (limited evidence for non-deficiency states)"},
+  ], notes:"Biotinidase deficiency: if untreated → progressive neurological damage, alopecia, skin rash, optic atrophy, developmental delay. Neonatal screening detects most — early treatment prevents ALL complications. Avidin in raw egg whites binds biotin (do NOT feed raw eggs to infants). Biotin supplement interferes with many lab immunoassays (thyroid, cardiac, coagulation) — stop 48–72h before lab tests." },
+
+  { name:"Zinc (Therapeutic Doses)", generic:"zinc sulfate / zinc gluconate / zinc acetate", class:"Trace Element / Immunomodulator", routes:["PO","IV"], doses:[
+    {ind:"Acute diarrhoea (<6 months — WHO)",dose:"10 mg elemental zinc/day × 10–14 days"},
+    {ind:"Acute diarrhoea (≥6 months — WHO)",dose:"20 mg elemental zinc/day × 10–14 days"},
+    {ind:"Zinc deficiency (treatment)",dose:"0.5–1 mg elemental zinc/kg/day ÷ q8h (10–20 mg/day usual)"},
+    {ind:"Acrodermatitis enteropathica (SLC39A4 mutation — lifelong)",dose:"0.5–3 mg elemental zinc/kg/day PO; titrate to serum zinc level"},
+    {ind:"Wilson disease (maintenance — zinc acetate)",dose:"Zinc acetate: <6 years 75 mg/day ÷ q8h; 6–15 years 75–150 mg/day; >15 years 150 mg/day (50 mg elemental zinc TDS)"},
+    {ind:"Wilson disease — symptomatic (initial — use D-penicillamine first)",dose:"Zinc after chelation therapy; not for initial symptomatic treatment"},
+    {ind:"IV supplementation (TPN)",dose:"0.25–0.5 mg/kg/day IV (premature: 0.4 mg/kg/day)"},
+  ], notes:"Zinc sulfate: 20% elemental zinc. Zinc gluconate: 13% elemental zinc. Zinc acetate (Galzin): 30% elemental zinc — PREFERRED for Wilson disease. Copper deficiency with prolonged high-dose zinc (zinc blocks copper absorption) — monitor copper and ceruloplasmin. GI side effects: nausea, gastritis — take with food." },
+
+  { name:"Iron (IV) — Parenteral Iron", generic:"iron sucrose / ferric carboxymaltose / iron dextran", class:"IV Iron Supplement", routes:["IV"], doses:[
+    {ind:"Iron sucrose (Venofer) — IDA in CKD",dose:"Children 2–18y: 0.5–1 mg/kg/dose IV over 30 min (max 100 mg/dose); give 3–5 doses over 2 weeks"},
+    {ind:"Ferric carboxymaltose (Ferinject) — IDA (≥14 years or >50 kg)",dose:"Max 1000 mg (20 mg/kg) IV over 15 min, once; do NOT repeat within 7 days"},
+    {ind:"Iron dextran (total dose infusion — older children)",dose:"Total dose (mg) = Weight (kg) × (Target Hb – Actual Hb) × 0.24 + 500 (depot); administer over 4–6h"},
+    {ind:"Total iron deficit (Ganzoni formula)",dose:"Body iron deficit (mg) = Weight × (Target Hb - Actual Hb) × 0.24 + 500"},
+  ], notes:"IV iron for: oral intolerance, severe IDA, malabsorption, CKD, IBD, rapid repletion needed. Anaphylaxis risk with high-molecular-weight iron dextran (low with sucrose/carboxymaltose) — premedication with antihistamine + 10-min test dose. Facilities for anaphylaxis management required. Pain/phlebitis if extravasated. Monitor Hb, ferritin, transferrin saturation." },
+
+  // ===== SEVERE ACUTE MALNUTRITION (SAM) — F-75 / F-100 / RUTF =====
+  { name:"F-75 Therapeutic Milk (SAM — Stabilisation)", generic:"WHO F-75 formula (75 kcal / 100 mL)", class:"Therapeutic Food / SAM Management", routes:["PO","NG"], doses:[
+    {ind:"SAM with complications — Phase 1 (stabilisation)",dose:"100 mL/kg/day ÷ q2–3h × 8 feeds/day (2 weeks or until stabilised)"},
+    {ind:"Weight-based F-75 (practical table)",dose:"<3 kg: 130 mL/kg/day; 3–6 kg: 130 mL/kg/day ÷ q3h (8 feeds); >6 kg: 100 mL/kg/day"},
+    {ind:"F-75 with oedema (grade 1–2)",dose:"Start 100 mL/kg/day; do NOT push fluids; increase only after oedema resolves"},
+    {ind:"F-75 with oedema (grade 3 — kwashiorkor)",dose:"75 mL/kg/day initially; increase to 100 mL/kg/day after oedema subsides"},
+    {ind:"NG feeding (if refusing oral)",dose:"Same volumes via NG over 2–3h; check gastric residuals before each feed"},
+  ], notes:"F-75 composition per 100 mL: 75 kcal, 0.9g protein, 3.6g fat, 13g carbohydrate. LOW protein intentional (avoids refeeding syndrome). NEVER use during stabilisation phase: F-100, RUTF, undiluted formula. Key stabilisation goals: treat hypoglycaemia, hypothermia, dehydration, electrolytes, infections. Do NOT push for weight gain in Phase 1." },
+
+  { name:"F-100 Therapeutic Milk (SAM — Rehabilitation)", generic:"WHO F-100 formula (100 kcal / 100 mL)", class:"Therapeutic Food / SAM Management", routes:["PO","NG"], doses:[
+    {ind:"SAM — Phase 2 rehabilitation (in-patient)",dose:"Start 100 mL/kg/day → increase by 10 mL/kg q12h → target 150–200 mL/kg/day (max 220 mL/kg/day)"},
+    {ind:"Transition criterion from F-75 to F-100",dose:"Child eats F-75 without difficulty; oedema resolved or reducing; no complications"},
+    {ind:"F-100 maintenance — weight gain target",dose:"Weight gain ≥10g/kg/day = good; 5–10g/kg/day = moderate; <5g/kg/day = poor"},
+    {ind:"F-100 volume per feed",dose:"At 150 mL/kg/day ÷ q3h (8 feeds): = 150/8 = 18 mL/kg/feed (round to nearest 5 mL)"},
+  ], notes:"F-100 composition per 100 mL: 100 kcal, 2.9g protein, 5.4g fat, 9.4g carbohydrate. HIGH protein/calorie for catch-up growth. Transition to RUTF when child can eat solid foods. Target catch-up growth 10–20 g/kg/day (extraordinary rate). Do NOT start F-100 until stabilisation complete (hypoglycaemia, infection, electrolyte correction done)." },
+
+  { name:"RUTF — Ready-to-Use Therapeutic Food", generic:"RUTF (Plumpy'Nut / equivalent)", class:"Therapeutic Food / SAM Management", routes:["PO"], doses:[
+    {ind:"SAM uncomplicated — community-based (CMAM)",dose:"200 kcal/kg/day (approximately); practical: 1 sachet (500 kcal) per 10 kg body weight per day"},
+    {ind:"RUTF sachets (92g sachet = 500 kcal)",dose:"3.5–5 kg: 1 sachet/day; 5–7 kg: 1.5 sachets/day; 7–9 kg: 2 sachets/day; 9–12 kg: 2.5 sachets/day"},
+    {ind:"Community RUTF (standard protocol)",dose:"Target 170–220 kcal/kg/day in divided portions throughout day"},
+    {ind:"Transition from F-100 to RUTF",dose:"When child eats 75–100% of target RUTF → discharge from facility"},
+  ], notes:"RUTF composition per 100g: 520 kcal, 14g protein, 32g fat. Equivalent nutritionally to F-100. Shelf stable 2 years (no water added = microbiologically safe). Not for <6 months (breastfeeding preferred). Give breast milk first, then RUTF. Do NOT add water or dilute. Each RUTF program has approved brands — use locally procured/approved brands." },
+
+  { name:"SAM — Electrolyte-Mineral Solution (Resomal)", generic:"ReSoMal / SAM-ORS", class:"SAM Rehydration / Electrolyte", routes:["PO","NG"], doses:[
+    {ind:"SAM with dehydration (oral rehydration — NOT standard ORS)",dose:"5 mL/kg ReSoMal every 30 min for 2h (10 mL/kg/h); then alternating 5–10 mL/kg ReSoMal with F-75 every 1–2h × 10h"},
+    {ind:"SAM — monitoring during rehydration",dose:"Check every 30 min: RR, pulse, urine output, fontanelle, eyes — STOP if signs of overload"},
+    {ind:"WHO electrolyte/mineral solution (for F-75 preparation)",dose:"Combined electrolyte solution: 45 mEq K+, 6 mEq Na+, 3 mmol Mg per 100 mL (20 mL added per 1L F-75 or F-100)"},
+  ], notes:"NEVER use standard ORS or IV fluids liberally in SAM — high risk of fluid overload and death. ReSoMal has LOWER sodium (45 mmol/L vs ORS 75 mmol/L) and HIGHER potassium and magnesium than standard ORS. IV fluids ONLY for severe dehydration + shock: Ringer's lactate 15 mL/kg over 1h (or 0.9% NaCl — NOT 0.45%); reassess after each 15 mL/kg." },
+
+  { name:"SAM — Broad-Spectrum Antibiotic Protocol", generic:"amoxicillin / amoxicillin-clavulanate / ampicillin + gentamicin", class:"SAM Management / Antibiotic", routes:["PO","IV"], doses:[
+    {ind:"SAM uncomplicated (community — no apparent infection)",dose:"Amoxicillin 80–90 mg/kg/day ÷ q12h PO × 7 days (WHO protocol)"},
+    {ind:"SAM complicated (inpatient — no identified infection)",dose:"Ampicillin 50 mg/kg/dose IV q6h × 2 days → amoxicillin 80–90 mg/kg/day PO × 5 days"},
+    {ind:"SAM complicated (inpatient — identified infection or shock)",dose:"Ampicillin 50 mg/kg IV q6h + Gentamicin 7.5 mg/kg once daily × 7 days"},
+    {ind:"SAM + suspected septic shock",dose:"Ceftriaxone 100 mg/kg/day IV + modify per cultures (higher infection mortality in SAM)"},
+    {ind:"SAM + suspected TB (if not improving in 4 weeks)",dose:"RHEZ standard regimen at standard doses (TB highly prevalent in SAM)"},
+  ], notes:"ALL children with SAM should receive empirical antibiotics (WHO recommendation). This is because occult bacteraemia and infection are extremely common even without obvious signs (immune suppression, gut bacterial translocation). Fever may be absent (impaired thermoregulation). In SAM, sepsis presents atypically — high index of suspicion always." },
+
+  { name:"SAM — Micronutrient Supplementation Protocol", generic:"WHO SAM micronutrient supplement", class:"SAM Management / Vitamins", routes:["PO"], doses:[
+    {ind:"Vitamin A (SAM — on admission, if not given in last month)",dose:"<6 months: 50,000 IU PO once; 6–12 months: 100,000 IU PO once; >12 months: 200,000 IU PO once"},
+    {ind:"Folic acid (SAM — Phase 1)",dose:"5 mg PO single dose on Day 1 (high dose for acute treatment)"},
+    {ind:"Folic acid (SAM — ongoing)",dose:"1 mg/day PO during rehabilitation"},
+    {ind:"Zinc (SAM — during F-75 phase via combined electrolyte solution)",dose:"2 mmol/kg/day (included in combined electrolyte/mineral solution added to F-75)"},
+    {ind:"Potassium (SAM)",dose:"3–4 mmol/kg/day (included in electrolyte solution in F-75/F-100)"},
+    {ind:"Magnesium (SAM)",dose:"0.4–0.6 mmol/kg/day (included in electrolyte solution)"},
+    {ind:"Iron — NOTE: DO NOT GIVE IN PHASE 1",dose:"Iron ONLY in Phase 2 (rehabilitation): ferrous sulfate 3 mg elemental iron/kg/day once daily — start only when weight gain begins and infection controlled"},
+  ], notes:"CRITICAL: DO NOT give iron in Phase 1 (stabilisation). Free iron promotes bacterial growth, oxidative stress — increases mortality in SAM. Wait until Phase 2 (rehabilitation, appetite returned, infections controlled, weight gaining). F-100 and RUTF contain adequate iron. Additional iron only if Hb <4g/dL or blood transfusion indications met (whole blood 10 mL/kg slowly over 3h)." },
+
+  { name:"SAM — Hypoglycaemia Protocol", generic:"dextrose / glucose / F-75", class:"SAM Emergency Protocol", routes:["PO","IV","NG"], doses:[
+    {ind:"Hypoglycaemia (BG <54 mg/dL or 3 mmol/L) — conscious, can swallow",dose:"50 mL of 10% glucose or sucrose solution PO OR 50 mL F-75 PO/NG; recheck BG after 30 min"},
+    {ind:"Hypoglycaemia — unconscious or IV access available",dose:"5 mL/kg of 10% glucose IV (or IO) over 5 min; then feed immediately"},
+    {ind:"Hypoglycaemia prevention",dose:"Feed 2-hourly initially (or 3-hourly if sleeping); NEVER miss a feed in Phase 1; keep warm (hypothermia worsens hypoglycaemia)"},
+    {ind:"Hypothermia management (T <35°C axillary)",dose:"Cover with warm blanket, skin-to-skin with caregiver, ensure feeding; warm environment 25–30°C; check BG (hypothermia → hypoglycaemia)"},
+  ], notes:"Hypoglycaemia and hypothermia are the two immediate killers in SAM. Check BG on arrival, before each feed if level <54, and 30 min after treatment. Use 10% glucose only (NEVER 50% dextrose undiluted — hyperosmolar damage). Check for underlying infection triggering both. Frequent 2-hourly feeds are the best prevention. Do NOT use high concentration dextrose (>12.5% peripheral; >25% central only)." },
+
+
 ];
 
 // ============================================================
@@ -2216,6 +2552,21 @@ const SITUATIONS = [
       {name:'Micafungin',dose:'4 mg/kg/day IV (prophylaxis 1 mg/kg/day)',priority:'alt',note:'Invasive candidiasis alternative echinocandin; prophylaxis HSCT'},
     ]
   },
+  { id:'sam', title:'Severe Acute Malnutrition (SAM)', icon:'🍼', bg:'#102010',
+    sub:'Phase 1 Stabilisation, Phase 2 Rehabilitation, CMAM',
+    drugs:[
+      {name:'F-75 Milk (Phase 1)',dose:'100 mL/kg/day ÷ q3h (8 feeds/day) × up to 2 weeks',priority:'first',note:'Stabilisation only — low protein, 75 kcal/100 mL. DO NOT push weight gain.'},
+      {name:'F-100 Milk (Phase 2)',dose:'100 mL/kg/day → increase by 10 mL/kg q12h → max 200 mL/kg/day',priority:'first',note:'Rehabilitation phase — after oedema resolved and appetite returned'},
+      {name:'RUTF (Plumpy\'Nut)',dose:'~200 kcal/kg/day: 1 sachet per 10 kg/day (sachets = 500 kcal/92g)',priority:'first',note:'Uncomplicated SAM community management (CMAM); transition from F-100'},
+      {name:'ReSoMal (SAM-ORS)',dose:'5 mL/kg q30 min × 2h then 5–10 mL/kg alternating with F-75 × 10h',priority:'second',note:'SAM dehydration ONLY — lower Na+ than standard ORS. Never use standard ORS.'},
+      {name:'Amoxicillin (empiric)',dose:'80–90 mg/kg/day ÷ q12h PO × 7 days',priority:'first',note:'ALL SAM children get empiric antibiotics (WHO). Uncomplicated: oral amoxicillin'},
+      {name:'Ampicillin + Gentamicin',dose:'Ampicillin 50 mg/kg IV q6h + Gentamicin 7.5 mg/kg OD × 7 days',priority:'second',note:'SAM complicated (inpatient): severe infection, shock, or deterioration'},
+      {name:'Vitamin A (on admission)',dose:'<6m: 50,000 IU; 6–12m: 100,000 IU; >12m: 200,000 IU — single dose PO',priority:'first',note:'Give on Day 1 unless received in last 30 days'},
+      {name:'Folic Acid (Day 1)',dose:'5 mg PO single dose on Day 1; then 1 mg/day ongoing',priority:'first',note:'High-dose folic acid on admission'},
+      {name:'10% Dextrose (hypoglycaemia)',dose:'Conscious: 50 mL of 10% glucose PO/NG; Unconscious: 5 mL/kg 10% glucose IV',priority:'first',note:'BG <54 mg/dL — treat immediately. Check every 2–3h in Phase 1.'},
+      {name:'Iron (Phase 2 ONLY)',dose:'Ferrous sulfate: 3 mg elemental iron/kg/day once daily — START ONLY in Phase 2',priority:'second',note:'NEVER in Phase 1 (promotes bacterial growth, increases mortality)'},
+    ]
+  },
 ];
 
 // ============================================================
@@ -2303,6 +2654,20 @@ const RENAL = [
   {drug:'Labetalol', class:'Alpha+Beta blocker', normal:'0.25–3 mg/kg/hour IV', mild:'No change', mod:'No change (hepatic)', severe:'No change; monitor BP closely', dialysis:'Not significantly HD-removed', note:'Hepatic metabolism — no significant renal adjustment'},
   {drug:'Hydralazine', class:'Direct vasodilator', normal:'0.1–0.5 mg/kg/dose q4–6h', mild:'q8h', mod:'q8–12h', severe:'q12–24h', dialysis:'Supplement post-HD', note:'Slower acetylators (genetic) have higher plasma levels; renally cleared'},
   {drug:'Pralidoxime (2-PAM)', class:'OP antidote', normal:'25–50 mg/kg loading then 10–20 mg/kg/h', mild:'Reduce by 25%', mod:'Reduce by 50%', severe:'Avoid continuous infusion; single doses only', dialysis:'Supplement post-HD', note:'Primarily renally excreted — reduce in CKD'},
+  {drug:'Risperidone', class:'Atypical antipsychotic', normal:'0.5–3 mg/day ÷ q12h', mild:'Start 0.5 mg q12h; increase slowly', mod:'Start 0.25–0.5 mg q12h; max 50% of normal', severe:'Start at lowest dose; avoid if GFR <10', dialysis:'Not significantly HD-removed; lowest dose', note:'Hepatic + renal clearance of 9-OH-risperidone (active) — dose reduce in CKD'},
+  {drug:'Quetiapine', class:'Atypical antipsychotic', normal:'25–800 mg/day ÷ q12h', mild:'No change (hepatic)', mod:'No change; monitor', severe:'No change; start low', dialysis:'Not HD-removed; no supplement', note:'Hepatic metabolism — no significant renal adjustment needed'},
+  {drug:'Aripiprazole', class:'Atypical antipsychotic', normal:'2–30 mg/day once daily', mild:'No change (hepatic)', mod:'No change', severe:'No change', dialysis:'Not HD-removed', note:'Hepatic (CYP2D6/3A4) — no renal adjustment needed'},
+  {drug:'Haloperidol', class:'Typical antipsychotic', normal:'0.025–0.15 mg/kg/day ÷ q8–12h', mild:'No change (hepatic)', mod:'Start at lower dose; titrate slowly', severe:'50% dose; accumulation risk', dialysis:'Not significantly HD-removed', note:'Glucuronidation + renal excretion of metabolites — reduce in severe CKD'},
+  {drug:'Lithium', class:'Mood stabiliser', normal:'10–30 mg/kg/day ÷ q8–12h; level 0.6–1.2 mmol/L', mild:'Reduce dose; more frequent TDM', mod:'50% dose; TDM every 3–5 days', severe:'AVOID or very low dose with daily TDM', dialysis:'Significantly HD-removed; dose post-HD; consult nephrology', note:'CRITICAL: entirely renally excreted. CKD → lithium toxicity rapidly. TDM mandatory.'},
+  {drug:'Sertraline', class:'SSRI', normal:'25–200 mg/day once daily', mild:'No change (hepatic)', mod:'No change', severe:'No change; monitor', dialysis:'Not HD-removed', note:'Hepatic metabolism — no renal dose adjustment needed'},
+  {drug:'Fluoxetine', class:'SSRI', normal:'10–60 mg/day once daily', mild:'No change (hepatic)', mod:'No change', severe:'No change', dialysis:'Not HD-removed', note:'Hepatic — no renal adjustment. Long half-life.'},
+  {drug:'Lamotrigine', class:'Mood stabiliser/AED', normal:'As per body weight/regimen', mild:'No change (glucuronidation)', mod:'Reduce by 25%; monitor levels', severe:'Reduce by 50%; monitor', dialysis:'Partially removed; supplement post-HD', note:'Renal excretion of metabolites — modest reduction in severe CKD'},
+  {drug:'Atomoxetine', class:'Non-stimulant ADHD', normal:'0.5–1.4 mg/kg/day once daily', mild:'No change (hepatic)', mod:'No change', severe:'Reduce to 50% in severe CKD', dialysis:'Not significantly HD-removed', note:'Hepatic (CYP2D6) — minimal renal adjustment in mild-moderate CKD'},
+  {drug:'Clonidine', class:'Alpha-2 agonist', normal:'5–25 mcg/kg/day ÷ q8–12h', mild:'No change', mod:'Reduce by 50%', severe:'Reduce by 75%; careful titration', dialysis:'Not significantly HD-removed; low dose', note:'Renal excretion 65% — significant accumulation in CKD'},
+  {drug:'Guanfacine', class:'Alpha-2A agonist', normal:'1–4 mg/day once daily (ER)', mild:'No change', mod:'No change; monitor BP', severe:'Start at lower dose', dialysis:'Not HD-removed', note:'Hepatic + renal; monitor BP closely in renal impairment'},
+  {drug:'Buspirone', class:'Anxiolytic', normal:'2.5–20 mg ÷ q8h', mild:'No change', mod:'Reduce by 25–50%', severe:'AVOID', dialysis:'Not significantly HD-removed; avoid', note:'Renal excretion of active metabolite 1-PP — use cautiously in CKD'},
+  {drug:'Vitamin B12', class:'Water-soluble vitamin', normal:'IM: 1000 mcg/day × 7d; PO: 1000–2000 mcg/day', mild:'No change', mod:'No change', severe:'No change', dialysis:'HD removes some B12; supplement after HD', note:'Safe in renal failure; water-soluble. Adjust for clearance via dialysis.'},
+  {drug:'Tranexamic Acid', class:'Antifibrinolytic', normal:'10–15 mg/kg q6–8h', mild:'q8h', mod:'q12h; reduce dose 50%', severe:'q24h; 25% dose', dialysis:'Supplement post-HD (partially removed)', note:'Primarily renal excretion — dose reduce in CKD'},
   {drug:'Cyclophosphamide', class:'Alkylating Agent', normal:'2–3 mg/kg/day PO or IV pulse', mild:'No change', mod:'Reduce dose by 25%', severe:'Reduce dose by 50%; avoid if GFR <10', dialysis:'Dose post-HD; MESNA still required', note:'Active metabolites accumulate; acrolein-mediated bladder toxicity worse in CKD'},
   {drug:'Cyclosporine A', class:'Calcineurin Inhibitor', normal:'4–6 mg/kg/day ÷ q12h', mild:'Monitor closely; potential nephrotoxicity', mod:'Use with extreme caution; reduce dose 25–50%', severe:'AVOID or very low dose with TDM', dialysis:'Not significantly removed; dose adjust by TDM', note:'Nephrotoxic — CKD significantly increases toxicity risk. TDM mandatory.'},
   {drug:'Tacrolimus', class:'Calcineurin Inhibitor', normal:'0.1–0.2 mg/kg/day ÷ q12h', mild:'No change (TDM-guided)', mod:'TDM-guided; may need dose reduction', severe:'Reduce dose; TDM essential; avoid if oliguric', dialysis:'Not significantly HD-removed; TDM-guided', note:'Nephrotoxic — monitor creatinine monthly. Prolonged high levels worsen CKD.'},
