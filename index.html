@@ -273,6 +273,48 @@ html,body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);m
 /* ===== DIVIDER ===== */
 .divider{height:1px;background:var(--border);margin:6px 0;}
 
+/* ===== SENSITIVITY CHART ===== */
+.sens-toolbar{padding:16px 24px 0;border-bottom:1px solid var(--border);}
+.sens-title-row{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:10px;}
+.sens-group-filter{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;}
+.sens-abx-filter{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px;}
+.sens-gfilt{padding:6px 12px;border-radius:20px;border:1.5px solid var(--border);background:transparent;color:var(--text3);font-size:11px;font-weight:600;cursor:pointer;font-family:'Sora',sans-serif;transition:all 0.15s;min-height:34px;}
+.sens-gfilt:hover{color:var(--text);border-color:var(--text3);}
+.sens-gfilt.active{background:var(--pill-bg);color:var(--accent);border-color:var(--accent);}
+.sens-afilt{padding:4px 9px;border-radius:12px;border:1.5px solid var(--border);background:transparent;color:var(--text3);font-size:10px;font-weight:500;cursor:pointer;font-family:'DM Mono',monospace;transition:all 0.15s;min-height:28px;}
+.sens-afilt:hover{border-color:var(--text3);color:var(--text2);}
+.sens-afilt.active{background:#1a2d1a;color:var(--accent3);border-color:var(--accent3);}
+.sens-legend{display:flex;gap:6px;flex-wrap:wrap;padding-bottom:10px;}
+.sens-pill{font-size:10px;padding:3px 9px;border-radius:20px;font-weight:600;font-family:'DM Mono',monospace;}
+.s-s{background:#0d2a1a;color:#34d399;} .s-r{background:#2a0d0d;color:#f87171;} .s-v{background:#1f1a00;color:#fbbf24;} .s-i{background:#2a1800;color:#fb923c;} .s-n{background:var(--surface2);color:var(--text3);}
+.sens-table{border-collapse:collapse;font-size:11px;min-width:1600px;}
+.sens-table th{background:var(--surface2);color:var(--text3);font-size:8.5px;letter-spacing:0.5px;text-transform:uppercase;padding:7px 5px;text-align:center;border:1px solid var(--border);white-space:nowrap;position:sticky;top:0;z-index:10;font-family:'DM Mono',monospace;}
+.sens-table th.org-col{text-align:left;padding:7px 10px;min-width:190px;position:sticky;left:0;z-index:20;background:var(--surface2);}
+.sens-table td{padding:6px 4px;border:1px solid var(--border);text-align:center;vertical-align:middle;font-size:10px;font-family:'DM Mono',monospace;font-weight:700;}
+.sens-table td.org-cell{text-align:left;padding:6px 10px;background:var(--surface);position:sticky;left:0;z-index:5;}
+.sens-org-name{font-size:11px;font-weight:600;color:var(--text);font-style:italic;line-height:1.2;}
+.sens-org-note{font-size:9px;color:var(--text3);margin-top:1px;font-style:normal;}
+.sens-table tr:hover td{filter:brightness(1.15);}
+.sens-table .group-row td{background:var(--surface3);color:var(--accent);font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:5px 10px;text-align:left;font-family:'Sora',sans-serif;}
+.sc-s{background:#0d2a1a;color:#34d399;} .sc-r{background:#2a0d0d;color:#f87171;} .sc-v{background:#1f1a00;color:#fbbf24;} .sc-i{background:#2a1800;color:#fb923c;} .sc-n{background:transparent;color:var(--surface3);}
+/* Mobile sens card */
+.sens-card{background:var(--surface);border:1.5px solid var(--border);border-radius:12px;margin-bottom:10px;overflow:hidden;}
+.sens-card-header{padding:12px 14px;cursor:pointer;display:flex;align-items:center;gap:10px;min-height:56px;}
+.sens-card.open{border-color:var(--accent);}
+.sens-org-name2{font-size:13px;font-weight:600;color:var(--text);font-style:italic;}
+.sens-org-note2{font-size:10px;color:var(--text3);margin-top:2px;}
+.sens-group-badge{font-size:9px;padding:2px 7px;border-radius:20px;font-weight:600;white-space:nowrap;flex-shrink:0;}
+.badge-gp{background:#1e2d45;color:var(--accent);} .badge-gn{background:#1a2a1a;color:var(--accent3);} .badge-an{background:#2a1a2a;color:var(--purple);} .badge-at{background:#2a1a0a;color:var(--warn);}
+.sens-card-body{display:none;border-top:1px solid var(--border);padding:10px 14px;}
+.sens-card.open .sens-card-body{display:block;}
+.sens-abx-row{display:flex;align-items:center;padding:5px 0;border-bottom:1px solid var(--border);}
+.sens-abx-row:last-child{border-bottom:none;}
+.sens-abx-name{font-size:11px;color:var(--text2);flex:1;}
+.sab{font-size:10px;padding:2px 8px;border-radius:12px;font-weight:700;font-family:'DM Mono',monospace;min-width:28px;text-align:center;}
+.sab-s{background:#0d2a1a;color:#34d399;} .sab-r{background:#2a0d0d;color:#f87171;} .sab-v{background:#1f1a00;color:#fbbf24;} .sab-i{background:#2a1800;color:#fb923c;} .sab-n{background:var(--surface2);color:var(--text3);}
+@media(max-width:767px){.sens-toolbar{padding:12px 14px 0;}#sensTableWrap{display:none;}#sensCardWrap{display:block;}}
+@media(min-width:768px){#sensTableWrap{display:block;}#sensCardWrap{display:none;}}
+
 /* ===== SCROLLBAR ===== */
 ::-webkit-scrollbar{width:4px;height:4px;}
 ::-webkit-scrollbar-track{background:transparent;}
@@ -366,6 +408,7 @@ html,body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);m
   <div class="tab active" onclick="showPanel('drugbank')">💊 Drug Bank <span class="tab-count" id="countDrug">250+</span></div>
   <div class="tab" onclick="showPanel('situation')">🏥 Situation-Based Dosing <span class="tab-count">12</span></div>
   <div class="tab" onclick="showPanel('renal')">🫘 Renal Adjustment <span class="tab-count">80+</span></div>
+  <div class="tab" onclick="showPanel('sensitivity')">🦠 Antibiotic Sensitivity <span class="tab-count">30+</span></div>
 </div>
 
 <!-- DRAWER OVERLAY -->
@@ -461,7 +504,37 @@ html,body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);m
   </div>
 </div>
 
-<!-- BOTTOM NAV (mobile) -->
+<!-- SENSITIVITY PANEL -->
+<div class="panel-full" id="panel-sensitivity">
+  <div class="sens-toolbar">
+    <div class="sens-title-row">
+      <div>
+        <div class="section-title">Antibiotic Sensitivity Chart</div>
+        <div class="section-sub">Typical susceptibility patterns — always confirm with local antibiogram & culture results</div>
+      </div>
+    </div>
+    <div class="sens-group-filter" id="sensGroupFilter"></div>
+    <div class="sens-abx-filter" id="sensAbxFilter"></div>
+    <div class="sens-legend">
+      <span class="sens-pill s-s">S Sensitive</span>
+      <span class="sens-pill s-r">R Resistant</span>
+      <span class="sens-pill s-v">V Variable</span>
+      <span class="sens-pill s-i">I Intermediate</span>
+      <span class="sens-pill s-n">– Not applicable</span>
+    </div>
+  </div>
+  <!-- Desktop table -->
+  <div id="sensTableWrap" style="overflow-x:auto;padding:0 24px 32px;">
+    <table class="sens-table" id="sensTable">
+      <thead id="sensTableHead"></thead>
+      <tbody id="sensTableBody"></tbody>
+    </table>
+  </div>
+  <!-- Mobile cards -->
+  <div id="sensCardWrap" style="padding:0 14px;padding-bottom:calc(var(--bottom-nav-h) + var(--safe-bottom) + 14px);"></div>
+</div>
+
+
 <nav class="bottom-nav">
   <div class="bottom-nav-inner">
     <button class="bnav-btn active" id="bnav-drugbank" onclick="showPanel('drugbank')">
@@ -475,6 +548,10 @@ html,body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);m
     <button class="bnav-btn" id="bnav-renal" onclick="showPanel('renal')">
       <span class="bnav-icon">🫘</span>
       Renal
+    </button>
+    <button class="bnav-btn" id="bnav-sensitivity" onclick="showPanel('sensitivity')">
+      <span class="bnav-icon">🦠</span>
+      Sensitivity
     </button>
   </div>
 </nav>
@@ -3018,7 +3095,7 @@ function filterGFR(gfr, btn) {
 // ============================================================
 function showPanel(panel) {
   currentPanel = panel;
-  const panels = ['drugbank','situation','renal'];
+  const panels = ['drugbank','situation','renal','sensitivity'];
   panels.forEach(p => {
     const el = document.getElementById('panel-' + p);
     if (el) {
@@ -3034,9 +3111,9 @@ function showPanel(panel) {
   document.querySelectorAll('.bnav-btn').forEach(b => b.classList.remove('active'));
   const activeNav = document.getElementById('bnav-' + panel);
   if (activeNav) activeNav.classList.add('active');
-  // Re-render situations with current weight
+  // Panel-specific renders
   if (panel === 'situation') renderSituations();
-  // Scroll to top
+  if (panel === 'sensitivity') renderSensitivity();
   window.scrollTo(0,0);
 }
 
@@ -3061,6 +3138,352 @@ document.getElementById('renalSearch').addEventListener('input', function() {
 // Close drawer on escape
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
 
+
+// ============================================================
+// ANTIBIOTIC SENSITIVITY DATABASE
+// S=Sensitive, R=Resistant, V=Variable(test), I=Intermediate, N=Not applicable
+// Reference: CLSI, BNF, Meherban Singh, Harriet Lane, local Indian data
+// Always confirm with local antibiogram and culture & sensitivity results
+// ============================================================
+const ABX_COLS = [
+  {id:'pen',    name:'Penicillin G',         grp:'Penicillins'},
+  {id:'amox',   name:'Amoxicillin',           grp:'Penicillins'},
+  {id:'amcl',   name:'Amox-Clav',             grp:'Penicillins'},
+  {id:'amp',    name:'Ampicillin',             grp:'Penicillins'},
+  {id:'amsu',   name:'Amp-Sulbactam',          grp:'Penicillins'},
+  {id:'ptaz',   name:'Pip-Tazo',               grp:'Penicillins'},
+  {id:'cefz',   name:'Cefazolin',              grp:'Cephalosporins'},
+  {id:'cefu',   name:'Cefuroxime',             grp:'Cephalosporins'},
+  {id:'cftx',   name:'Ceftriaxone',            grp:'Cephalosporins'},
+  {id:'cfep',   name:'Cefepime',               grp:'Cephalosporins'},
+  {id:'cftz',   name:'Ceftazidime',            grp:'Cephalosporins'},
+  {id:'cfos',   name:'Cefop-Sulbactam',        grp:'Cephalosporins'},
+  {id:'mero',   name:'Meropenem',              grp:'Carbapenems'},
+  {id:'erta',   name:'Ertapenem',              grp:'Carbapenems'},
+  {id:'vanc',   name:'Vancomycin',             grp:'Glycopeptides'},
+  {id:'line',   name:'Linezolid',              grp:'Oxazolidinone'},
+  {id:'clin',   name:'Clindamycin',            grp:'Lincosamide'},
+  {id:'metr',   name:'Metronidazole',          grp:'Nitroimidazole'},
+  {id:'cip',    name:'Ciprofloxacin',          grp:'Fluoroquinolones'},
+  {id:'levo',   name:'Levofloxacin',           grp:'Fluoroquinolones'},
+  {id:'azit',   name:'Azithromycin',           grp:'Macrolides'},
+  {id:'doxy',   name:'Doxycycline',            grp:'Tetracyclines'},
+  {id:'tmps',   name:'TMP-SMX',                grp:'Sulfonamides'},
+  {id:'gent',   name:'Gentamicin',             grp:'Aminoglycosides'},
+  {id:'amik',   name:'Amikacin',               grp:'Aminoglycosides'},
+  {id:'coli',   name:'Colistin',               grp:'Polymyxins'},
+  {id:'aztr',   name:'Aztreonam',              grp:'Monobactam'},
+  {id:'chlo',   name:'Chloramphenicol',        grp:'Other'},
+  {id:'tige',   name:'Tigecycline',            grp:'Other'},
+];
+
+const SENS_DATA = [
+  // ===== GRAM POSITIVE COCCI =====
+  {group:'gram_pos', groupLabel:'Gram-Positive Cocci',
+   org:'S. aureus (MSSA)', note:'Methicillin-sensitive — commonest SSTIs, bone, bacteraemia',
+   s:{pen:'V',amox:'V',amcl:'S',amp:'V',amsu:'S',ptaz:'S',cefz:'S',cefu:'S',cftx:'S',cfep:'S',cftz:'I',cfos:'S',mero:'S',erta:'S',vanc:'S',line:'S',clin:'S',metr:'R',cip:'V',levo:'V',azit:'V',doxy:'V',tmps:'V',gent:'V',amik:'V',coli:'R',aztr:'R',chlo:'V',tige:'S'}},
+
+  {group:'gram_pos', groupLabel:'',
+   org:'S. aureus (MRSA)', note:'Community or hospital-acquired MRSA — resistant to all beta-lactams',
+   s:{pen:'R',amox:'R',amcl:'R',amp:'R',amsu:'R',ptaz:'R',cefz:'R',cefu:'R',cftx:'R',cfep:'R',cftz:'R',cfos:'R',mero:'R',erta:'R',vanc:'S',line:'S',clin:'V',metr:'R',cip:'R',levo:'R',azit:'R',doxy:'V',tmps:'V',gent:'V',amik:'V',coli:'R',aztr:'R',chlo:'V',tige:'S'}},
+
+  {group:'gram_pos', groupLabel:'',
+   org:'S. epidermidis (CoNS)', note:'Coagulase-negative Staph — line infections, prosthetics; often MR',
+   s:{pen:'R',amox:'R',amcl:'R',amp:'R',amsu:'R',ptaz:'R',cefz:'V',cefu:'V',cftx:'V',cfep:'V',cftz:'V',cfos:'V',mero:'V',erta:'V',vanc:'S',line:'S',clin:'V',metr:'R',cip:'V',levo:'V',azit:'R',doxy:'V',tmps:'V',gent:'V',amik:'V',coli:'R',aztr:'R',chlo:'V',tige:'S'}},
+
+  {group:'gram_pos', groupLabel:'',
+   org:'S. pneumoniae (Pen-S)', note:'Pneumococcus, penicillin-sensitive — pneumonia, meningitis',
+   s:{pen:'S',amox:'S',amcl:'S',amp:'S',amsu:'S',ptaz:'S',cefz:'S',cefu:'S',cftx:'S',cfep:'S',cftz:'I',cfos:'S',mero:'S',erta:'S',vanc:'S',line:'S',clin:'S',metr:'R',cip:'V',levo:'S',azit:'V',doxy:'V',tmps:'V',gent:'N',amik:'N',coli:'R',aztr:'R',chlo:'V',tige:'S'}},
+
+  {group:'gram_pos', groupLabel:'',
+   org:'S. pneumoniae (Pen-R)', note:'Penicillin-resistant pneumococcus — use high-dose amox or 3rd-gen ceph',
+   s:{pen:'R',amox:'V',amcl:'V',amp:'V',amsu:'V',ptaz:'V',cefz:'R',cefu:'R',cftx:'V',cfep:'V',cftz:'R',cfos:'V',mero:'S',erta:'S',vanc:'S',line:'S',clin:'V',metr:'R',cip:'V',levo:'S',azit:'R',doxy:'V',tmps:'R',gent:'N',amik:'N',coli:'R',aztr:'R',chlo:'V',tige:'S'}},
+
+  {group:'gram_pos', groupLabel:'',
+   org:'S. pyogenes (GAS)', note:'Group A Strep — pharyngitis, impetigo, scarlet fever; never pen-resistant',
+   s:{pen:'S',amox:'S',amcl:'S',amp:'S',amsu:'S',ptaz:'S',cefz:'S',cefu:'S',cftx:'S',cfep:'S',cftz:'S',cfos:'S',mero:'S',erta:'S',vanc:'S',line:'S',clin:'V',metr:'R',cip:'V',levo:'S',azit:'V',doxy:'V',tmps:'R',gent:'N',amik:'N',coli:'R',aztr:'R',chlo:'V',tige:'S'}},
+
+  {group:'gram_pos', groupLabel:'',
+   org:'S. agalactiae (GBS)', note:'Group B Strep — neonatal sepsis/meningitis, maternal genital tract',
+   s:{pen:'S',amox:'S',amcl:'S',amp:'S',amsu:'S',ptaz:'S',cefz:'S',cefu:'S',cftx:'S',cfep:'S',cftz:'S',cfos:'S',mero:'S',erta:'S',vanc:'S',line:'S',clin:'V',metr:'R',cip:'V',levo:'V',azit:'V',doxy:'V',tmps:'R',gent:'N',amik:'N',coli:'R',aztr:'R',chlo:'V',tige:'S'}},
+
+  {group:'gram_pos', groupLabel:'',
+   org:'Enterococcus faecalis', note:'UTI, endocarditis, intra-abdominal; NOT killed by cephalosporins',
+   s:{pen:'S',amox:'S',amcl:'S',amp:'S',amsu:'S',ptaz:'S',cefz:'R',cefu:'R',cftx:'R',cfep:'R',cftz:'R',cfos:'R',mero:'I',erta:'R',vanc:'S',line:'S',clin:'R',metr:'R',cip:'V',levo:'V',azit:'R',doxy:'V',tmps:'R',gent:'I',amik:'I',coli:'R',aztr:'R',chlo:'V',tige:'S'}},
+
+  {group:'gram_pos', groupLabel:'',
+   org:'Enterococcus faecium (VRE)', note:'Vancomycin-resistant enterococcus — nosocomial, haematology units',
+   s:{pen:'R',amox:'R',amcl:'R',amp:'R',amsu:'R',ptaz:'R',cefz:'R',cefu:'R',cftx:'R',cfep:'R',cftz:'R',cfos:'R',mero:'R',erta:'R',vanc:'R',line:'S',clin:'R',metr:'R',cip:'R',levo:'R',azit:'R',doxy:'V',tmps:'R',gent:'R',amik:'R',coli:'R',aztr:'R',chlo:'V',tige:'S'}},
+
+  {group:'gram_pos', groupLabel:'',
+   org:'Listeria monocytogenes', note:'Neonatal meningitis, immunocompromised; intrinsically ceph-resistant',
+   s:{pen:'S',amox:'S',amcl:'S',amp:'S',amsu:'S',ptaz:'S',cefz:'R',cefu:'R',cftx:'R',cfep:'R',cftz:'R',cfos:'R',mero:'S',erta:'R',vanc:'S',line:'S',clin:'V',metr:'R',cip:'V',levo:'V',azit:'R',doxy:'V',tmps:'S',gent:'I',amik:'I',coli:'R',aztr:'R',chlo:'S',tige:'S'}},
+
+  // ===== GRAM NEGATIVE =====
+  {group:'gram_neg', groupLabel:'Gram-Negative — Enterobacterales',
+   org:'E. coli (ESBL-negative)', note:'UTI, gastroenteritis, neonatal sepsis — check local resistance',
+   s:{pen:'R',amox:'V',amcl:'V',amp:'V',amsu:'V',ptaz:'S',cefz:'S',cefu:'S',cftx:'S',cfep:'S',cftz:'S',cfos:'S',mero:'S',erta:'S',vanc:'R',line:'R',clin:'R',metr:'R',cip:'V',levo:'V',azit:'R',doxy:'V',tmps:'V',gent:'V',amik:'V',coli:'S',aztr:'S',chlo:'V',tige:'S'}},
+
+  {group:'gram_neg', groupLabel:'',
+   org:'E. coli (ESBL-positive)', note:'ESBL — resistant to most cephalosporins; carbapenems required',
+   s:{pen:'R',amox:'R',amcl:'R',amp:'R',amsu:'R',ptaz:'V',cefz:'R',cefu:'R',cftx:'R',cfep:'R',cftz:'R',cfos:'R',mero:'S',erta:'S',vanc:'R',line:'R',clin:'R',metr:'R',cip:'R',levo:'R',azit:'R',doxy:'V',tmps:'R',gent:'V',amik:'V',coli:'S',aztr:'R',chlo:'V',tige:'S'}},
+
+  {group:'gram_neg', groupLabel:'',
+   org:'Klebsiella pneumoniae (ESBL-)', note:'Pneumonia, UTI, neonatal sepsis — ESBL negative, treatable',
+   s:{pen:'R',amox:'R',amcl:'V',amp:'R',amsu:'V',ptaz:'S',cefz:'S',cefu:'S',cftx:'S',cfep:'S',cftz:'S',cfos:'S',mero:'S',erta:'S',vanc:'R',line:'R',clin:'R',metr:'R',cip:'V',levo:'V',azit:'R',doxy:'V',tmps:'V',gent:'V',amik:'V',coli:'S',aztr:'S',chlo:'V',tige:'S'}},
+
+  {group:'gram_neg', groupLabel:'',
+   org:'Klebsiella pneumoniae (ESBL+/KPC)', note:'ESBL or carbapenemase-producing — pan-resistant possible; colistin last resort',
+   s:{pen:'R',amox:'R',amcl:'R',amp:'R',amsu:'R',ptaz:'R',cefz:'R',cefu:'R',cftx:'R',cfep:'R',cftz:'R',cfos:'R',mero:'V',erta:'R',vanc:'R',line:'R',clin:'R',metr:'R',cip:'R',levo:'R',azit:'R',doxy:'V',tmps:'R',gent:'V',amik:'V',coli:'S',aztr:'R',chlo:'V',tige:'V'}},
+
+  {group:'gram_neg', groupLabel:'',
+   org:'Haemophilus influenzae', note:'Otitis media, pneumonia, meningitis — beta-lactamase variable',
+   s:{pen:'V',amox:'V',amcl:'S',amp:'V',amsu:'S',ptaz:'S',cefz:'I',cefu:'S',cftx:'S',cfep:'S',cftz:'S',cfos:'S',mero:'S',erta:'S',vanc:'R',line:'V',clin:'R',metr:'R',cip:'S',levo:'S',azit:'S',doxy:'S',tmps:'V',gent:'V',amik:'V',coli:'R',aztr:'S',chlo:'V',tige:'S'}},
+
+  {group:'gram_neg', groupLabel:'',
+   org:'Neisseria meningitidis', note:'Bacterial meningitis — penicillin usually sensitive; check local',
+   s:{pen:'S',amox:'S',amcl:'S',amp:'S',amsu:'S',ptaz:'S',cefz:'I',cefu:'S',cftx:'S',cfep:'S',cftz:'S',cfos:'S',mero:'S',erta:'S',vanc:'R',line:'R',clin:'R',metr:'R',cip:'S',levo:'S',azit:'V',doxy:'V',tmps:'V',gent:'N',amik:'N',coli:'R',aztr:'S',chlo:'S',tige:'S'}},
+
+  {group:'gram_neg', groupLabel:'',
+   org:'Salmonella typhi', note:'Typhoid fever — increasing fluoroquinolone resistance in India/S. Asia',
+   s:{pen:'R',amox:'V',amcl:'V',amp:'V',amsu:'V',ptaz:'V',cefz:'R',cefu:'R',cftx:'S',cfep:'S',cftz:'V',cfos:'S',mero:'S',erta:'S',vanc:'R',line:'R',clin:'R',metr:'R',cip:'V',levo:'V',azit:'S',doxy:'V',tmps:'V',gent:'N',amik:'N',coli:'R',aztr:'V',chlo:'V',tige:'S'}},
+
+  {group:'gram_neg', groupLabel:'',
+   org:'Salmonella non-typhi', note:'Enteric fever, bacteraemia — similar resistance pattern to typhi',
+   s:{pen:'R',amox:'V',amcl:'V',amp:'V',amsu:'V',ptaz:'S',cefz:'V',cefu:'V',cftx:'S',cfep:'S',cftz:'V',cfos:'S',mero:'S',erta:'S',vanc:'R',line:'R',clin:'R',metr:'R',cip:'V',levo:'V',azit:'S',doxy:'V',tmps:'V',gent:'V',amik:'V',coli:'R',aztr:'V',chlo:'V',tige:'S'}},
+
+  {group:'gram_neg', groupLabel:'',
+   org:'Shigella spp.', note:'Dysentery — high fluoroquinolone resistance in India; azithromycin preferred',
+   s:{pen:'R',amox:'R',amcl:'V',amp:'R',amsu:'V',ptaz:'V',cefz:'R',cefu:'R',cftx:'S',cfep:'S',cftz:'S',cfos:'S',mero:'S',erta:'S',vanc:'R',line:'R',clin:'R',metr:'R',cip:'V',levo:'V',azit:'S',doxy:'V',tmps:'R',gent:'V',amik:'V',coli:'R',aztr:'S',chlo:'V',tige:'S'}},
+
+  {group:'gram_neg', groupLabel:'',
+   org:'Proteus mirabilis', note:'UTI, wound infections — intrinsically resistant to polymyxins, tetracycline',
+   s:{pen:'V',amox:'V',amcl:'S',amp:'V',amsu:'S',ptaz:'S',cefz:'S',cefu:'S',cftx:'S',cfep:'S',cftz:'S',cfos:'S',mero:'S',erta:'S',vanc:'R',line:'R',clin:'R',metr:'R',cip:'S',levo:'S',azit:'R',doxy:'R',tmps:'V',gent:'V',amik:'V',coli:'R',aztr:'S',chlo:'V',tige:'R'}},
+
+  {group:'gram_neg', groupLabel:'',
+   org:'Enterobacter spp.', note:'Nosocomial, inducible AmpC — cephalosporins may select resistant mutants',
+   s:{pen:'R',amox:'R',amcl:'R',amp:'R',amsu:'R',ptaz:'V',cefz:'R',cefu:'R',cftx:'V',cfep:'S',cftz:'V',cfos:'V',mero:'S',erta:'V',vanc:'R',line:'R',clin:'R',metr:'R',cip:'V',levo:'V',azit:'R',doxy:'V',tmps:'V',gent:'V',amik:'V',coli:'S',aztr:'V',chlo:'V',tige:'S'}},
+
+  {group:'gram_neg', groupLabel:'',
+   org:'Serratia marcescens', note:'Nosocomial — intrinsic AmpC; UTI, pneumonia in ICU patients',
+   s:{pen:'R',amox:'R',amcl:'R',amp:'R',amsu:'R',ptaz:'V',cefz:'R',cefu:'R',cftx:'V',cfep:'S',cftz:'V',cfos:'V',mero:'S',erta:'V',vanc:'R',line:'R',clin:'R',metr:'R',cip:'V',levo:'V',azit:'R',doxy:'V',tmps:'V',gent:'V',amik:'V',coli:'R',aztr:'V',chlo:'V',tige:'S'}},
+
+  {group:'gram_neg', groupLabel:'Gram-Negative — Non-Fermenters',
+   org:'Pseudomonas aeruginosa', note:'Inherently resistant — anti-pseudomonal agents required; MDR increasing',
+   s:{pen:'R',amox:'R',amcl:'R',amp:'R',amsu:'R',ptaz:'S',cefz:'R',cefu:'R',cftx:'R',cfep:'S',cftz:'S',cfos:'V',mero:'S',erta:'R',vanc:'R',line:'R',clin:'R',metr:'R',cip:'S',levo:'V',azit:'R',doxy:'R',tmps:'R',gent:'V',amik:'S',coli:'S',aztr:'S',chlo:'R',tige:'R'}},
+
+  {group:'gram_neg', groupLabel:'',
+   org:'Acinetobacter baumannii', note:'MDR nosocomial pathogen — colistin/sulbactam last resort in XDR strains',
+   s:{pen:'R',amox:'R',amcl:'R',amp:'R',amsu:'V',ptaz:'V',cefz:'R',cefu:'R',cftx:'R',cfep:'V',cftz:'V',cfos:'V',mero:'V',erta:'R',vanc:'R',line:'R',clin:'R',metr:'R',cip:'V',levo:'V',azit:'R',doxy:'V',tmps:'V',gent:'V',amik:'V',coli:'S',aztr:'R',chlo:'V',tige:'V'}},
+
+  {group:'gram_neg', groupLabel:'Gram-Negative — Fastidious',
+   org:'Bordetella pertussis', note:'Whooping cough — azithromycin for treatment and prophylaxis',
+   s:{pen:'V',amox:'V',amcl:'V',amp:'V',amsu:'V',ptaz:'N',cefz:'N',cefu:'N',cftx:'N',cfep:'N',cftz:'N',cfos:'N',mero:'N',erta:'N',vanc:'R',line:'N',clin:'N',metr:'R',cip:'S',levo:'S',azit:'S',doxy:'V',tmps:'S',gent:'N',amik:'N',coli:'N',aztr:'N',chlo:'S',tige:'N'}},
+
+  {group:'gram_neg', groupLabel:'',
+   org:'Neisseria gonorrhoeae', note:'Sexually-transmitted — ceftriaxone IM preferred; widespread quinolone resistance',
+   s:{pen:'R',amox:'R',amcl:'V',amp:'R',amsu:'V',ptaz:'N',cefz:'V',cefu:'V',cftx:'S',cfep:'S',cftz:'V',cfos:'S',mero:'S',erta:'N',vanc:'R',line:'R',clin:'R',metr:'R',cip:'R',levo:'R',azit:'V',doxy:'V',tmps:'R',gent:'N',amik:'N',coli:'R',aztr:'S',chlo:'V',tige:'S'}},
+
+  // ===== ANAEROBES =====
+  {group:'anaerobes', groupLabel:'Anaerobes',
+   org:'Bacteroides fragilis', note:'Intra-abdominal, pelvic abscesses — intrinsically resistant to many agents',
+   s:{pen:'R',amox:'R',amcl:'S',amp:'R',amsu:'S',ptaz:'S',cefz:'R',cefu:'R',cftx:'R',cfep:'R',cftz:'R',cfos:'S',mero:'S',erta:'S',vanc:'R',line:'S',clin:'V',metr:'S',cip:'R',levo:'R',azit:'R',doxy:'R',tmps:'R',gent:'R',amik:'R',coli:'R',aztr:'R',chlo:'S',tige:'S'}},
+
+  {group:'anaerobes', groupLabel:'',
+   org:'Clostridium perfringens', note:'Gas gangrene, food poisoning — penicillin remains active',
+   s:{pen:'S',amox:'S',amcl:'S',amp:'S',amsu:'S',ptaz:'S',cefz:'S',cefu:'S',cftx:'S',cfep:'S',cftz:'V',cfos:'S',mero:'S',erta:'S',vanc:'S',line:'S',clin:'S',metr:'S',cip:'V',levo:'V',azit:'V',doxy:'S',tmps:'R',gent:'R',amik:'R',coli:'R',aztr:'R',chlo:'S',tige:'S'}},
+
+  {group:'anaerobes', groupLabel:'',
+   org:'Clostridioides difficile', note:'AAD/pseudomembranous colitis — oral vanco or fidaxomicin (metronidazole 2nd line)',
+   s:{pen:'R',amox:'R',amcl:'R',amp:'R',amsu:'R',ptaz:'R',cefz:'R',cefu:'R',cftx:'R',cfep:'R',cftz:'R',cfos:'R',mero:'R',erta:'R',vanc:'S',line:'S',clin:'R',metr:'S',cip:'R',levo:'R',azit:'R',doxy:'V',tmps:'R',gent:'R',amik:'R',coli:'R',aztr:'R',chlo:'R',tige:'S'}},
+
+  {group:'anaerobes', groupLabel:'',
+   org:'Peptostreptococcus / Peptococcus', note:'Gram-positive anaerobic cocci — oral/dental, pelvic, intra-abdominal',
+   s:{pen:'S',amox:'S',amcl:'S',amp:'S',amsu:'S',ptaz:'S',cefz:'S',cefu:'S',cftx:'S',cfep:'S',cftz:'S',cfos:'S',mero:'S',erta:'S',vanc:'S',line:'S',clin:'S',metr:'S',cip:'V',levo:'V',azit:'V',doxy:'S',tmps:'V',gent:'R',amik:'R',coli:'R',aztr:'R',chlo:'S',tige:'S'}},
+
+  // ===== ATYPICALS =====
+  {group:'atypical', groupLabel:'Atypical / Intracellular Organisms',
+   org:'Mycoplasma pneumoniae', note:'Atypical pneumonia — beta-lactams inactive (no cell wall)',
+   s:{pen:'R',amox:'R',amcl:'R',amp:'R',amsu:'R',ptaz:'R',cefz:'R',cefu:'R',cftx:'R',cfep:'R',cftz:'R',cfos:'R',mero:'R',erta:'R',vanc:'R',line:'S',clin:'R',metr:'R',cip:'S',levo:'S',azit:'S',doxy:'S',tmps:'R',gent:'R',amik:'R',coli:'R',aztr:'R',chlo:'S',tige:'S'}},
+
+  {group:'atypical', groupLabel:'',
+   org:'Chlamydophila pneumoniae', note:'Atypical CAP — all beta-lactams intrinsically inactive',
+   s:{pen:'R',amox:'R',amcl:'R',amp:'R',amsu:'R',ptaz:'R',cefz:'R',cefu:'R',cftx:'R',cfep:'R',cftz:'R',cfos:'R',mero:'R',erta:'R',vanc:'R',line:'S',clin:'R',metr:'R',cip:'S',levo:'S',azit:'S',doxy:'S',tmps:'V',gent:'R',amik:'R',coli:'R',aztr:'R',chlo:'S',tige:'S'}},
+
+  {group:'atypical', groupLabel:'',
+   org:'Chlamydia trachomatis', note:'Neonatal conjunctivitis, genital infections, trachoma',
+   s:{pen:'R',amox:'R',amcl:'R',amp:'R',amsu:'R',ptaz:'R',cefz:'R',cefu:'R',cftx:'R',cfep:'R',cftz:'R',cfos:'R',mero:'R',erta:'R',vanc:'R',line:'S',clin:'R',metr:'R',cip:'S',levo:'S',azit:'S',doxy:'S',tmps:'V',gent:'R',amik:'R',coli:'R',aztr:'R',chlo:'S',tige:'S'}},
+
+  {group:'atypical', groupLabel:'',
+   org:'Legionella pneumophila', note:'Severe CAP, immunocompromised — intracellular, beta-lactams often insufficient',
+   s:{pen:'R',amox:'R',amcl:'R',amp:'R',amsu:'R',ptaz:'R',cefz:'R',cefu:'R',cftx:'V',cfep:'V',cftz:'V',cfos:'V',mero:'V',erta:'V',vanc:'R',line:'S',clin:'R',metr:'R',cip:'S',levo:'S',azit:'S',doxy:'S',tmps:'V',gent:'R',amik:'R',coli:'R',aztr:'R',chlo:'S',tige:'S'}},
+
+  {group:'atypical', groupLabel:'',
+   org:'Rickettsia spp. (RMSF/Scrub typhus)', note:'Scrub typhus, RMSF — doxycycline drug of choice in ALL ages including <8 years',
+   s:{pen:'R',amox:'R',amcl:'R',amp:'R',amsu:'R',ptaz:'R',cefz:'R',cefu:'R',cftx:'R',cfep:'R',cftz:'R',cfos:'R',mero:'R',erta:'R',vanc:'R',line:'R',clin:'R',metr:'R',cip:'V',levo:'V',azit:'V',doxy:'S',tmps:'R',gent:'R',amik:'R',coli:'R',aztr:'R',chlo:'S',tige:'S'}},
+
+  {group:'atypical', groupLabel:'',
+   org:'Treponema pallidum (Syphilis)', note:'Congenital syphilis — penicillin G remains drug of choice',
+   s:{pen:'S',amox:'S',amcl:'S',amp:'S',amsu:'S',ptaz:'N',cefz:'N',cefu:'N',cftx:'S',cfep:'N',cftz:'N',cfos:'N',mero:'N',erta:'N',vanc:'R',line:'N',clin:'R',metr:'R',cip:'R',levo:'R',azit:'V',doxy:'S',tmps:'R',gent:'R',amik:'R',coli:'R',aztr:'R',chlo:'V',tige:'N'}},
+
+  // ===== MYCOBACTERIA =====
+  {group:'mycobac', groupLabel:'Mycobacteria',
+   org:'Mycobacterium tuberculosis (DS)', note:'Drug-sensitive TB — RHEZ regimen; all standard antibiotics inactive',
+   s:{pen:'R',amox:'R',amcl:'R',amp:'R',amsu:'R',ptaz:'R',cefz:'R',cefu:'R',cftx:'R',cfep:'R',cftz:'R',cfos:'R',mero:'R',erta:'R',vanc:'R',line:'V',clin:'R',metr:'R',cip:'V',levo:'S',azit:'R',doxy:'R',tmps:'R',gent:'N',amik:'S',coli:'R',aztr:'R',chlo:'R',tige:'R'}},
+
+  {group:'mycobac', groupLabel:'',
+   org:'Mycobacterium tuberculosis (MDR)', note:'Resistant to INH + RIF — second-line drugs (fluoroquinolones, injectables)',
+   s:{pen:'R',amox:'R',amcl:'R',amp:'R',amsu:'R',ptaz:'R',cefz:'R',cefu:'R',cftx:'R',cfep:'R',cftz:'R',cfos:'R',mero:'R',erta:'R',vanc:'R',line:'S',clin:'R',metr:'R',cip:'V',levo:'S',azit:'R',doxy:'R',tmps:'R',gent:'N',amik:'S',coli:'R',aztr:'R',chlo:'R',tige:'R'}},
+
+  {group:'mycobac', groupLabel:'',
+   org:'Non-tuberculous Mycobacteria (NTM)', note:'MAC, M. abscessus, M. kansasii — multi-drug regimens required',
+   s:{pen:'R',amox:'R',amcl:'R',amp:'R',amsu:'R',ptaz:'R',cefz:'R',cefu:'R',cftx:'R',cfep:'R',cftz:'R',cfos:'R',mero:'V',erta:'R',vanc:'R',line:'V',clin:'V',metr:'R',cip:'V',levo:'V',azit:'S',doxy:'V',tmps:'R',gent:'V',amik:'S',coli:'R',aztr:'R',chlo:'V',tige:'V'}},
+];
+
+const ABX_GROUPS = [...new Set(ABX_COLS.map(a=>a.grp))];
+let currentSensGroup = 'all';
+let currentAbxGroups = new Set(ABX_GROUPS);
+let openSensCards = new Set();
+
+function buildSensFilters() {
+  const gf = document.getElementById('sensGroupFilter');
+  const af = document.getElementById('sensAbxFilter');
+
+  // Organism group filter
+  const groups = [
+    {id:'all', label:'All Organisms'},
+    {id:'gram_pos', label:'Gram-Positive'},
+    {id:'gram_neg', label:'Gram-Negative'},
+    {id:'anaerobes', label:'Anaerobes'},
+    {id:'atypical', label:'Atypicals'},
+    {id:'mycobac', label:'Mycobacteria'},
+  ];
+  gf.innerHTML = groups.map(g =>
+    `<button class="sens-gfilt${g.id==='all'?' active':''}" onclick="filterSensGroup('${g.id}',this)">${g.label}</button>`
+  ).join('');
+
+  // Antibiotic group filter
+  af.innerHTML = ABX_GROUPS.map(g =>
+    `<button class="sens-afilt active" data-grp="${g}" onclick="toggleAbxGrp('${g}',this)">${g}</button>`
+  ).join('');
+}
+
+function filterSensGroup(grp, btn) {
+  currentSensGroup = grp;
+  document.querySelectorAll('.sens-gfilt').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderSensitivity();
+}
+
+function toggleAbxGrp(grp, btn) {
+  if (currentAbxGroups.has(grp)) currentAbxGroups.delete(grp);
+  else currentAbxGroups.add(grp);
+  btn.classList.toggle('active', currentAbxGroups.has(grp));
+  renderSensitivity();
+}
+
+function getVisibleAbx() {
+  return ABX_COLS.filter(a => currentAbxGroups.has(a.grp));
+}
+
+function getFilteredOrgs() {
+  if (currentSensGroup === 'all') return SENS_DATA;
+  return SENS_DATA.filter(o => o.group === currentSensGroup);
+}
+
+function sensClass(val) {
+  const m = {S:'sc-s',R:'sc-r',V:'sc-v',I:'sc-i',N:'sc-n','-':'sc-n'};
+  return m[val] || 'sc-n';
+}
+function sensCardClass(val) {
+  const m = {S:'sab-s',R:'sab-r',V:'sab-v',I:'sab-i',N:'sab-n','-':'sab-n'};
+  return m[val] || 'sab-n';
+}
+function groupBadgeClass(g) {
+  const m = {gram_pos:'badge-gp',gram_neg:'badge-gn',anaerobes:'badge-an',atypical:'badge-at',mycobac:'badge-gp'};
+  return m[g]||'badge-gp';
+}
+function groupBadgeLabel(g) {
+  const m = {gram_pos:'G+',gram_neg:'G-',anaerobes:'Anaer',atypical:'Atyp',mycobac:'Mycobac'};
+  return m[g]||g;
+}
+
+function renderSensitivity() {
+  const orgs = getFilteredOrgs();
+  const abx = getVisibleAbx();
+
+  // --- Desktop Table ---
+  const thead = document.getElementById('sensTableHead');
+  const tbody = document.getElementById('sensTableBody');
+  if (thead && tbody) {
+    thead.innerHTML = `<tr>
+      <th class="org-col">Organism</th>
+      ${abx.map(a=>`<th title="${a.name}">${a.name.replace(' ','\u00A0')}</th>`).join('')}
+    </tr>`;
+
+    let rows = '';
+    let lastGroup = null;
+    orgs.forEach(o => {
+      if (o.groupLabel && o.groupLabel !== lastGroup) {
+        lastGroup = o.groupLabel;
+        rows += `<tr class="group-row"><td colspan="${abx.length+1}">${o.groupLabel}</td></tr>`;
+      }
+      rows += `<tr>
+        <td class="org-cell">
+          <div class="sens-org-name">${o.org}</div>
+          <div class="sens-org-note">${o.note}</div>
+        </td>
+        ${abx.map(a => {
+          const v = o.s[a.id]||'N';
+          return `<td class="${sensClass(v)}">${v==='N'?'–':v}</td>`;
+        }).join('')}
+      </tr>`;
+    });
+    tbody.innerHTML = rows;
+  }
+
+  // --- Mobile Cards ---
+  const cardWrap = document.getElementById('sensCardWrap');
+  if (cardWrap) {
+    let lastGroupM = null;
+    cardWrap.innerHTML = orgs.map((o, i) => {
+      let groupHeader = '';
+      if (o.groupLabel && o.groupLabel !== lastGroupM) {
+        lastGroupM = o.groupLabel;
+        groupHeader = `<div style="font-size:9px;font-weight:700;color:var(--accent);letter-spacing:2px;text-transform:uppercase;padding:12px 4px 6px;font-family:'Sora',sans-serif;">${o.groupLabel}</div>`;
+      }
+      const isOpen = openSensCards.has(i);
+      const abxRows = abx.map(a => {
+        const v = o.s[a.id]||'N';
+        if (v==='N') return '';
+        return `<div class="sens-abx-row">
+          <div class="sens-abx-name">${a.name}</div>
+          <span class="sab ${sensCardClass(v)}">${v}</span>
+        </div>`;
+      }).join('');
+      return `${groupHeader}<div class="sens-card${isOpen?' open':''}" id="scard-${i}">
+        <div class="sens-card-header" onclick="toggleSensCard(${i})">
+          <div style="flex:1;min-width:0;">
+            <div class="sens-org-name2">${o.org}</div>
+            <div class="sens-org-note2">${o.note}</div>
+          </div>
+          <span class="sens-group-badge ${groupBadgeClass(o.group)}">${groupBadgeLabel(o.group)}</span>
+          <span class="chevron" style="color:var(--text3);font-size:13px;margin-left:6px;transition:transform 0.25s;${isOpen?'transform:rotate(180deg)':''}">▼</span>
+        </div>
+        <div class="sens-card-body">${abxRows||'<div style="color:var(--text3);font-size:11px;">No data for selected antibiotic groups</div>'}</div>
+      </div>`;
+    }).join('');
+  }
+}
+
+function toggleSensCard(i) {
+  if (openSensCards.has(i)) openSensCards.delete(i);
+  else openSensCards.add(i);
+  renderSensitivity();
+}
+
+
+
 // ============================================================
 // INIT
 // ============================================================
@@ -3068,6 +3491,8 @@ buildSidebar();
 renderDrugs();
 renderSituations();
 renderRenal('all');
+buildSensFilters();
+renderSensitivity();
 
 </script>
 </body>
